@@ -1,8 +1,7 @@
 import { PrismaClient } from "@prisma/client";
-import { hash } from "bcryptjs";
 const prisma = new PrismaClient();
 
-export default class UserRepository {
+export class UserRepository {
   static async findAll(name?: string) {
     return await prisma.user.findMany({
       where: name ? { name: { contains: name } } : undefined
@@ -26,12 +25,8 @@ export default class UserRepository {
       data: {
         name: data.name,
         email: data.email,
-        password: await this.#hashPassword(data.password)
+        password: data.password
       }
     });
-  }
-
-  static async #hashPassword(password: string) {
-    return hash(password, 10);
   }
 }
