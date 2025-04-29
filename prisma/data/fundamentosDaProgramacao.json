@@ -1,0 +1,977 @@
+[
+  {
+    "id": 1,
+    "name": "Soft-skills para programadores",
+    "journey": "Fundamentos de Programação",
+    "questions": [
+      {
+        "id": 1,
+        "question": "O que são Soft Skills?",
+        "explication": "Soft Skills são habilidades comportamentais como comunicação, trabalho em equipe, liderança e empatia.",
+        "answers": [
+          { "id": 1, "text": "Habilidades técnicas de programação", "correct": false },
+          { "id": 2, "text": "Comportamentos e habilidades interpessoais", "correct": true },
+          { "id": 3, "text": "Ferramentas para automatizar tarefas", "correct": false }
+        ]
+      },
+      {
+        "id": 2,
+        "question": "O que demonstra proatividade em um projeto de software?",
+        "explication": "Ser proativo é antecipar problemas e sugerir melhorias sem esperar ser cobrado.",
+        "answers": [
+          { "id": 1, "text": "Esperar ordens para agir", "correct": false },
+          { "id": 2, "text": "Tomar iniciativa para resolver problemas", "correct": true },
+          { "id": 3, "text": "Ignorar os problemas e seguir codando", "correct": false }
+        ]
+      },
+      {
+        "id": 3,
+        "question": "Qual é uma prática importante para autogerenciamento no trabalho remoto?",
+        "explication": "Organizar tarefas e manter disciplina são essenciais para produtividade sem supervisão constante.",
+        "answers": [
+          { "id": 1, "text": "Deixar as tarefas para o final do dia", "correct": false },
+          { "id": 2, "text": "Organizar e planejar o dia de trabalho", "correct": true },
+          { "id": 3, "text": "Ignorar prazos e esperar cobranças", "correct": false }
+        ]
+      },
+      {
+        "id": 4,
+        "question": "Trabalho em equipe é mais eficiente quando...",
+        "explication": "Colaboração e respeito entre os membros são a base de um time eficiente.",
+        "answers": [
+          { "id": 1, "text": "Cada um faz o seu e não conversa", "correct": false },
+          { "id": 2, "text": "Todos colaboram e se ajudam", "correct": true },
+          { "id": 3, "text": "Todos tentam liderar ao mesmo tempo", "correct": false }
+        ]
+      },
+      {
+        "id": 5,
+        "question": "Por que a comunicação é essencial em um time de desenvolvimento?",
+        "explication": "Boa comunicação evita retrabalho e melhora a colaboração entre os membros da equipe.",
+        "answers": [
+          { "id": 1, "text": "Para evitar retrabalho e alinhar expectativas", "correct": true },
+          { "id": 2, "text": "Para mostrar que sei mais que os outros", "correct": false },
+          { "id": 3, "text": "Para ganhar bônus no final do projeto", "correct": false }
+        ]
+      },
+      {
+        "id": 6,
+        "question": "Proatividade é agir...",
+        "explication": "Proatividade é agir antes que um problema cresça ou aconteça.",
+        "answers": [
+          { "id": 1, "text": "Somente quando alguém manda", "correct": false },
+          { "id": 2, "text": "Antes que os problemas piorem", "correct": true },
+          { "id": 3, "text": "Apenas depois de ser chamado atenção", "correct": false }
+        ]
+      },
+      {
+        "id": 7,
+        "question": "Como um desenvolvedor pode melhorar sua comunicação no time?",
+        "explication": "Falar de forma clara, registrar decisões e pedir feedback são boas práticas.",
+        "answers": [
+          { "id": 1, "text": "Guardando informações para si", "correct": false },
+          { "id": 2, "text": "Comunicando claramente e buscando feedbacks", "correct": true },
+          { "id": 3, "text": "Falando apenas com o líder de projeto", "correct": false }
+        ]
+      },
+      {
+        "id": 8,
+        "question": "Autogerenciamento é importante porque...",
+        "explication": "Times de tecnologia valorizam quem entrega resultados sem precisar ser microgerenciado.",
+        "answers": [
+          { "id": 1, "text": "Permite trabalhar de forma independente e eficaz", "correct": true },
+          { "id": 2, "text": "Permite trabalhar só quando quiser", "correct": false },
+          { "id": 3, "text": "Permite fazer somente o mínimo necessário", "correct": false }
+        ]
+      },
+      {
+        "id": 9,
+        "question": "O que ajuda no trabalho em equipe em programação?",
+        "explication": "Compartilhar conhecimentos e ajudar colegas acelera a entrega e fortalece o time.",
+        "answers": [
+          { "id": 1, "text": "Competir com os colegas para ser promovido", "correct": false },
+          { "id": 2, "text": "Compartilhar conhecimento e boas práticas", "correct": true },
+          { "id": 3, "text": "Trabalhar isolado para entregar rápido", "correct": false }
+        ]
+      },
+      {
+        "id": 10,
+        "question": "Quando devo pedir ajuda ao trabalhar em um projeto de programação?",
+        "explication": "Pedir ajuda rapidamente evita bloqueios e melhora o ritmo do projeto.",
+        "answers": [
+          { "id": 1, "text": "Quando não consigo resolver após tentar sozinho", "correct": true },
+          { "id": 2, "text": "Somente no final do projeto", "correct": false },
+          { "id": 3, "text": "Nunca, é melhor errar sozinho", "correct": false }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Papéis na Área de Tecnologia",
+    "journey": "Fundamentos de Programação",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Qual é a principal responsabilidade de um CTO?",
+        "explication": "O CTO (Chief Technology Officer) lidera a estratégia tecnológica de uma empresa.",
+        "answers": [
+          { "id": 1, "text": "Gerenciar o RH da empresa", "correct": false },
+          { "id": 2, "text": "Definir a arquitetura e a direção tecnológica", "correct": true },
+          { "id": 3, "text": "Criar campanhas de marketing", "correct": false }
+        ]
+      },
+      {
+        "id": 2,
+        "question": "O que faz o CPO em uma empresa de tecnologia?",
+        "explication": "O CPO (Chief Product Officer) é responsável pela visão e evolução dos produtos da empresa.",
+        "answers": [
+          { "id": 1, "text": "Desenvolve os produtos sozinho", "correct": false },
+          { "id": 2, "text": "Define a estratégia e evolução dos produtos", "correct": true },
+          { "id": 3, "text": "Gerencia os servidores da empresa", "correct": false }
+        ]
+      },
+      {
+        "id": 3,
+        "question": "O CIO é responsável por...",
+        "explication": "O CIO (Chief Information Officer) cuida da infraestrutura de TI e dos sistemas internos da empresa.",
+        "answers": [
+          { "id": 1, "text": "Criar o design dos produtos", "correct": false },
+          { "id": 2, "text": "Gerenciar os sistemas internos e infraestrutura de TI", "correct": true },
+          { "id": 3, "text": "Treinar os desenvolvedores", "correct": false }
+        ]
+      },
+      {
+        "id": 4,
+        "question": "O que faz um Product Owner (PO)?",
+        "explication": "O PO representa o cliente dentro do time e define as prioridades do produto.",
+        "answers": [
+          { "id": 1, "text": "Cuida apenas do código", "correct": false },
+          { "id": 2, "text": "Prioriza funcionalidades e define o que será feito", "correct": true },
+          { "id": 3, "text": "Testa o sistema após as entregas", "correct": false }
+        ]
+      },
+      {
+        "id": 5,
+        "question": "Qual é o papel do Scrum Master?",
+        "explication": "O Scrum Master facilita o processo ágil e ajuda o time a remover impedimentos.",
+        "answers": [
+          { "id": 1, "text": "Lidera tecnicamente o time", "correct": false },
+          { "id": 2, "text": "Ajuda o time a seguir o framework ágil", "correct": true },
+          { "id": 3, "text": "Escreve requisitos técnicos", "correct": false }
+        ]
+      },
+      {
+        "id": 6,
+        "question": "Desenvolvedores são responsáveis por...",
+        "explication": "Os desenvolvedores implementam soluções baseadas em requisitos funcionais e técnicos.",
+        "answers": [
+          { "id": 1, "text": "Gerar relatórios de vendas", "correct": false },
+          { "id": 2, "text": "Codificar funcionalidades do sistema", "correct": true },
+          { "id": 3, "text": "Fazer entrevistas de emprego", "correct": false }
+        ]
+      },
+      {
+        "id": 7,
+        "question": "O que faz um QA (Quality Assurance)?",
+        "explication": "O QA garante a qualidade do produto através de testes e validações.",
+        "answers": [
+          { "id": 1, "text": "Apenas observa o time", "correct": false },
+          { "id": 2, "text": "Cria e executa testes para garantir qualidade", "correct": true },
+          { "id": 3, "text": "Configura o banco de dados", "correct": false }
+        ]
+      },
+      {
+        "id": 8,
+        "question": "Qual a diferença entre CTO e CIO?",
+        "explication": "CTO foca em tecnologia para o produto, CIO cuida da TI interna da empresa.",
+        "answers": [
+          { "id": 1, "text": "CTO cuida do RH, CIO da tecnologia", "correct": false },
+          { "id": 2, "text": "CTO cuida da tecnologia de produto, CIO da TI interna", "correct": true },
+          { "id": 3, "text": "Ambos fazem a mesma coisa", "correct": false }
+        ]
+      },
+      {
+        "id": 9,
+        "question": "Quem é responsável por garantir que o time trabalhe com eficiência dentro da metodologia ágil?",
+        "explication": "O Scrum Master é o facilitador da equipe dentro do processo ágil.",
+        "answers": [
+          { "id": 1, "text": "Scrum Master", "correct": true },
+          { "id": 2, "text": "QA", "correct": false },
+          { "id": 3, "text": "Designer UX", "correct": false }
+        ]
+      },
+      {
+        "id": 10,
+        "question": "Qual papel geralmente define a prioridade das tarefas do time de desenvolvimento?",
+        "explication": "O PO prioriza o backlog com base em valor de negócio e feedbacks.",
+        "answers": [
+          { "id": 1, "text": "CTO", "correct": false },
+          { "id": 2, "text": "Product Owner (PO)", "correct": true },
+          { "id": 3, "text": "Scrum Master", "correct": false }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Testes, Deploy e Produção",
+    "journey": "Fundamentos de Programação",
+    "questions": [
+      {
+        "id": 1,
+        "question": "O que é o ambiente de produção?",
+        "explication": "Produção é onde o sistema 'tá valendo', acessado por usuários reais.",
+        "answers": [
+          { "id": 1, "text": "Onde fazemos testes arriscados", "correct": false },
+          { "id": 2, "text": "Ambiente real usado pelos usuários finais", "correct": true },
+          { "id": 3, "text": "O computador do desenvolvedor", "correct": false }
+        ]
+      },
+      {
+        "id": 2,
+        "question": "Por que dizem que 'não se testa em produção'?",
+        "explication": "Testar diretamente em produção pode causar bugs visíveis para o usuário.",
+        "answers": [
+          { "id": 1, "text": "Porque é mais divertido", "correct": false },
+          { "id": 2, "text": "Porque isso pode afetar usuários reais", "correct": true },
+          { "id": 3, "text": "Porque não é possível", "correct": false }
+        ]
+      },
+      {
+        "id": 3,
+        "question": "O que significa CI/CD?",
+        "explication": "CI/CD é uma prática de automação de testes (CI) e deploys (CD).",
+        "answers": [
+          { "id": 1, "text": "Código Imediato / Computador do Desenvolvedor", "correct": false },
+          { "id": 2, "text": "Integração Contínua / Entrega Contínua", "correct": true },
+          { "id": 3, "text": "Conexão Interna / Comunicação Digital", "correct": false }
+        ]
+      },
+      {
+        "id": 4,
+        "question": "O que é deploy?",
+        "explication": "Deploy é o processo de colocar uma aplicação no ar, disponível ao público.",
+        "answers": [
+          { "id": 1, "text": "Criar banco de dados local", "correct": false },
+          { "id": 2, "text": "Enviar código para produção", "correct": true },
+          { "id": 3, "text": "Formatar o computador", "correct": false }
+        ]
+      },
+      {
+        "id": 5,
+        "question": "Por que existem ambientes como 'homologação' ou 'teste'?",
+        "explication": "Ambientes de teste evitam que problemas cheguem à produção.",
+        "answers": [
+          { "id": 1, "text": "Pra confundir os programadores", "correct": false },
+          { "id": 2, "text": "Pra testar com segurança antes de ir pra produção", "correct": true },
+          { "id": 3, "text": "Pra gastar mais dinheiro com servidores", "correct": false }
+        ]
+      },
+      {
+        "id": 6,
+        "question": "O que é um teste automatizado?",
+        "explication": "Teste automatizado é um código que verifica se outro código funciona.",
+        "answers": [
+          { "id": 1, "text": "Um robô clicando no site", "correct": false },
+          { "id": 2, "text": "Um código que verifica o comportamento de outro código", "correct": true },
+          { "id": 3, "text": "Um teste feito com planilhas", "correct": false }
+        ]
+      },
+      {
+        "id": 7,
+        "question": "O que significa 'derrubar o servidor em produção'?",
+        "explication": "É uma forma informal de dizer que o site ou sistema ficou fora do ar.",
+        "answers": [
+          { "id": 1, "text": "Literalmente empurrar o computador do servidor", "correct": false },
+          { "id": 2, "text": "Fazer o sistema sair do ar por causa de erro ou falha", "correct": true },
+          { "id": 3, "text": "Desligar o notebook do dev", "correct": false }
+        ]
+      },
+      {
+        "id": 8,
+        "question": "O que é rollback?",
+        "explication": "Rollback é desfazer uma atualização que deu errado.",
+        "answers": [
+          { "id": 1, "text": "Apagar todo o projeto", "correct": false },
+          { "id": 2, "text": "Reverter uma versão problemática do sistema", "correct": true },
+          { "id": 3, "text": "Voltar a estudar lógica", "correct": false }
+        ]
+      },
+      {
+        "id": 9,
+        "question": "CI (Integração Contínua) ajuda a...",
+        "explication": "CI permite validar mudanças no código automaticamente, via testes e builds.",
+        "answers": [
+          { "id": 1, "text": "Fazer deploys manualmente", "correct": false },
+          { "id": 2, "text": "Detectar problemas cedo, através de testes automatizados", "correct": true },
+          { "id": 3, "text": "Executar código em Python", "correct": false }
+        ]
+      },
+      {
+        "id": 10,
+        "question": "Qual a melhor prática antes de fazer um deploy?",
+        "explication": "Testar, revisar e usar um ambiente de staging são práticas fundamentais.",
+        "answers": [
+          { "id": 1, "text": "Apenas confiar no código", "correct": false },
+          { "id": 2, "text": "Testar e validar o sistema", "correct": true },
+          { "id": 3, "text": "Fazer deploy de madrugada sem avisar ninguém", "correct": false }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Organização de Estudos e Ferramentas",
+    "journey": "Fundamentos de Programação",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Qual a principal função do Notion?",
+        "explication": "O Notion é uma ferramenta de organização que permite criar notas, bancos de dados, tarefas e mais.",
+        "answers": [
+          { "id": 1, "text": "Rodar código JavaScript", "correct": false },
+          { "id": 2, "text": "Organizar tarefas, estudos e anotações", "correct": true },
+          { "id": 3, "text": "Fazer videochamadas", "correct": false }
+        ]
+      },
+      {
+        "id": 2,
+        "question": "O que é mais importante ao organizar seus estudos?",
+        "explication": "Ter um plano claro, metas alcançáveis e registrar seu progresso ajuda a manter o foco.",
+        "answers": [
+          { "id": 1, "text": "Ter o melhor computador", "correct": false },
+          { "id": 2, "text": "Planejar com metas e cronogramas", "correct": true },
+          { "id": 3, "text": "Estudar tudo no mesmo dia", "correct": false }
+        ]
+      },
+      {
+        "id": 3,
+        "question": "Para que serve o Microsoft Word?",
+        "explication": "O Word é usado principalmente para escrever textos formatados, como relatórios e documentos.",
+        "answers": [
+          { "id": 1, "text": "Criar apresentações com slides", "correct": false },
+          { "id": 2, "text": "Editar textos com formatação", "correct": true },
+          { "id": 3, "text": "Fazer cálculos automáticos", "correct": false }
+        ]
+      },
+      {
+        "id": 4,
+        "question": "Qual dessas funções o Excel permite?",
+        "explication": "O Excel é ótimo para cálculos, tabelas, gráficos e organização de dados.",
+        "answers": [
+          { "id": 1, "text": "Escrever cartas de amor", "correct": false },
+          { "id": 2, "text": "Criar gráficos e fórmulas", "correct": true },
+          { "id": 3, "text": "Criar vídeos animados", "correct": false }
+        ]
+      },
+      {
+        "id": 5,
+        "question": "O que o PowerPoint ajuda você a fazer?",
+        "explication": "O PowerPoint é ideal para criar apresentações visuais com textos, imagens e animações.",
+        "answers": [
+          { "id": 1, "text": "Programar em React", "correct": false },
+          { "id": 2, "text": "Criar apresentações com slides", "correct": true },
+          { "id": 3, "text": "Testar APIs com Postman", "correct": false }
+        ]
+      },
+      {
+        "id": 6,
+        "question": "Como o Notion pode ajudar um programador em formação?",
+        "explication": "Você pode usar o Notion para registrar erros, salvar links, anotar aprendizados e planejar projetos.",
+        "answers": [
+          { "id": 1, "text": "Executar código HTML", "correct": false },
+          { "id": 2, "text": "Organizar aprendizados, tarefas e links úteis", "correct": true },
+          { "id": 3, "text": "Testar servidores em produção", "correct": false }
+        ]
+      },
+      {
+        "id": 7,
+        "question": "Qual é uma boa prática ao estudar programação?",
+        "explication": "Dividir o tempo entre teoria e prática ajuda a consolidar o aprendizado.",
+        "answers": [
+          { "id": 1, "text": "Só ver vídeos no YouTube", "correct": false },
+          { "id": 2, "text": "Estudar um pouco e praticar bastante", "correct": true },
+          { "id": 3, "text": "Copiar e colar tudo do Stack Overflow", "correct": false }
+        ]
+      },
+      {
+        "id": 8,
+        "question": "Como o Excel pode ser usado nos estudos?",
+        "explication": "É possível usar o Excel para montar cronogramas, acompanhar metas ou até simular algoritmos.",
+        "answers": [
+          { "id": 1, "text": "Salvar memes", "correct": false },
+          { "id": 2, "text": "Fazer cronogramas e cálculos de tempo", "correct": true },
+          { "id": 3, "text": "Rodar código JavaScript", "correct": false }
+        ]
+      },
+      {
+        "id": 9,
+        "question": "Por que é útil criar um calendário de estudos?",
+        "explication": "Um calendário ajuda a distribuir o conteúdo no tempo e manter a constância.",
+        "answers": [
+          { "id": 1, "text": "Pra decorar a tela do PC", "correct": false },
+          { "id": 2, "text": "Pra manter consistência e foco nos estudos", "correct": true },
+          { "id": 3, "text": "Pra estudar só no fim do mês", "correct": false }
+        ]
+      },
+      {
+        "id": 10,
+        "question": "Qual dessas ferramentas pode ser usada para planejar projetos pessoais?",
+        "explication": "O Notion é altamente flexível e permite gerenciar projetos, estudos, listas e mais.",
+        "answers": [
+          { "id": 1, "text": "Paint", "correct": false },
+          { "id": 2, "text": "Notion", "correct": true },
+          { "id": 3, "text": "Windows Media Player", "correct": false }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Métodos Ágeis e Ferramentas de Gestão",
+    "journey": "Fundamentos de Programação",
+    "questions": [
+      {
+        "id": 1,
+        "question": "O que é Scrum?",
+        "explication": "Scrum é uma metodologia ágil voltada para gestão de projetos, especialmente em desenvolvimento de software.",
+        "answers": [
+          { "id": 1, "text": "Um editor de texto", "correct": false },
+          { "id": 2, "text": "Uma metodologia ágil", "correct": true },
+          { "id": 3, "text": "Um tipo de banco de dados", "correct": false }
+        ]
+      },
+      {
+        "id": 2,
+        "question": "No Scrum, o que é uma Sprint?",
+        "explication": "Sprint é um ciclo curto de trabalho (geralmente 1 a 4 semanas) onde o time entrega um incremento de produto.",
+        "answers": [
+          { "id": 1, "text": "Uma ferramenta de deploy", "correct": false },
+          { "id": 2, "text": "Um ciclo de entrega", "correct": true },
+          { "id": 3, "text": "Um erro de código", "correct": false }
+        ]
+      },
+      {
+        "id": 3,
+        "question": "O que o Kanban usa para visualizar tarefas?",
+        "explication": "O Kanban organiza tarefas em colunas, geralmente: A fazer, Fazendo e Feito.",
+        "answers": [
+          { "id": 1, "text": "Linhas de comando", "correct": false },
+          { "id": 2, "text": "Quadros com colunas de status", "correct": true },
+          { "id": 3, "text": "Gráficos de barras", "correct": false }
+        ]
+      },
+      {
+        "id": 4,
+        "question": "Qual é o papel do Product Owner no Scrum?",
+        "explication": "O Product Owner (PO) é responsável por priorizar o backlog e representar os interesses do cliente.",
+        "answers": [
+          { "id": 1, "text": "Codar tudo sozinho", "correct": false },
+          { "id": 2, "text": "Representar o cliente e priorizar entregas", "correct": true },
+          { "id": 3, "text": "Cuidar dos testes automatizados", "correct": false }
+        ]
+      },
+      {
+        "id": 5,
+        "question": "No modelo Spotify Squad, o que é um squad?",
+        "explication": "Squad é um time pequeno e autônomo, com liberdade para decidir como trabalhar e entregar valor.",
+        "answers": [
+          { "id": 1, "text": "Um tipo de tarefa", "correct": false },
+          { "id": 2, "text": "Um time ágil multidisciplinar", "correct": true },
+          { "id": 3, "text": "Um teste unitário", "correct": false }
+        ]
+      },
+      {
+        "id": 6,
+        "question": "Para que serve o Trello?",
+        "explication": "O Trello é uma ferramenta de gestão visual de tarefas baseada em Kanban.",
+        "answers": [
+          { "id": 1, "text": "Desenhar diagramas UML", "correct": false },
+          { "id": 2, "text": "Gerenciar tarefas com quadros e cartões", "correct": true },
+          { "id": 3, "text": "Rodar código Python", "correct": false }
+        ]
+      },
+      {
+        "id": 7,
+        "question": "Qual a principal diferença entre Scrum e Kanban?",
+        "explication": "Scrum trabalha com ciclos fixos (Sprints), já o Kanban é contínuo e mais flexível.",
+        "answers": [
+          { "id": 1, "text": "Scrum é visual, Kanban não", "correct": false },
+          { "id": 2, "text": "Scrum tem sprints, Kanban é contínuo", "correct": true },
+          { "id": 3, "text": "Scrum é gratuito, Kanban é pago", "correct": false }
+        ]
+      },
+      {
+        "id": 8,
+        "question": "O que é Jira?",
+        "explication": "Jira é uma ferramenta de gestão de tarefas e projetos, muito usada em times ágeis e squads.",
+        "answers": [
+          { "id": 1, "text": "Uma linguagem de programação", "correct": false },
+          { "id": 2, "text": "Uma ferramenta de gestão de projetos", "correct": true },
+          { "id": 3, "text": "Um banco de dados em nuvem", "correct": false }
+        ]
+      },
+      {
+        "id": 9,
+        "question": "Qual dessas é uma cerimônia do Scrum?",
+        "explication": "Cerimônias como Daily, Planning e Review ajudam o time a se alinhar e melhorar o processo.",
+        "answers": [
+          { "id": 1, "text": "Daily", "correct": true },
+          { "id": 2, "text": "Hackathon", "correct": false },
+          { "id": 3, "text": "Deploy Noturno", "correct": false }
+        ]
+      },
+      {
+        "id": 10,
+        "question": "O que significa ter um time multidisciplinar em um squad?",
+        "explication": "Significa que o time possui membros com diferentes habilidades: front, back, design, QA, etc.",
+        "answers": [
+          { "id": 1, "text": "Só programadores backend", "correct": false },
+          { "id": 2, "text": "Pessoas com diferentes especialidades trabalhando juntas", "correct": true },
+          { "id": 3, "text": "Pessoas que fazem o mesmo trabalho", "correct": false }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Viabilização de Produto e Gestão de Projetos",
+    "journey": "Fundamentos de Programação",
+    "questions": [
+      {
+        "id": 1,
+        "question": "O que é viabilizar um produto?",
+        "explication": "Viabilizar um produto é avaliar se ele é possível de ser feito, útil para o público e sustentável financeiramente.",
+        "answers": [
+          { "id": 1, "text": "Criar um protótipo bonito", "correct": false },
+          { "id": 2, "text": "Testar se a ideia pode dar certo na prática", "correct": true },
+          { "id": 3, "text": "Publicar direto na loja de apps", "correct": false }
+        ]
+      },
+      {
+        "id": 2,
+        "question": "Qual dessas perguntas ajuda na viabilização de um produto?",
+        "explication": "Saber se o problema realmente existe é uma das chaves para saber se vale a pena desenvolver o produto.",
+        "answers": [
+          { "id": 1, "text": "Quantos likes vou receber?", "correct": false },
+          { "id": 2, "text": "Esse problema realmente existe para alguém?", "correct": true },
+          { "id": 3, "text": "Qual linguagem eu gosto mais?", "correct": false }
+        ]
+      },
+      {
+        "id": 3,
+        "question": "O que é um MVP (Produto Mínimo Viável)?",
+        "explication": "Um MVP é a versão mais simples de um produto que já entrega valor ao usuário, usada para validar uma ideia.",
+        "answers": [
+          { "id": 1, "text": "A versão mais cara do produto", "correct": false },
+          { "id": 2, "text": "Uma versão simples para testar a ideia", "correct": true },
+          { "id": 3, "text": "O design completo do sistema", "correct": false }
+        ]
+      },
+      {
+        "id": 4,
+        "question": "Por que é importante definir um prazo para o projeto?",
+        "explication": "Prazos ajudam a organizar o tempo, definir prioridades e entregar valor de forma contínua.",
+        "answers": [
+          { "id": 1, "text": "Para pressionar o time", "correct": false },
+          { "id": 2, "text": "Para ter organização e foco nas entregas", "correct": true },
+          { "id": 3, "text": "Para reduzir o salário dos envolvidos", "correct": false }
+        ]
+      },
+      {
+        "id": 5,
+        "question": "O que é escopo em um projeto?",
+        "explication": "Escopo é o que será entregue no projeto: funcionalidades, regras, requisitos e limitações.",
+        "answers": [
+          { "id": 1, "text": "O custo da hospedagem", "correct": false },
+          { "id": 2, "text": "As funcionalidades e entregas previstas", "correct": true },
+          { "id": 3, "text": "O nome do repositório", "correct": false }
+        ]
+      },
+      {
+        "id": 6,
+        "question": "O que pode acontecer se não respeitarmos o escopo e prazo do projeto?",
+        "explication": "Fugir do escopo ou extrapolar prazos pode gerar retrabalho, atrasos e desperdício de recursos.",
+        "answers": [
+          { "id": 1, "text": "O projeto termina mais rápido", "correct": false },
+          { "id": 2, "text": "Pode gerar atrasos e retrabalho", "correct": true },
+          { "id": 3, "text": "Os bugs desaparecem", "correct": false }
+        ]
+      },
+      {
+        "id": 7,
+        "question": "Por que é importante coletar dados sobre os usuários?",
+        "explication": "Os dados ajudam a entender como os usuários se comportam, o que funciona ou não, e como melhorar.",
+        "answers": [
+          { "id": 1, "text": "Para vender os dados ilegalmente", "correct": false },
+          { "id": 2, "text": "Para entender e melhorar o produto", "correct": true },
+          { "id": 3, "text": "Para saber quem copiar", "correct": false }
+        ]
+      },
+      {
+        "id": 8,
+        "question": "Qual ferramenta pode ajudar na análise de dados do produto?",
+        "explication": "Ferramentas como Google Analytics ajudam a entender como o usuário interage com seu sistema.",
+        "answers": [
+          { "id": 1, "text": "Visual Studio Code", "correct": false },
+          { "id": 2, "text": "Google Analytics", "correct": true },
+          { "id": 3, "text": "Figma", "correct": false }
+        ]
+      },
+      {
+        "id": 9,
+        "question": "O que é uma métrica de sucesso de produto?",
+        "explication": "Métrica é um número que mostra se o produto está atingindo seu objetivo, como número de usuários ativos.",
+        "answers": [
+          { "id": 1, "text": "A nota do time no hackathon", "correct": false },
+          { "id": 2, "text": "Indicadores que mostram o sucesso do produto", "correct": true },
+          { "id": 3, "text": "O número de commits no GitHub", "correct": false }
+        ]
+      },
+      {
+        "id": 10,
+        "question": "Qual dessas ações ajuda a manter um projeto viável ao longo do tempo?",
+        "explication": "Revisar dados, ouvir feedbacks e ajustar o planejamento são práticas fundamentais para manter a viabilidade.",
+        "answers": [
+          { "id": 1, "text": "Ignorar o feedback do usuário", "correct": false },
+          { "id": 2, "text": "Coletar feedback e ajustar o produto", "correct": true },
+          { "id": 3, "text": "Evitar mudanças no projeto", "correct": false }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "JavaScript Básico Quiz",
+    "journey": "Fundamentos de Programação",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Qual das opções é usada para declarar uma variável em JavaScript?",
+        "explication": "A palavra-chave correta para declarar variáveis em JavaScript é `let`, `const` ou `var`.",
+        "answers": [
+          { "id": 1, "text": "var", "correct": true },
+          { "id": 2, "text": "let", "correct": true },
+          { "id": 3, "text": "def", "correct": false }
+        ]
+      },
+      {
+        "id": 2,
+        "question": "O que o método `Array.map()` faz?",
+        "explication": "O `map()` cria um novo array com os resultados da função aplicada em cada elemento do array original.",
+        "answers": [
+          { "id": 1, "text": "Modifica o array original", "correct": false },
+          { "id": 2, "text": "Retorna um novo array", "correct": true },
+          { "id": 3, "text": "Filtra os valores do array", "correct": false }
+        ]
+      },
+      {
+        "id": 3,
+        "question": "Como você converte uma string para um número em JavaScript?",
+        "explication": "Funções como `Number()`, `parseInt()`, ou `parseFloat()` podem ser usadas para converter uma string para número.",
+        "answers": [
+          { "id": 1, "text": "Number()", "correct": true },
+          { "id": 2, "text": "toString()", "correct": false },
+          { "id": 3, "text": "parseInt()", "correct": true }
+        ]
+      },
+      {
+        "id": 4,
+        "question": "O que `NaN` significa em JavaScript?",
+        "explication": "`NaN` significa \"Not-a-Number\" e é retornado quando uma operação não retorna um número válido.",
+        "answers": [
+          { "id": 1, "text": "Novo Array Numérico", "correct": false },
+          { "id": 2, "text": "Not-a-Number", "correct": true },
+          { "id": 3, "text": "Nome de uma variável inválida", "correct": false }
+        ]
+      },
+      {
+        "id": 5,
+        "question": "Qual é o valor de `typeof null` em JavaScript?",
+        "explication": "O valor de `typeof null` é um bug histórico, retornando \"object\".",
+        "answers": [
+          { "id": 1, "text": "null", "correct": false },
+          { "id": 2, "text": "undefined", "correct": false },
+          { "id": 3, "text": "object", "correct": true }
+        ]
+      },
+      {
+        "id": 6,
+        "question": "Qual destas estruturas é usada para repetição em JavaScript?",
+        "explication": "Laços como `for`, `while` e `do...while` permitem executar blocos de código repetidamente.",
+        "answers": [
+          { "id": 1, "text": "loop", "correct": false },
+          { "id": 2, "text": "for", "correct": true },
+          { "id": 3, "text": "repeat", "correct": false }
+        ]
+      },
+      {
+        "id": 7,
+        "question": "O que o operador `===` verifica?",
+        "explication": "O operador `===` verifica igualdade de valor e tipo.",
+        "answers": [
+          { "id": 1, "text": "Igualdade de valor apenas", "correct": false },
+          { "id": 2, "text": "Igualdade de tipo apenas", "correct": false },
+          { "id": 3, "text": "Igualdade de valor e tipo", "correct": true }
+        ]
+      },
+      {
+        "id": 8,
+        "question": "Como declarar uma função em JavaScript?",
+        "explication": "Funções podem ser declaradas com `function nome() {}`.",
+        "answers": [
+          { "id": 1, "text": "function minhaFuncao() {}", "correct": true },
+          { "id": 2, "text": "def minhaFuncao()", "correct": false },
+          { "id": 3, "text": "fun minhaFuncao {}", "correct": false }
+        ]
+      },
+      {
+        "id": 9,
+        "question": "Qual objeto representa o console no navegador?",
+        "explication": "`console` é um objeto global usado para exibir mensagens no console do navegador.",
+        "answers": [
+          { "id": 1, "text": "terminal", "correct": false },
+          { "id": 2, "text": "log", "correct": false },
+          { "id": 3, "text": "console", "correct": true }
+        ]
+      },
+      {
+        "id": 10,
+        "question": "Qual método verifica se um array inclui um valor específico?",
+        "explication": "O método `includes()` retorna true se o valor for encontrado.",
+        "answers": [
+          { "id": 1, "text": "contains()", "correct": false },
+          { "id": 2, "text": "has()", "correct": false },
+          { "id": 3, "text": "includes()", "correct": true }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "HTML Básico",
+    "journey": "Fundamentos de Programação",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Qual é o propósito da tag `<title>` no HTML?",
+        "explication": "A tag `<title>` define o título da página, que aparece na aba do navegador.",
+        "answers": [
+          {
+            "id": 1,
+            "text": "Exibe o título no corpo da página",
+            "correct": false
+          },
+          {
+            "id": 2,
+            "text": "Define o título exibido na aba do navegador",
+            "correct": true
+          },
+          {
+            "id": 3,
+            "text": "Define o título de um parágrafo",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "question": "Qual tag é usada para adicionar uma imagem em HTML?",
+        "explication": "A tag `<img>` é usada para incorporar imagens no HTML.",
+        "answers": [
+          { "id": 1, "text": "<image>", "correct": false },
+          { "id": 2, "text": "<img>", "correct": true },
+          { "id": 3, "text": "<src>", "correct": false }
+        ]
+      },
+      {
+        "id": 3,
+        "question": "Qual atributo HTML é usado para definir um link?",
+        "explication": "O atributo `href` é utilizado na tag `<a>` para definir o destino do link.",
+        "answers": [
+          { "id": 1, "text": "src", "correct": false },
+          { "id": 2, "text": "href", "correct": true },
+          { "id": 3, "text": "link", "correct": false }
+        ]
+      },
+      {
+        "id": 4,
+        "question": "Qual é o elemento HTML correto para criar um parágrafo?",
+        "explication": "O elemento `<p>` é utilizado para definir parágrafos em HTML.",
+        "answers": [
+          { "id": 1, "text": "<p>", "correct": true },
+          { "id": 2, "text": "<div>", "correct": false },
+          { "id": 3, "text": "<span>", "correct": false }
+        ]
+      },
+      {
+        "id": 5,
+        "question": "Qual das opções NÃO é um tipo de input em um formulário HTML?",
+        "explication": "`heading` não é um tipo de input válido em HTML.",
+        "answers": [
+          { "id": 1, "text": "text", "correct": false },
+          { "id": 2, "text": "radio", "correct": false },
+          { "id": 3, "text": "heading", "correct": true }
+        ]
+      },
+      {
+        "id": 6,
+        "question": "Qual tag HTML é usada para criar um botão?",
+        "explication": "A tag `<button>` é usada para criar botões interativos em HTML.",
+        "answers": [
+          { "id": 1, "text": "<btn>", "correct": false },
+          { "id": 2, "text": "<button>", "correct": true },
+          { "id": 3, "text": "<input>", "correct": false }
+        ]
+      },
+      {
+        "id": 7,
+        "question": "Qual elemento HTML define a maior hierarquia de títulos?",
+        "explication": "O elemento `<h1>` é o título de maior hierarquia em HTML.",
+        "answers": [
+          { "id": 1, "text": "<h1>", "correct": true },
+          { "id": 2, "text": "<header>", "correct": false },
+          { "id": 3, "text": "<title>", "correct": false }
+        ]
+      },
+      {
+        "id": 8,
+        "question": "Qual tag define uma lista ordenada em HTML?",
+        "explication": "A tag `<ol>` é usada para criar listas numeradas.",
+        "answers": [
+          { "id": 1, "text": "<ul>", "correct": false },
+          { "id": 2, "text": "<ol>", "correct": true },
+          { "id": 3, "text": "<li>", "correct": false }
+        ]
+      },
+      {
+        "id": 9,
+        "question": "Qual atributo define o texto alternativo para uma imagem?",
+        "explication": "O atributo `alt` descreve o conteúdo da imagem, essencial para acessibilidade.",
+        "answers": [
+          { "id": 1, "text": "title", "correct": false },
+          { "id": 2, "text": "alt", "correct": true },
+          { "id": 3, "text": "description", "correct": false }
+        ]
+      },
+      {
+        "id": 10,
+        "question": "Onde o conteúdo visível de uma página HTML deve estar?",
+        "explication": "O conteúdo visível deve estar dentro da tag `<body>`.",
+        "answers": [
+          { "id": 1, "text": "<head>", "correct": false },
+          { "id": 2, "text": "<html>", "correct": false },
+          { "id": 3, "text": "<body>", "correct": true }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "CSS Básico",
+    "journey": "Fundamentos de Programação",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Qual é a sintaxe correta para adicionar uma cor de fundo em CSS?",
+        "explication": "O `background-color` define a cor de fundo de um elemento.",
+        "answers": [
+          { "id": 1, "text": "color-background: blue;", "correct": false },
+          { "id": 2, "text": "background-color: blue;", "correct": true },
+          { "id": 3, "text": "background: blue;", "correct": true }
+        ]
+      },
+      {
+        "id": 2,
+        "question": "Qual propriedade CSS é usada para alterar a cor do texto?",
+        "explication": "A propriedade `color` altera a cor do texto em um elemento.",
+        "answers": [
+          { "id": 1, "text": "font-color", "correct": false },
+          { "id": 2, "text": "text-color", "correct": false },
+          { "id": 3, "text": "color", "correct": true }
+        ]
+      },
+      {
+        "id": 3,
+        "question": "Qual propriedade CSS é usada para controlar o espaçamento entre linhas?",
+        "explication": "A propriedade `line-height` ajusta o espaçamento vertical entre as linhas de texto.",
+        "answers": [
+          { "id": 1, "text": "letter-spacing", "correct": false },
+          { "id": 2, "text": "line-height", "correct": true },
+          { "id": 3, "text": "text-spacing", "correct": false }
+        ]
+      },
+      {
+        "id": 4,
+        "question": "Qual propriedade CSS é usada para esconder um elemento da página, mas manter seu espaço reservado?",
+        "explication": "`visibility: hidden` esconde o elemento, mas mantém o espaço que ele ocupa na página.",
+        "answers": [
+          { "id": 1, "text": "display: none", "correct": false },
+          { "id": 2, "text": "visibility: hidden", "correct": true },
+          { "id": 3, "text": "opacity: 0", "correct": false }
+        ]
+      },
+      {
+        "id": 5,
+        "question": "Qual unidade de medida é relativa ao tamanho da fonte do elemento pai em CSS?",
+        "explication": "A unidade `em` é relativa ao tamanho da fonte do elemento pai.",
+        "answers": [
+          { "id": 1, "text": "px", "correct": false },
+          { "id": 2, "text": "em", "correct": true },
+          { "id": 3, "text": "%", "correct": false }
+        ]
+      },
+      {
+        "id": 6,
+        "question": "Qual seletor aplica estilos a todos os elementos de uma página?",
+        "explication": "O seletor `*` aplica estilos universalmente.",
+        "answers": [
+          { "id": 1, "text": "*", "correct": true },
+          { "id": 2, "text": "all", "correct": false },
+          { "id": 3, "text": ".", "correct": false }
+        ]
+      },
+      {
+        "id": 7,
+        "question": "Como selecionar um elemento por ID em CSS?",
+        "explication": "Use `#id` para aplicar estilos a um elemento com ID específico.",
+        "answers": [
+          { "id": 1, "text": "#meuElemento", "correct": true },
+          { "id": 2, "text": ".meuElemento", "correct": false },
+          { "id": 3, "text": "meuElemento", "correct": false }
+        ]
+      },
+      {
+        "id": 8,
+        "question": "Qual propriedade é usada para deixar o texto em negrito?",
+        "explication": "`font-weight: bold;` torna o texto em negrito.",
+        "answers": [
+          { "id": 1, "text": "text-weight", "correct": false },
+          { "id": 2, "text": "font-style", "correct": false },
+          { "id": 3, "text": "font-weight", "correct": true }
+        ]
+      },
+      {
+        "id": 9,
+        "question": "Qual unidade representa uma porcentagem da largura do elemento pai?",
+        "explication": "A unidade `%` representa uma porcentagem relativa ao elemento pai.",
+        "answers": [
+          { "id": 1, "text": "px", "correct": false },
+          { "id": 2, "text": "em", "correct": false },
+          { "id": 3, "text": "%", "correct": true }
+        ]
+      },
+      {
+        "id": 10,
+        "question": "Como centralizar um texto horizontalmente?",
+        "explication": "A propriedade `text-align: center;` centraliza o texto no elemento.",
+        "answers": [
+          { "id": 1, "text": "text-center: true;", "correct": false },
+          { "id": 2, "text": "text-align: center;", "correct": true },
+          { "id": 3, "text": "align-text: center;", "correct": false }
+        ]
+      }
+    ]
+  }
+]

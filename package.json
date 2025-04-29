@@ -10,7 +10,8 @@
     "dev": "nodemon --exec ts-node src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
-    "prisma:dev": "prisma generate && prisma migrate dev"
+    "prisma:dev": "prisma generate && prisma migrate dev",
+    "prisma:seed": "ts-node prisma/seed.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.7.0",

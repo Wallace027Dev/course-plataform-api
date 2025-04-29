@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  output   = "./src/generated/prisma-client-js"
 }
 
 datasource db {
@@ -11,6 +12,7 @@ model Course {
   id          Int       @id @default(autoincrement())
   name        String
   description String
+  coverUrl    String
   journeys    Journey[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
@@ -22,6 +24,7 @@ model Journey {
   name      String
   course    Course    @relation(fields: [courseId], references: [id])
   courseId  Int
+  coverUrl  String
   contents  Content[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -83,6 +86,7 @@ model User {
   name      String
   email     String         @unique
   attempts  Attempt[]
+  photoUrl  String?
   progress  UserProgress[]
   createdAt DateTime       @default(now())
   updatedAt DateTime       @updatedAt

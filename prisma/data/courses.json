@@ -1,0 +1,202 @@
+[
+  {
+    "id": "1",
+    "title": "Programação Fullstack",
+    "description": "Uma jornada épica para se tornar um verdadeiro dev fullstack. Do primeiro 'Hello World' ao deploy da sua aplicação completa, você vai aprender tudo que precisa para dominar o desenvolvimento web moderno.",
+    "journeys": [
+      {
+        "id": "1",
+        "title": "Lógica de Programação: O Início da Jornada",
+        "description": "Comece como todo grande herói: aprendendo os fundamentos. Neste módulo, você vai dominar a lógica de programação, estruturas básicas, variáveis, condicionais, loops e arrays — tudo com JavaScript e aplicações visuais simples. Ideal para quem nunca programou ou quer reforçar a base com consistência.",
+        "instructor": "Wallace Vieira",
+        "level": "Newbie",
+        "medias": {
+          "thumb": "/images/programming-logic.jpg",
+          "apresentation": "exemplo.mp4"
+        },
+        "lessons": [
+          {
+            "id": "1",
+            "title": "Arquitetura de Computadores",
+            "description": "Introdução à estrutura física e lógica dos computadores.",
+            "objective": "Entender a base física e lógica dos sistemas computacionais."
+          },
+          {
+            "id": "2",
+            "title": "Entendendo Lógica de Programação",
+            "description": "Conceitos básicos de lógica de programação.",
+            "objective": "Desenvolver habilidades de pensamento lógico e resolução de problemas."
+          },
+          {
+            "id": "3",
+            "title": "Linux, Bash e Linhas de Comando",
+            "description": "Fundamentos do sistema operacional Linux e uso do Bash.",
+            "objective": "Navegar e manipular arquivos e diretórios através da linha de comando."
+          },
+          {
+            "id": "4",
+            "title": "Git e GitHub",
+            "description": "Introdução ao controle de versão com Git e GitHub.",
+            "objective": "Versionar código e colaborar com outros desenvolvedores."
+          },
+          {
+            "id": "5",
+            "title": "Introdução ao Frontend",
+            "description": "Explicação sobre o frontend, configuração do VS Code e introdução às sintaxes de HTML e CSS.",
+            "objective": "Compreender o conceito de dev frontend e aprender o básico de HTML e CSS."
+          },
+          {
+            "id": "6",
+            "title": "Hello World: HTML, CSS e JavaScript",
+            "description": "Criação de uma página básica com HTML, CSS e JavaScript.",
+            "objective": "Compreender a estrutura básica de uma página web e o uso de tags HTML."
+          },
+          {
+            "id": "7",
+            "title": "Introdução ao backend",
+            "description": "Conhecendo o node; conceitos básicos e primeiros passos com JavaScript.",
+            "objective": "Introduzir a linguagem de programação JavaScript."
+          },
+          {
+            "id": "8",
+            "title": "Funções Matemáticas",
+            "description": "Operações matemáticas utilizando JavaScript.",
+            "objective": "Trabalhar com operações matemáticas em JavaScript."
+          },
+          {
+            "id": "9",
+            "title": "Condicionais",
+            "description": "Uso de estruturas condicionais em JavaScript.",
+            "objective": "Implementar lógica condicional em scripts."
+          },
+          {
+            "id": "10",
+            "title": "Estruturas de Repetição",
+            "description": "Laços e iterações em JavaScript.",
+            "objective": "Utilizar estruturas de repetição para automação de tarefas."
+          },
+          {
+            "id": "11",
+            "title": "Manipulação de Arrays",
+            "description": "Métodos de manipulação de arrays em JavaScript.",
+            "objective": "Gerenciar e manipular conjuntos de dados."
+          },
+          {
+            "id": "12",
+            "title": "Iterações de Arrays",
+            "description": "Exploração de métodos de iteração como forEach, map, filter e reduce.",
+            "objective": "Utilizar métodos de iteração para transformar, filtrar e processar arrays."
+          },
+          {
+            "id": "13",
+            "title": "Entendendo objetos",
+            "description": "Aprendendo sobre objetos e instâncias",
+            "objective": "Manipular e formatar dados de diferentes tipos."
+          },
+          {
+            "id": "14",
+            "title": "Assincronismo em JavaScript",
+            "description": "Introdução ao funcionamento assíncrono do JavaScript e uso de funções como setTimeout, setInterval, Promises e async/await.",
+            "objective": "Entender como o JavaScript executa tarefas assíncronas e aplicar Promises e async/await no controle de fluxos não-bloqueantes."
+          },
+          {
+            "id": "15",
+            "title": "Trabalhando com JSON e APIs",
+            "description": "Aprenda a consumir dados de APIs externas usando fetch e manipular JSON em aplicações JavaScript.",
+            "objective": "Fazer requisições HTTP com fetch, converter dados com JSON.parse() e JSON.stringify(), e trabalhar com APIs REST."
+          },
+          {
+            "id": "16",
+            "title": "Manipulação de DOM",
+            "description": "Manipule elementos HTML via JavaScript usando seletores, eventos e propriedades do DOM.",
+            "objective": "Selecionar e modificar elementos HTML, escutar eventos e atualizar dinamicamente o conteúdo da página."
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "title": "Desbravando o Frontend",
+        "description": "Explore o universo visual da web aprendendo HTML, CSS e os fundamentos do JavaScript para criar páginas interativas e responsivas. Ideal para quem está começando a montar suas primeiras interfaces.",
+        "instructor": "Wallace Vieira",
+        "level": "Apprentice",
+        "medias": {
+          "thumb": "/images/front.jpg",
+          "apresentation": "exemplo.mp4"
+        },
+        "lessons": []
+      },
+      {
+        "id": "3",
+        "title": "Fundamentos do Backend",
+        "description": "Entenda o que acontece por trás das cortinas. Aprenda a criar APIs, lidar com requisições HTTP e conectar o frontend ao banco de dados utilizando Node.js.",
+        "instructor": "Wallace Vieira",
+        "level": "Apprentice",
+        "medias": {
+          "thumb": "/images/back.jpg",
+          "apresentation": "exemplo.mp4"
+        },
+        "lessons": []
+      },
+      {
+        "id": "4",
+        "title": "Design UI e UX",
+        "description": "Aprenda os fundamentos de design voltado à experiência do usuário. Descubra como criar interfaces bonitas, intuitivas e funcionais, com foco em usabilidade e acessibilidade.",
+        "instructor": "Wallace Vieira",
+        "level": "Apprentice",
+        "medias": {
+          "thumb": "/images/design-ui-ux.jpg",
+          "apresentation": "exemplo.mp4"
+        },
+        "lessons": []
+      },
+      {
+        "id": "5",
+        "title": "Dominando Libs e Frameworks",
+        "description": "Chegou a hora de usar ferramentas poderosas! Aprenda a usar bibliotecas como React e outras soluções modernas para turbinar seu desenvolvimento web.",
+        "instructor": "Wallace Vieira",
+        "level": "Master",
+        "medias": {
+          "thumb": "/images/libs-and-frameworks.jpg",
+          "apresentation": "exemplo.mp4"
+        },
+        "lessons": []
+      },
+      {
+        "id": "6",
+        "title": "Banco de Dados na Prática",
+        "description": "Descubra como armazenar, consultar e manipular dados de forma eficiente utilizando bancos relacionais e não relacionais. O foco aqui é entender como persistir dados com segurança e performance.",
+        "instructor": "Wallace Vieira",
+        "level": "Master",
+        "medias": {
+          "thumb": "/images/data.jpg",
+          "apresentation": "exemplo.mp4"
+        },
+        "lessons": []
+      },
+      {
+        "id": "7",
+        "title": "Construção Fullstack",
+        "description": "Una o melhor dos dois mundos! Desenvolva aplicações completas do zero, conectando frontend e backend em um ecossistema coeso, utilizando boas práticas de arquitetura e segurança.",
+        "instructor": "Wallace Vieira",
+        "level": "Legendary",
+        "medias": {
+          "thumb": "/images/fullstack.jpg",
+          "apresentation": "exemplo.mp4"
+        },
+        "lessons": []
+      },
+      {
+        "id": "8",
+        "title": "Vida de Programador no Mercado",
+        "description": "Prepare-se para o campo de batalha real: mercado de trabalho. Aprenda sobre portfólio, processos seletivos, entrevistas, precificação e como vender seu projeto como produto digital.",
+        "instructor": "Wallace Vieira",
+        "level": "Legendary",
+        "medias": {
+          "thumb": "/images/life-of-a-programmer.jpg",
+          "apresentation": "exemplo.mp4"
+        },
+        "lessons": []
+      }
+    ]
+  }
+]
