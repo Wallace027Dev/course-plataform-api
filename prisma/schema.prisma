@@ -1,6 +1,5 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "./src/generated/prisma-client-js"
 }
 
 datasource db {
@@ -9,13 +8,14 @@ datasource db {
 }
 
 model Course {
-  id          Int       @id @default(autoincrement())
+  id          Int          @id @default(autoincrement())
   name        String
   description String
   coverUrl    String
   journeys    Journey[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  userCourses UserCourse[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
   deletedAt   DateTime?
 }
 
@@ -82,15 +82,28 @@ model Answer {
 }
 
 model User {
-  id        Int            @id @default(autoincrement())
-  name      String
-  email     String         @unique
-  attempts  Attempt[]
-  photoUrl  String?
-  progress  UserProgress[]
-  createdAt DateTime       @default(now())
-  updatedAt DateTime       @updatedAt
-  deletedAt DateTime?
+  id          Int            @id @default(autoincrement())
+  name        String
+  email       String         @unique
+  password    String
+  role        String         @default("user")
+  attempts    Attempt[]
+  photoUrl    String?
+  progress    UserProgress[]
+  userCourses UserCourse[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  deletedAt   DateTime?
+}
+
+model UserCourse {
+  userId   Int
+  courseId Int
+
+  user   User   @relation(fields: [userId], references: [id])
+  course Course @relation(fields: [courseId], references: [id])
+
+  @@id([userId, courseId])
 }
 
 model Attempt {
