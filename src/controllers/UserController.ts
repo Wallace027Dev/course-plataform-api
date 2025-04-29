@@ -14,9 +14,13 @@ export default class UserController {
       });
     }
 
+    const usersWithoutPassword = users.map((user) => {
+      return { ...user, password: undefined };
+    });
+
     res.status(200).json({
       message: "Users found",
-      data: users
+      data: usersWithoutPassword
     });
   }
 
@@ -38,9 +42,14 @@ export default class UserController {
       });
     }
 
+    const userWithoutPassword = {
+      ...user,
+      password: undefined
+    };
+
     res.status(200).json({
       message: "User found",
-      data: user
+      data: userWithoutPassword
     });
   }
 
