@@ -6,7 +6,6 @@ export class UserController {
   static async listUsers(req: Request, res: Response): Promise<any> {
     try {
       const name = req.query.name as string | undefined;
-      if (!name) return HttpResponse.badRequest(res, "Name is required");
 
       const users = await UserService.listUsers(name as string);
       if (users?.length === 0) return HttpResponse.notFound(res, "No users found");
