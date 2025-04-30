@@ -1,22 +1,23 @@
-export interface IUserLogin {
-  email: string;
-  password: string;
-
-}
-export interface IUserBase extends IUserLogin {
+export interface IUserBase {
   name: string;
-  role: string;
-  photoUrl?: string;
+  email: string;
 }
 
+export interface IUserRegister extends IUserBase {
+  password: string;
+}
 
-export interface IUser extends IUserBase {
+export interface IUser extends IUserRegister {
   id: number;
-  token?: string;
+  token: string | undefined | null;
+  role: string;
+  photoUrl: string | null;
   createdAt: Date;
   updatedAt: Date;
-  deletedAt?: Date;
+  deletedAt: Date | null;
 }
+
+export interface IUserLogin extends Omit<IUserRegister, "name"> {}
 
 export interface IUserWithoutPassword extends Omit<IUser, "password"> {}
 
