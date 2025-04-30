@@ -1,12 +1,12 @@
-import { JsonValue } from '@prisma/client/runtime/library';
 import { IUserProgress } from "./IUserProgress";
+import { Prisma } from '@prisma/client';
 
 export interface IContentBase {
   journeyId: number;
   type: string;
   title: string;
   order: number;
-  metadata: JsonValue;
+  metadata: Prisma.JsonValue;
   quizId: number | null;
 }
 
@@ -17,3 +17,5 @@ export interface IContent extends IContentBase {
   updatedAt: Date;
   deletedAt: Date | null;
 }
+
+export interface IContentUpdate extends Partial<IContent> {}

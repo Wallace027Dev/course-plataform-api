@@ -1,7 +1,7 @@
 import express from "express";
 import { CourseController } from "../controllers/CourseController";
-import { UserCourseController } from "../controllers/UserCourseController";
 import { JourneyController } from "../controllers/JourneyController";
+import { UserCourseController } from "../controllers/UserCourseController";
 
 const courseRoutes = express.Router();
 
@@ -15,7 +15,7 @@ courseRoutes.post("/", CourseController.storeCourse);
 courseRoutes.post("/:courseId/students/:userId", UserCourseController.registerUserToCourse);
 courseRoutes.delete("/:courseId/students/:userId", UserCourseController.removeUserFromCourse);
 
-//ROTAS DE JORNADAS DE UM CURSO
+// ROTAS DE JORNADAS DE UM CURSO
 courseRoutes.get("/journeys/:journeyId", JourneyController.getJourneyById);
 courseRoutes.get("/:courseId/journeys", JourneyController.listJourneysOfCourse);
 courseRoutes.post("/:courseId/journeys", JourneyController.storeJourneyOnCourse);

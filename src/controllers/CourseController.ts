@@ -25,7 +25,7 @@ export class CourseController {
   static async getCourse(req: Request, res: Response): Promise<any> {
     try {
       const id = parseInt(req.params.courseId, 10);
-      if (!id) return HttpResponse.badRequest(res, "Invalid ID");
+      if (!id) return HttpResponse.badRequest(res, "Invalid IDdddddddddd");
 
       const course = await CourseService.getCourseById(id as number);
       if (!course) HttpResponse.notFound(res, "Course not found");
