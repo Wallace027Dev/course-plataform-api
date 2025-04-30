@@ -1,20 +1,24 @@
 import { Request, Response } from "express";
 import { UserService } from "../services/UserService";
 import { HttpResponse } from "../helper/HttpResponse";
+import { IUserWithoutPassword } from "../interfaces/IUser";
 
 export class UserController {
-  static async findAll(req: Request, res: Response): Promise<any> {
+  static async findAll(
+    req: Request,
+    res: Response
+  ): Promise<Response<IUserWithoutPassword[] | null>> {
     try {
       const name = req.query.name;
 
       const users = await UserService.listUsers(name as string);
-      if (users.length === 0) {
-        HttpResponse.notFound(res, "No users found");
+      if (users?.length === 0) {
+        return HttpResponse.notFound(res, "No users found");
       }
 
-      HttpResponse.ok(res, "Users found", users);
+      return HttpResponse.ok(res, "Users found", users);
     } catch (error: any) {
-      HttpResponse.serverError(
+      return HttpResponse.serverError(
         res,
         "Internal server error while creating user",
         error.message
@@ -22,12 +26,15 @@ export class UserController {
     }
   }
 
-  static async findById(req: Request, res: Response): Promise<any> {
+  static async findById(
+    req: Request,
+    res: Response
+  ): Promise<Response<IUserWithoutPassword | null>> {
     try {
       const params = req.params;
       const id = Number(params.id);
       if (!id) {
-        HttpResponse.badRequest(res, "Invalid ID");
+        return HttpResponse.badRequest(res, "Invalid ID");
       }
 
       const user = await UserService.getUserById(id as number);
@@ -35,9 +42,9 @@ export class UserController {
         HttpResponse.notFound(res, "User not found");
       }
 
-      HttpResponse.ok(res, "User found", user);
+      return HttpResponse.ok(res, "User found", user);
     } catch (error: any) {
-      HttpResponse.serverError(
+      return HttpResponse.serverError(
         res,
         "Internal server error while creating user",
         error.message

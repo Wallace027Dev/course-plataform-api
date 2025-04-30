@@ -1,14 +1,18 @@
 import { Request, Response } from "express";
 import { HttpResponse } from "../helper/HttpResponse";
 import { CreateUserSchema } from "../schemas/UserSchema";
-import { UserService } from "../services/UserService";
+import { AuthService } from "../services/AuthService";
+import { IUserWithoutPassword } from "../interfaces/IUser";
 
 export class AuthController {
-  static async login(req: Request, res: Response): Promise<any> {
+  static async login(
+    req: Request,
+    res: Response
+  ): Promise<Response<IUserWithoutPassword | null>> {
     try {
       const { email, password } = req.body;
 
-      const token = await UserService.login(email, password);
+      const token = await AuthService.login(email, password);
       if (!token) {
         return HttpResponse.badRequest(res, "Invalid email or password");
       }
@@ -23,7 +27,10 @@ export class AuthController {
     }
   }
 
-  static async register(req: Request, res: Response): Promise<any> {
+  static async register(
+    req: Request,
+    res: Response
+  ): Promise<Response<IUserWithoutPassword | null>> {
     try {
       const { name, email, password } = req.body;
       const userValidation = CreateUserSchema.safeParse({
@@ -33,21 +40,21 @@ export class AuthController {
       });
 
       if (!userValidation.success) {
-        HttpResponse.badRequest(
+        return HttpResponse.badRequest(
           res,
           "Validation error",
           userValidation.error.format()
         );
       }
 
-      const user = await UserService.createUser(name, email, password);
+      const user = await AuthService.createUser(name, email, password);
       if (!user) {
-        return HttpResponse.badRequest(res, "User already exists");
+        return HttpResponse.conflict(res, "User already exists");
       }
 
-      HttpResponse.created(res, "User registered", { token: user.token });
+      return HttpResponse.created(res, "User registered", { token: user.token });
     } catch (error: any) {
-      HttpResponse.serverError(
+      return HttpResponse.serverError(
         res,
         "Internal server error while registering user",
         error.message
