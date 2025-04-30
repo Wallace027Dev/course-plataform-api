@@ -12,7 +12,7 @@ export class UserCourseRepository {
     });
   }
 
-  static async removeUserFromCourse(
+  static async removeOfCourse(
     courseId: number,
     userId: number
   ): Promise<IUserCourse> {

@@ -7,17 +7,18 @@ import { UserCourseService } from "../services/UserCourse";
 export class UserCourseController {
   static async registerUserToCourse(req: Request, res: Response): Promise<any> {
     try {
-      const { userId, courseId } = await UserCourseController.#extractIdsFromParams(
-        res,
-        req.params
-      );
+      const { userId, courseId } =
+        await UserCourseController.#extractIdsFromParams(res, req.params);
       const course = await CourseService.getCourseById(courseId as number);
       if (!course) HttpResponse.notFound(res, "Course not found");
 
       const student = await UserService.getUserById(userId as number);
       if (!student) HttpResponse.notFound(res, "Students not found");
 
-      const userCourse = await UserCourseService.registerOnCourse(courseId, userId);
+      const userCourse = await UserCourseService.registerOnCourse(
+        courseId,
+        userId
+      );
 
       return HttpResponse.ok(
         res,
@@ -33,7 +34,25 @@ export class UserCourseController {
     }
   }
 
-  static async removeUserFromCourse() {}
+  static async removeUserFromCourse(req: Request, res: Response): Promise<any> {
+    try {
+      const { userId, courseId } =
+        await UserCourseController.#extractIdsFromParams(res, req.params);
+
+      const userCourse = await UserCourseService.removeOfCourse(
+        courseId,
+        userId
+      );
+
+      return HttpResponse.ok(res, "Student removed from curse", userCourse);
+    } catch (error: any) {
+      return HttpResponse.serverError(
+        res,
+        "Error while register student on course",
+        error.message
+      );
+    }
+  }
 
   static async #extractIdsFromParams(
     res: Response,
