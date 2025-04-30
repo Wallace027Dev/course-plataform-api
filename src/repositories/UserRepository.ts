@@ -1,10 +1,10 @@
 import { PrismaClient } from "@prisma/client";
 import { IUserRegister, IUserUpdate } from "../interfaces/IUser";
-const prisma = new PrismaClient();
+const db = new PrismaClient();
 
 export class UserRepository {
   static async findAll(name?: string) {
-    return await prisma.user.findMany({
+    return await db.user.findMany({
       where: {
         deletedAt: null,
         ...(name && { name: { contains: name } })
@@ -13,19 +13,19 @@ export class UserRepository {
   }
 
   static async findOneById(id: number) {
-    return await prisma.user.findUnique({
+    return await db.user.findUnique({
       where: { id, deletedAt: null }
     });
   }
 
   static findOneByEmail(email: string) {
-    return prisma.user.findUnique({
+    return db.user.findUnique({
       where: { email, deletedAt: null }
     });
   }
 
   static async create(data: IUserRegister) {
-    return await prisma.user.create({
+    return await db.user.create({
       data: {
         name: data.name,
         email: data.email,
@@ -36,7 +36,7 @@ export class UserRepository {
   }
 
   static async update(id: number, data: IUserUpdate) {
-    return await prisma.user.update({
+    return await db.user.update({
       where: { id },
       data: {
         name: data.name,

@@ -1,10 +1,15 @@
 import { PrismaClient } from "@prisma/client";
-import { ICourse, ICourseBase, ICourseUpdate } from "../interfaces/ICourse";
-const prisma = new PrismaClient();
+import {
+  ICourse,
+  ICourseBase,
+  ICourseUpdate,
+  ICourseWithStudents
+} from "../interfaces/ICourse";
+const db = new PrismaClient();
 
 export class CourseRepository {
   static async findAll(name?: string) {
-    return await prisma.course.findMany({
+    return await db.course.findMany({
       where: {
         deletedAt: null,
         ...(name && { name: { contains: name } })
@@ -13,7 +18,7 @@ export class CourseRepository {
   }
 
   static async findOneById(id: number) {
-    return await prisma.course.findUnique({
+    return await db.course.findUnique({
       where: { id, deletedAt: null },
       include: {
         journeys: {
@@ -23,13 +28,15 @@ export class CourseRepository {
     });
   }
 
-  static async findOneByIdWithStudents(id: number) {
-    return await prisma.course.findUnique({
+  static async findOneByIdWithStudents(
+    id: number
+  ): Promise<any> {
+    return await db.course.findUnique({
       where: { id, deletedAt: null },
       include: {
         userCourses: {
           include: {
-            user: true,
+            user: true
           }
         }
       }
@@ -37,7 +44,7 @@ export class CourseRepository {
   }
 
   static async create(data: ICourseBase): Promise<ICourse> {
-    return await prisma.course.create({
+    return await db.course.create({
       data: {
         name: data.name,
         description: data.description,
@@ -52,7 +59,7 @@ export class CourseRepository {
   }
 
   static async update(id: number, data: ICourseUpdate) {
-    return await prisma.course.update({
+    return await db.course.update({
       where: { id },
       data: {
         name: data.name,

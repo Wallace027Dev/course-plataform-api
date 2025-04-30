@@ -1,5 +1,12 @@
 import { CourseRepository } from "../repositories/CourseRepository";
-import { ICourse, ICourseBase, ICourseUpdate } from "../interfaces/ICourse";
+import { IUserCourse } from "../interfaces/IUserCourse";
+import {
+  ICourse,
+  ICourseBase,
+  ICourseUpdate,
+  ICourseWithStudents,
+  IUserCourseWithUser
+} from "../interfaces/ICourse";
 
 export class CourseService {
   static async listCourses(name?: string): Promise<ICourse[] | null> {
@@ -12,15 +19,22 @@ export class CourseService {
     return course;
   }
 
-  static async getStudentsOfCourseById(id: number): Promise<ICourse | null> {
+  static async getStudentsOfCourseById(
+    id: number
+  ): Promise<ICourseWithStudents | null> {
     const course = await CourseRepository.findOneByIdWithStudents(id);
     if (!course || course.deletedAt !== null) return null;
 
-    course.userCourses = course.userCourses.filter((UserCourse) => {
-      return UserCourse.user.role === "STUDENT";
-    });
-    
-    return course;
+    const userCourses = course.userCourses as Array<
+      IUserCourseWithUser & IUserCourse
+    >;
+
+    return {
+      ...course,
+      userCourses: userCourses
+        .filter((uc) => uc.user.role === "STUDENT")
+        .map((uc) => uc.user)
+    };
   }
 
   static async createCourse(data: ICourseBase): Promise<ICourse | null> {
