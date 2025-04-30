@@ -5,12 +5,12 @@ export interface ICourseBase {
   name: string;
   description: string;
   coverUrl: string;
-  journeys:    IJourney[];
-  userCourses: IUserCourse[];
 }
 
 export interface ICourse extends ICourseBase {
   id: number;
+  journeys?: IJourney[];
+  userCourses?: IUserCourse[];
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date | null;

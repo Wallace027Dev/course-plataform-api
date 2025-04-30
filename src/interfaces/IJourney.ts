@@ -1,10 +1,10 @@
-import { Content } from "@prisma/client";
+import { IContent } from "./IContent";
 
 export interface IJourneyBase {
-  name  :    string;
-  JourneyId:  number;
-  coverUrl:  string;
-  contents : Content[];
+  name: string;
+  courseId: number;
+  coverUrl: string;
+  contents?: IContent[];
 }
 
 export interface IJourney extends IJourneyBase {

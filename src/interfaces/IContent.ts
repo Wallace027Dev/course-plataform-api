@@ -1,6 +1,6 @@
 import { IUserProgress } from "./IUserProgress";
 
-export interface ICourseBase {
+export interface IContentBase {
   journeyId: number;
   type: string;
   title: string;
@@ -10,7 +10,7 @@ export interface ICourseBase {
   progress: IUserProgress[];
 }
 
-export interface ICourse extends ICourseBase {
+export interface IContent extends IContentBase {
   id: number;
   createdAt: Date;
   updatedAt: Date;
