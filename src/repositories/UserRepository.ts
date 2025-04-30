@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { IUserBase, IUserUpdate } from "../interfaces/IUser";
 const prisma = new PrismaClient();
 
 export class UserRepository {
@@ -20,18 +21,18 @@ export class UserRepository {
     });
   }
 
-  static async create(data: any) {
+  static async create(data: IUserBase) {
     return await prisma.user.create({
       data: {
         name: data.name,
         email: data.email,
         password: data.password,
-        token: data.token
+        role: data.role
       }
     });
   }
 
-  static async update(id: number, data: any) {
+  static async update(id: number, data: IUserUpdate) {
     return await prisma.user.update({
       where: { id },
       data: {

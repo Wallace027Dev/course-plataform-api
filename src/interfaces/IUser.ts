@@ -1,10 +1,14 @@
-export interface IUserBase {
-  name: string;
+export interface IUserLogin {
   email: string;
-  role: string;
   password: string;
+
+}
+export interface IUserBase extends IUserLogin {
+  name: string;
+  role: string;
   photoUrl?: string;
 }
+
 
 export interface IUser extends IUserBase {
   id: number;
@@ -15,3 +19,5 @@ export interface IUser extends IUserBase {
 }
 
 export interface IUserWithoutPassword extends Omit<IUser, "password"> {}
+
+export interface IUserUpdate extends Partial<IUser> {}

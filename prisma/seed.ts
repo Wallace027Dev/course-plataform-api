@@ -22,9 +22,11 @@ async function main() {
       data: {
         name: course.title,
         description: course.description,
+        coverUrl: course.coverUrl || "",
         journeys: {
           create: course.journeys.map((journey: any) => ({
             name: journey.title,
+            coverUrl: journey.coverUrl || "",
             contents: {
               create: journey.lessons.map((lesson: any, index: number) => ({
                 type: "lesson",

@@ -29,11 +29,7 @@ export class HttpResponse {
     return res.status(409).json({ message });
   }
 
-  static serverError(
-    res: Response,
-    message = "Internal Server Error",
-    error?: any
-  ) {
+  static serverError( res: Response, message = "Internal Server Error", error?: any) {
     return res.status(500).json({ message, error });
   }
 }
