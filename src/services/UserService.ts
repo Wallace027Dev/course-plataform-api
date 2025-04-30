@@ -9,13 +9,13 @@ export class UserService {
   }
 
   static async getUserById(id: number): Promise<IUserWithoutPassword | null> {
-    const user = await UserRepository.findById(id);
+    const user = await UserRepository.findOneById(id);
     if (!user) return null;
     return excludePassword(user);
   }
 
   static async getUserByEmail(email: string): Promise<IUserWithoutPassword | null> {
-    const user = await UserRepository.findByEmail(email);
+    const user = await UserRepository.findOneByEmail(email);
     if (!user) return null;
     return excludePassword(user);
   }

@@ -3,7 +3,7 @@ import { UserService } from "../services/UserService";
 import { HttpResponse } from "../helper/HttpResponse";
 
 export class UserController {
-  static async findAll(req: Request, res: Response): Promise<any> {
+  static async listUsers(req: Request, res: Response): Promise<any> {
     try {
       const name = req.query.name as string | undefined;
       if (!name) return HttpResponse.badRequest(res, "Name is required");
@@ -17,7 +17,7 @@ export class UserController {
     }
   }
 
-  static async findById(req: Request, res: Response): Promise<any> {
+  static async getUser(req: Request, res: Response): Promise<any> {
     try {
       const id = parseInt(req.params.id, 10);
       if (!id) return HttpResponse.badRequest(res, "Invalid ID");
@@ -31,7 +31,7 @@ export class UserController {
     }
   }
 
-  static update(req: Request, res: Response) {}
+  static updateUser(req: Request, res: Response) {}
 
-  static delete(req: Request, res: Response) {}
+  static deleteUser(req: Request, res: Response) {}
 }

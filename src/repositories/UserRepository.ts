@@ -12,13 +12,13 @@ export class UserRepository {
     });
   }
 
-  static async findById(id: number) {
+  static async findOneById(id: number) {
     return await prisma.user.findUnique({
       where: { id, deletedAt: null }
     });
   }
 
-  static findByEmail(email: string) {
+  static findOneByEmail(email: string) {
     return prisma.user.findUnique({
       where: { email, deletedAt: null }
     });

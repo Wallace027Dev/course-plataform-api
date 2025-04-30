@@ -6,7 +6,7 @@ import { IUserLogin, IUserRegister, IUserWithoutPassword } from "../interfaces/I
 
 export class AuthService {
   static async login(data: IUserLogin): Promise<IUserWithoutPassword | null> {
-    const user = await UserRepository.findByEmail(data.email);
+    const user = await UserRepository.findOneByEmail(data.email);
     if (!user) return null;
 
     const isValid = await this.#comparePassword(user.password, data.password);
@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   static async createUser(data: IUserRegister): Promise<IUserWithoutPassword | null> {
-    const userExists = await UserRepository.findByEmail(data.email);
+    const userExists = await UserRepository.findOneByEmail(data.email);
     if (userExists) throw new Error("User already exists");
 
     const hashedPassword = await this.#hashPassword(data.password);
