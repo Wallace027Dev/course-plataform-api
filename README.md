@@ -8,18 +8,200 @@ Banco de dados: MySQL
 Autenticação: JWT (jsonwebtoken)
 Testes: Jest (mais pra frente)
 
-## Rotas esperadas
-/courses
-/journeys
-/contents
-/quizzes
-/questions
-/answers
-/users
-/auth/login
-/auth/register
-/attempts
-/progress
+## Rotas
+
+### 🛡️ Autenticação (`/auth`)
+
+#### `POST /auth/login`
+Autentica o usuário e retorna os dados do usuário (sem senha) junto com o token.
+
+- **Body esperado (`IUserLogin`)**:
+```json
+{
+  "email": "usuario@email.com",
+  "password": "senha"
+}
+```
+
+- **Retorno (`IUserWithoutPassword`)**:
+```json
+{
+  "message": "User logged in",
+  "data": {
+    {
+      "id": 1,
+      "name": "Usuário",
+      "email": "usuario@email.com",
+      "token": "JWT_TOKEN",
+      "role": "STUDENT",
+      "photoUrl": null,
+      "createdAt": "2025-04-30T12:37:18.697Z",
+      "updatedAt": "2025-04-30T12:37:18.703Z",
+      "deletedAt": null,
+    }
+  }
+}
+```
+
+#### `POST /auth/register`
+Cadastra um novo usuário.
+
+- **Body esperado (`IUserRegister`)**:
+```json
+{
+  "name": "Usuário",
+  "email": "usuario@email.com",
+  "password": "senha"
+}
+```
+
+- **Retorno**: 
+```json
+{
+    "message": "User registered",
+    "data": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzQ2MDQ4MzUyLCJleHAiOjE3NDYwNTE5NTJ9.LFnwzKloGIcWXhI3IxpFyLDxu3lu1sma2JMTdPymXr0"
+    }
+}
+```
+
+---
+
+### 🎓 Cursos (`/courses`)
+
+#### `GET /courses/`
+Lista todos os cursos cadastrados.
+
+- **Parâmetros opcionais**:
+```json
+{
+  "name": "Curso tal",
+}
+```
+
+- **Retorno**: 
+```json
+{
+    "message": "Courses found",
+    "data": [
+        {
+            "id": 1,
+            "name": "Programação Fullstack",
+            "description": "Uma jornada épica para se tornar um verdadeiro dev fullstack. Do primeiro 'Hello World' ao deploy da sua aplicação completa, você vai aprender tudo que precisa para dominar o desenvolvimento ",
+            "coverUrl": "",
+            "createdAt": "2025-04-30T12:35:47.625Z",
+            "updatedAt": "2025-04-30T12:35:47.625Z",
+            "deletedAt": null
+        }
+    ]
+}    
+```
+
+#### `GET /courses/:courseId`
+Retorna os dados de um curso específico.
+
+- **Retorno**: `ICourse`
+
+#### `GET /courses/:courseId/students`
+Lista os alunos matriculados em um curso.
+
+- **Retorno**: `ICourseWithStudents`
+
+#### `POST /courses/`
+Cadastra um novo curso.
+
+- **Body (`ICourseBase`)**:
+```json
+{
+  "name": "Curso de JavaScript",
+  "description": "Aprenda JavaScript do zero"
+}
+```
+
+- **Retorno**: `ICourse`
+
+#### `POST /courses/:courseId/students/:userId`
+Matricula um usuário em um curso.
+
+- **Retorno**: status 200 + mensagem ou dados da matrícula
+
+#### `DELETE /courses/:courseId/students/:userId`
+Remove um aluno do curso.
+
+- **Retorno**: status 200 + mensagem de sucesso
+
+---
+
+### 📍 Jornadas (`/courses/:courseId/journeys`)
+
+#### `GET /courses/:courseId/journeys`
+Lista todas as jornadas associadas a um curso.
+
+- **Retorno**: `IJourney[]`
+
+#### `GET /courses/journeys/:journeyId`
+Busca uma jornada específica pelo ID.
+
+- **Retorno**: `IJourney`
+
+#### `POST /courses/:courseId/journeys`
+Cadastra uma nova jornada vinculada a um curso.
+
+- **Body (`IJourneyBase`)**:
+```json
+{
+  "name": "Jornada Frontend",
+  "description": "Aprenda a criar interfaces modernas"
+}
+```
+
+- **Retorno**: `IJourney`
+
+---
+
+### 📚 Conteúdos (`/contents`)
+
+#### `GET /contents/`
+Lista todos os conteúdos cadastrados (pode receber filtros opcionais `type` e `title`).
+
+- **Query params** (opcional): `?type=video&title=intro`
+- **Retorno**: `IContent[]`
+
+#### `GET /contents/journey/:journeyId`
+Retorna todos os conteúdos vinculados a uma jornada.
+
+- **Retorno**: `IContent[]`
+
+#### `POST /contents/journey`
+Cria um novo conteúdo para uma jornada.
+
+- **Body (`IContentBase`)**:
+```json
+{
+  "title": "Introdução ao HTML",
+  "type": "video",
+  "url": "https://video.com",
+  "journeyId": 1
+}
+```
+
+- **Retorno**: `IContent`
+
+---
+
+### 👤 Usuários (`/users`)
+
+#### `GET /users/`
+Lista todos os usuários cadastrados (pode ser filtrado por nome).
+
+- **Query params** (opcional): `?name=joão`
+- **Retorno**: `IUserWithoutPassword[]`
+
+#### `GET /users/:id`
+Busca um usuário específico por ID.
+
+- **Retorno**: `IUserWithoutPassword`
+
 
 ## Tabelas
 ### Course
