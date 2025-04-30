@@ -83,6 +83,7 @@ model Answer {
 
 model User {
   id          Int            @id @default(autoincrement())
+  token       String?        @unique
   name        String
   email       String         @unique
   password    String

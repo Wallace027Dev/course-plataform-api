@@ -4,6 +4,25 @@ import { CreateUserSchema } from "../schemas/UserSchema";
 import { UserService } from "../services/UserService";
 
 export class AuthController {
+  static async login(req: Request, res: Response): Promise<any> {
+    try {
+      const { email, password } = req.body;
+
+      const token = await UserService.login(email, password);
+      if (!token) {
+        return HttpResponse.badRequest(res, "Invalid email or password");
+      }
+
+      return HttpResponse.ok(res, "User logged in", { token });
+    } catch (error: any) {
+      return HttpResponse.serverError(
+        res,
+        "Internal server error when logging in",
+        error.message
+      );
+    }
+  }
+
   static async register(req: Request, res: Response): Promise<any> {
     try {
       const { name, email, password } = req.body;
@@ -26,11 +45,11 @@ export class AuthController {
         return HttpResponse.badRequest(res, "User already exists");
       }
 
-      HttpResponse.created(res, "User registered", user);
+      HttpResponse.created(res, "User registered", { token: user.token });
     } catch (error: any) {
       HttpResponse.serverError(
         res,
-        "Internal server error while creating user",
+        "Internal server error while registering user",
         error.message
       );
     }

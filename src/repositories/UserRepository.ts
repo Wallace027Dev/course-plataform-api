@@ -25,7 +25,21 @@ export class UserRepository {
       data: {
         name: data.name,
         email: data.email,
-        password: data.password
+        password: data.password,
+        token: data.token
+      }
+    });
+  }
+
+  static async update(id: number, data: any) {
+    return await prisma.user.update({
+      where: { id },
+      data: {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        role: data.role,
+        token: data.token
       }
     });
   }
