@@ -2,7 +2,11 @@ import { hash, compare } from "bcryptjs";
 import { excludePassword } from "../helper/excludePassword";
 import { UserRepository } from "../repositories/UserRepository";
 import { TokenService } from "./TokenService";
-import { IUserLogin, IUserRegister, IUserWithoutPassword } from "../interfaces/IUser";
+import {
+  IUserLogin,
+  IUserRegister,
+  IUserWithoutPassword
+} from "../interfaces/IUser";
 
 export class AuthService {
   static async login(data: IUserLogin): Promise<IUserWithoutPassword | null> {
@@ -21,7 +25,9 @@ export class AuthService {
     return excludePassword({ ...user, token });
   }
 
-  static async createUser(data: IUserRegister): Promise<IUserWithoutPassword | null> {
+  static async createUser(
+    data: IUserRegister
+  ): Promise<IUserWithoutPassword | null> {
     const userExists = await UserRepository.findOneByEmail(data.email);
     if (userExists) throw new Error("User already exists");
 
@@ -29,7 +35,7 @@ export class AuthService {
     const user = await UserRepository.create({
       name: data.name,
       email: data.email,
-      password: hashedPassword,
+      password: hashedPassword
     });
 
     const token = await TokenService.generateToken(user.id);
@@ -42,7 +48,10 @@ export class AuthService {
     return await hash(password, 10);
   }
 
-  static async #comparePassword(userPassword: string, password: string): Promise<boolean> {
+  static async #comparePassword(
+    userPassword: string,
+    password: string
+  ): Promise<boolean> {
     return await compare(password, userPassword);
   }
 }

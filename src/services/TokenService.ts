@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 export class TokenService {
   static isTokenValid(token?: string): boolean {
     if (!token) return false;
-    
+
     try {
       jwt.verify(token, process.env.JWT_SECRET as string);
       return true;

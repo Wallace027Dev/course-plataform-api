@@ -8,11 +8,16 @@ export class UserController {
       const name = req.query.name as string | undefined;
 
       const users = await UserService.listUsers(name as string);
-      if (users?.length === 0) return HttpResponse.notFound(res, "No users found");
+      if (users?.length === 0)
+        return HttpResponse.notFound(res, "No users found");
 
       return HttpResponse.ok(res, "Users found", users);
     } catch (error: any) {
-      return HttpResponse.serverError(res, "Error while creating user", error.message);
+      return HttpResponse.serverError(
+        res,
+        "Error while creating user",
+        error.message
+      );
     }
   }
 
@@ -26,7 +31,11 @@ export class UserController {
 
       return HttpResponse.ok(res, "User found", user);
     } catch (error: any) {
-      return HttpResponse.serverError(res, "Error while creating user", error.message);
+      return HttpResponse.serverError(
+        res,
+        "Error while creating user",
+        error.message
+      );
     }
   }
 

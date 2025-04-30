@@ -5,9 +5,11 @@ export const CreateUserSchema = z.object({
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Invalid email format"),
   password: z.string().min(6, "Password must be at least 6 characters"),
-  role: z.enum(["admin", "student", "teacher"], {
-    errorMap: () => ({ message: "Role is required" }),
-  }).default("student")
+  role: z
+    .enum(["admin", "student", "teacher"], {
+      errorMap: () => ({ message: "Role is required" })
+    })
+    .default("student")
 });
 
 export function validateCreateUser(data: IUserBase) {

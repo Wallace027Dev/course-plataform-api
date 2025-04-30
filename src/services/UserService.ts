@@ -3,7 +3,9 @@ import { UserRepository } from "../repositories/UserRepository";
 import { IUser, IUserUpdate, IUserWithoutPassword } from "../interfaces/IUser";
 
 export class UserService {
-  static async listUsers(name?: string): Promise<IUserWithoutPassword[] | null> {
+  static async listUsers(
+    name?: string
+  ): Promise<IUserWithoutPassword[] | null> {
     const users = await UserRepository.findAll(name);
     return users.map((user: IUser) => excludePassword(user));
   }
@@ -14,13 +16,18 @@ export class UserService {
     return excludePassword(user);
   }
 
-  static async getUserByEmail(email: string): Promise<IUserWithoutPassword | null> {
+  static async getUserByEmail(
+    email: string
+  ): Promise<IUserWithoutPassword | null> {
     const user = await UserRepository.findOneByEmail(email);
     if (!user) return null;
     return excludePassword(user);
   }
 
-  static async updateUser(id: number, data: IUserUpdate): Promise<IUserWithoutPassword | null> {
+  static async updateUser(
+    id: number,
+    data: IUserUpdate
+  ): Promise<IUserWithoutPassword | null> {
     const updatedUser = await UserRepository.update(id, data);
     return excludePassword(updatedUser);
   }

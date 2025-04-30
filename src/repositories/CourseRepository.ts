@@ -1,14 +1,11 @@
+import { IUserCourse } from "./../interfaces/IUserCourse";
+import { IUser } from "./../interfaces/IUser";
 import { PrismaClient } from "@prisma/client";
-import {
-  ICourse,
-  ICourseBase,
-  ICourseUpdate,
-  ICourseWithStudents
-} from "../interfaces/ICourse";
+import { ICourse, ICourseBase, ICourseUpdate } from "../interfaces/ICourse";
 const db = new PrismaClient();
 
 export class CourseRepository {
-  static async findAll(name?: string) {
+  static async findAll(name?: string): Promise<ICourse[]> {
     return await db.course.findMany({
       where: {
         deletedAt: null,
@@ -17,7 +14,7 @@ export class CourseRepository {
     });
   }
 
-  static async findOneById(id: number) {
+  static async findOneById(id: number): Promise<ICourse | null> {
     return await db.course.findUnique({
       where: { id, deletedAt: null },
       include: {
@@ -30,7 +27,9 @@ export class CourseRepository {
 
   static async findOneByIdWithStudents(
     id: number
-  ): Promise<any> {
+  ): Promise<
+    (ICourse & { userCourses: (IUserCourse & { user: IUser })[] }) | null
+  > {
     return await db.course.findUnique({
       where: { id, deletedAt: null },
       include: {
@@ -58,7 +57,7 @@ export class CourseRepository {
     });
   }
 
-  static async update(id: number, data: ICourseUpdate) {
+  static async update(id: number, data: ICourseUpdate): Promise<ICourse> {
     return await db.course.update({
       where: { id },
       data: {
