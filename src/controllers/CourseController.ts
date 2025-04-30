@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { CourseService } from "../services/CourseService";
 import { HttpResponse } from "../helper/HttpResponse";
 import { validateCreateCourse } from "../schemas/CourseSchema";
-import { UserService } from "../services/UserService";
 
 export class CourseController {
   static async listCourses(req: Request, res: Response): Promise<any> {

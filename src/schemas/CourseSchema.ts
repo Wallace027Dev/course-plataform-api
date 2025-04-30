@@ -8,10 +8,10 @@ export const CreateCourseSchema = z.object({
 });
 
 export function validateCreateCourse(data: ICourseBase) {
-  const userValidation = CreateCourseSchema.safeParse(data);
+  const courseValidation = CreateCourseSchema.safeParse(data);
 
-  if (!userValidation.success) {
-    return userValidation.error.format();
+  if (!courseValidation.success) {
+    return courseValidation.error.format();
   }
   return null;
 }
