@@ -450,6 +450,295 @@ Busca um usuário específico por ID.
 }
 ```
 
+### 👤 Usuários (`/users`)
+
+#### `POST /quizzes`
+Cria um novo quiz.
+
+Body (`IQuizBase`):
+```json
+{
+    "name": "Quiz sobre Métodos de Programação",
+    "questions": [
+        {
+            "question": "O que é uma função?",
+            "explication": "Uma função é um bloco de código reutilizável...",
+            "answers": [
+                {
+                    "text": "É uma estrutura de dados",
+                    "correct": false
+                },
+                {
+                    "text": "É um bloco de código que pode ser executado com um nome",
+                    "correct": true
+                },
+                {
+                    "text": "É uma variável",
+                    "correct": false
+                },
+                {
+                    "text": "É uma constante",
+                    "correct": false
+                }
+            ]
+        },
+        {
+            "question": "O que é uma variável?",
+            "explication": "Uma variável é um espaço na memória onde armazenamos dados...",
+            "answers": [
+                {
+                    "text": "Espaço de memória para armazenar um valor",
+                    "correct": true
+                },
+                {
+                    "text": "Função que realiza cálculos",
+                    "correct": false
+                },
+                {
+                    "text": "Valor imutável",
+                    "correct": false
+                },
+                {
+                    "text": "Estrutura de repetição",
+                    "correct": false
+                }
+            ]
+        }
+    ],
+    "contentId": 15 // Opcional
+}
+```
+
+Retorno:
+```json
+{
+    "message": "Quiz created successfully",
+    "data": {
+        "id": 45,
+        "name": "Quiz sobre Métodos de Programação",
+        "questions": [
+            {
+                "id": 101,
+                "question": "O que é uma função?",
+                "explication": "Uma função é um bloco de código reutilizável...",
+                "answers": [
+                    {
+                        "id": 1001,
+                        "text": "É uma estrutura de dados",
+                        "correct": false
+                    },
+                    {
+                        "id": 1002,
+                        "text": "É um bloco de código que pode ser executado com um nome",
+                        "correct": true
+                    },
+                    {
+                        "id": 1003,
+                        "text": "É uma variável",
+                        "correct": false
+                    },
+                    {
+                        "id": 1004,
+                        "text": "É uma constante",
+                        "correct": false
+                    }
+                ]
+            },
+            {
+                "id": 102,
+                "question": "O que é uma variável?",
+                "explication": "Uma variável é um espaço na memória onde armazenamos dados...",
+                "answers": [
+                    {
+                        "id": 1005,
+                        "text": "Espaço de memória para armazenar um valor",
+                        "correct": true
+                    },
+                    {
+                        "id": 1006,
+                        "text": "Função que realiza cálculos",
+                        "correct": false
+                    },
+                    {
+                        "id": 1007,
+                        "text": "Valor imutável",
+                        "correct": false
+                    },
+                    {
+                        "id": 1008,
+                        "text": "Estrutura de repetição",
+                        "correct": false
+                    }
+                ]
+            }
+        ],
+        "contentId": 15,
+        "createdAt": "2025-05-01T02:16:17.152Z",
+        "updatedAt": "2025-05-01T02:16:17.152Z",
+        "deletedAt": null
+    }
+}
+```
+
+---
+
+#### `GET /quizzes/{id}`
+Recupera um quiz pelo ID.
+
+Parâmetros de URL:
+  - `id` (número) - O ID do quiz que você quer buscar.
+
+Exemplo de resposta:
+```json
+{
+    "message": "Quiz found",
+    "data": {
+        "id": 45,
+        "name": "Quiz sobre Métodos de Programação",
+        "questions": [
+            {
+                "id": 101,
+                "question": "O que é uma função?",
+                "explication": "Uma função é um bloco de código reutilizável...",
+                "answers": [
+                    {
+                        "id": 1001,
+                        "text": "É uma estrutura de dados",
+                        "correct": false
+                    },
+                    {
+                        "id": 1002,
+                        "text": "É um bloco de código que pode ser executado com um nome",
+                        "correct": true
+                    },
+                    {
+                        "id": 1003,
+                        "text": "É uma variável",
+                        "correct": false
+                    },
+                    {
+                        "id": 1004,
+                        "text": "É uma constante",
+                        "correct": false
+                    }
+                ]
+            },
+            {
+                "id": 102,
+                "question": "O que é uma variável?",
+                "explication": "Uma variável é um espaço na memória onde armazenamos dados...",
+                "answers": [
+                    {
+                        "id": 1005,
+                        "text": "Espaço de memória para armazenar um valor",
+                        "correct": true
+                    },
+                    {
+                        "id": 1006,
+                        "text": "Função que realiza cálculos",
+                        "correct": false
+                    },
+                    {
+                        "id": 1007,
+                        "text": "Valor imutável",
+                        "correct": false
+                    },
+                    {
+                        "id": 1008,
+                        "text": "Estrutura de repetição",
+                        "correct": false
+                    }
+                ]
+            }
+        ],
+        "contentId": 15,
+        "createdAt": "2025-05-01T02:16:17.152Z",
+        "updatedAt": "2025-05-01T02:16:17.152Z",
+        "deletedAt": null
+    }
+}
+```
+---
+
+#### `GET /quizzes/`
+Recupera um todos os quizzes.
+
+Parâmetros opcionais de consulta:
+  - `name` (texto) - O nome dos quizzes que você quer filtrar.
+
+Exemplo de resposta:
+```json
+[
+    {
+        "message": "Quiz found",
+        "data": {
+            "id": 45,
+            "name": "Quiz sobre Métodos de Programação",
+            "questions": [
+                {
+                    "id": 101,
+                    "question": "O que é uma função?",
+                    "explication": "Uma função é um bloco de código reutilizável...",
+                    "answers": [
+                        {
+                            "id": 1001,
+                            "text": "É uma estrutura de dados",
+                            "correct": false
+                        },
+                        {
+                            "id": 1002,
+                            "text": "É um bloco de código que pode ser executado com um nome",
+                            "correct": true
+                        },
+                        {
+                            "id": 1003,
+                            "text": "É uma variável",
+                            "correct": false
+                        },
+                        {
+                            "id": 1004,
+                            "text": "É uma constante",
+                            "correct": false
+                        }
+                    ]
+                },
+                {
+                    "id": 102,
+                    "question": "O que é uma variável?",
+                    "explication": "Uma variável é um espaço na memória onde armazenamos dados...",
+                    "answers": [
+                        {
+                            "id": 1005,
+                            "text": "Espaço de memória para armazenar um valor",
+                            "correct": true
+                        },
+                        {
+                            "id": 1006,
+                            "text": "Função que realiza cálculos",
+                            "correct": false
+                        },
+                        {
+                            "id": 1007,
+                            "text": "Valor imutável",
+                            "correct": false
+                        },
+                        {
+                            "id": 1008,
+                            "text": "Estrutura de repetição",
+                            "correct": false
+                        }
+                    ]
+                }
+            ],
+            "contentId": 15,
+            "createdAt": "2025-05-01T02:16:17.152Z",
+            "updatedAt": "2025-05-01T02:16:17.152Z",
+            "deletedAt": null
+        }
+    }
+]
+```
+
 
 ## Tabelas
 ### Course
