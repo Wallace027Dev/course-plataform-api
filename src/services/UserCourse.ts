@@ -1,4 +1,4 @@
-import { IUserCourse, IUserCourseBase } from "../interfaces/IUserCourse";
+import { IUserCourseBase } from "../interfaces/IUserCourse";
 import { UserCourseRepository } from "../repositories/UserCourseRepository";
 
 export class UserCourseService {
@@ -13,7 +13,7 @@ export class UserCourseService {
     }
   }
 
-  static async removeFromCourse(
+  static async removeOfCourse(
     courseId: number,
     userId: number
   ): Promise<IUserCourseBase | null> {

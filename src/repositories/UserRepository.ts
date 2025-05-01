@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client";
 import { IUserRegister, IUserUpdate } from "../interfaces/IUser";
+import { PrismaClient } from "@prisma/client";
 const db = new PrismaClient();
 
 export class UserRepository {

@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client";
 import { IJourney, IJourneyBase, IJourneyUpdate } from "../interfaces/IJourney";
+import { PrismaClient } from "@prisma/client";
 const db = new PrismaClient();
 
 export class JourneyRepository {

@@ -1,7 +1,7 @@
 import { IUserCourse } from "./../interfaces/IUserCourse";
 import { IUser } from "./../interfaces/IUser";
-import { PrismaClient } from "@prisma/client";
 import { ICourse, ICourseBase, ICourseUpdate } from "../interfaces/ICourse";
+import { PrismaClient } from "@prisma/client";
 const db = new PrismaClient();
 
 export class CourseRepository {
@@ -52,7 +52,11 @@ export class CourseRepository {
       },
       include: {
         journeys: true,
-        userCourses: true
+        userCourses: {
+          include: {
+            user: true
+          }
+        }
       }
     });
   }
@@ -68,7 +72,11 @@ export class CourseRepository {
       },
       include: {
         journeys: true,
-        userCourses: true
+        userCourses: {
+          include: {
+            user: true
+          }
+        }
       }
     });
   }

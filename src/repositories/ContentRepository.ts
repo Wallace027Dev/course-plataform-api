@@ -1,5 +1,5 @@
-import { Prisma, PrismaClient } from "@prisma/client";
 import { IContent, IContentBase, IContentUpdate } from "../interfaces/IContent";
+import { Prisma, PrismaClient } from "@prisma/client";
 const db = new PrismaClient();
 
 export class ContentRepository {

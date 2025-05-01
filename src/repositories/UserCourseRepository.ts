@@ -1,5 +1,5 @@
+import { IUserCourseBase } from "../interfaces/IUserCourse";
 import { PrismaClient } from "@prisma/client";
-import { IUserCourse, IUserCourseBase } from "../interfaces/IUserCourse";
 const db = new PrismaClient();
 
 export class UserCourseRepository {
