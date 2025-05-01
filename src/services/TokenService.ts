@@ -2,9 +2,9 @@ import jwt from "jsonwebtoken";
 
 export class TokenService {
   static isTokenValid(token?: string): boolean {
-    if (!token) return false;
-
     try {
+      if (!token) throw new Error("Token is required");
+
       jwt.verify(token, process.env.JWT_SECRET as string);
       return true;
     } catch {
@@ -12,10 +12,14 @@ export class TokenService {
     }
   }
 
-  static async generateToken(userId: number): Promise<string> {
-    return jwt.sign({ id: userId }, process.env.JWT_SECRET as string, {
+  static generateToken(userId: number): string {
+    if (!process.env.JWT_SECRET) {
+      throw new Error("JWT_SECRET is not configured");
+    }
+
+    return jwt.sign({ id: userId }, process.env.JWT_SECRET, {
       expiresIn: "60m",
-      algorithm: "HS256"
+      algorithm: "HS256",
     });
   }
 }

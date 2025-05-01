@@ -13,7 +13,7 @@ export class ContentRepository {
     });
   }
 
-  static async findOneById(journeyId: number): Promise<IContent[] | null> {
+  static async listByJourneyId(journeyId: number): Promise<IContent[] | null> {
     return await db.content.findMany({
       where: { journeyId, deletedAt: null }
     });

@@ -6,13 +6,21 @@ export class UserCourseService {
     courseId: number,
     userId: number
   ): Promise<IUserCourse | null> {
-    return await UserCourseRepository.registerOnCourse(courseId, userId);
+    try {
+      return await UserCourseRepository.registerOnCourse(courseId, userId);
+    } catch (error: any) {
+      throw new Error(`Failed to register user ${userId} on course ${courseId}: ${error.message}`);
+    }
   }
 
-  static async removeOfCourse(
+  static async removeFromCourse(
     courseId: number,
     userId: number
   ): Promise<IUserCourse | null> {
-    return await UserCourseRepository.removeOfCourse(courseId, userId);
+    try {
+      return await UserCourseRepository.removeOfCourse(courseId, userId);
+    } catch (error: any) {
+      throw new Error(`Failed to remove user ${userId} from course ${courseId}: ${error.message}`);
+    }
   }
 }

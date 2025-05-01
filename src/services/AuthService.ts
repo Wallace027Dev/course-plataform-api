@@ -10,48 +10,46 @@ import {
 
 export class AuthService {
   static async login(data: IUserLogin): Promise<IUserWithoutPassword | null> {
-    const user = await UserRepository.findOneByEmail(data.email);
-    if (!user) return null;
+    try {
+      const user = await UserRepository.findOneByEmail(data.email);
+      if (!user) return null;
 
-    const isValid = await this.#comparePassword(user.password, data.password);
-    if (!isValid) return null;
+      const isValid = await compare(data.password, user.password);
+      if (!isValid) return null;
 
-    let token = user.token;
-    if (!token || !TokenService.isTokenValid(token)) {
-      token = await TokenService.generateToken(user.id);
-      await UserRepository.update(user.id, { token });
+      let token = user.token;
+      if (!token || !TokenService.isTokenValid(token)) {
+        token = TokenService.generateToken(user.id);
+        await UserRepository.update(user.id, { token });
+      }
+
+      return excludePassword({ ...user, token });
+    } catch (error: any) {
+      throw new Error(`Failed to login: ${error.message}`);
     }
-
-    return excludePassword({ ...user, token });
   }
 
   static async createUser(
     data: IUserRegister
   ): Promise<IUserWithoutPassword | null> {
-    const userExists = await UserRepository.findOneByEmail(data.email);
-    if (userExists) throw new Error("User already exists");
+    try {
+      const userExists = await UserRepository.findOneByEmail(data.email);
+      if (userExists) throw new Error("User already exists");
 
-    const hashedPassword = await this.#hashPassword(data.password);
-    const user = await UserRepository.create({
-      name: data.name,
-      email: data.email,
-      password: hashedPassword
-    });
+      const hashedPassword = await hash(data.password, 10);
 
-    const token = await TokenService.generateToken(user.id);
-    await UserRepository.update(user.id, { token });
+      const user = await UserRepository.create({
+        name: data.name,
+        email: data.email,
+        password: hashedPassword
+      });
 
-    return excludePassword({ ...user, token });
-  }
+      const token = TokenService.generateToken(user.id);
+      await UserRepository.update(user.id, { token });
 
-  static async #hashPassword(password: string): Promise<string> {
-    return await hash(password, 10);
-  }
-
-  static async #comparePassword(
-    userPassword: string,
-    password: string
-  ): Promise<boolean> {
-    return await compare(password, userPassword);
+      return excludePassword({ ...user, token });
+    } catch (error: any) {
+      throw new Error(`Failed to create user: ${error.message}`);
+    }
   }
 }
