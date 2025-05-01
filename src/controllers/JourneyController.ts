@@ -9,8 +9,7 @@ export class JourneyController {
       const name = req.query.name as string | undefined;
 
       const courses = await JourneyService.listJourneys(name as string);
-      if (courses?.length === 0)
-        return HttpResponse.notFound(res, "No journeys found");
+      if (courses?.length === 0) return HttpResponse.notFound(res, "Journeys not found");
 
       return HttpResponse.ok(res, "Journeys found", courses);
     } catch (error: any) {
@@ -29,7 +28,7 @@ export class JourneyController {
       if (!journeyId) return HttpResponse.badRequest(res, "Invalid journey ID");
 
       const journey = await JourneyService.getJourneyById(journeyId);
-      if (!journey) HttpResponse.notFound(res, "Course not found");
+      if (!journey) return HttpResponse.notFound(res, "Journey not found");
 
       return HttpResponse.ok(res, "Journey found", journey);
     } catch (error: any) {
@@ -46,8 +45,7 @@ export class JourneyController {
       const data = req.body;
 
       const validate = validateCreateJourney(data);
-      if (validate)
-        return HttpResponse.badRequest(res, "Invalid data", validate);
+      if (validate) return HttpResponse.badRequest(res, "Invalid data", validate);
 
       const journey = await JourneyService.createJourney(data);
 

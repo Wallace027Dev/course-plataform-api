@@ -8,12 +8,8 @@ export class ContentsController {
     try {
       const { type, title } = req.query;
 
-      const contents = await ContentService.listContents(
-        type as string,
-        title as string
-      );
-      if (contents?.length === 0)
-        HttpResponse.notFound(res, "No contents found");
+      const contents = await ContentService.listContents(type as string, title as string);
+      if (contents?.length === 0) return HttpResponse.notFound(res, "Content not found");
 
       return HttpResponse.ok(res, "Courses found", contents);
     } catch (error: any) {
@@ -34,7 +30,7 @@ export class ContentsController {
       if (!id) return HttpResponse.badRequest(res, "Invalid ID");
 
       const content = await ContentService.getContentById(id as number);
-      if (!content) HttpResponse.notFound(res, "Content not found");
+      if (!content) return HttpResponse.notFound(res, "Content not found");
 
       return HttpResponse.ok(res, "Content found", content);
     } catch (error: any) {
@@ -53,8 +49,7 @@ export class ContentsController {
       const data = req.body;
 
       const validate = validateCreateContent(data);
-      if (validate)
-        return HttpResponse.badRequest(res, "Invalid data", validate);
+      if (validate) return HttpResponse.badRequest(res, "Invalid data", validate);
 
       const content = await ContentService.createContent(data);
 

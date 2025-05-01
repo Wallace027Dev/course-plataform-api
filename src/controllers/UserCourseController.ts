@@ -9,11 +9,12 @@ export class UserCourseController {
     try {
       const { userId, courseId } =
         await UserCourseController.#extractIdsFromParams(res, req.params);
+
       const course = await CourseService.getCourseById(courseId as number);
-      if (!course) HttpResponse.notFound(res, "Course not found");
+      if (!course) return HttpResponse.notFound(res, "Course not found");
 
       const student = await UserService.getUserById(userId as number);
-      if (!student) HttpResponse.notFound(res, "Students not found");
+      if (!student) return HttpResponse.notFound(res, "Student not found");
 
       const userCourse = await UserCourseService.registerOnCourse(
         courseId,

@@ -8,8 +8,7 @@ export class UserController {
       const name = req.query.name as string | undefined;
 
       const users = await UserService.listUsers(name as string);
-      if (users?.length === 0)
-        return HttpResponse.notFound(res, "No users found");
+      if (users?.length === 0) return HttpResponse.notFound(res, "Users not found");
 
       return HttpResponse.ok(res, "Users found", users);
     } catch (error: any) {
@@ -27,7 +26,7 @@ export class UserController {
       if (!id) return HttpResponse.badRequest(res, "Invalid ID");
 
       const user = await UserService.getUserById(id as number);
-      if (!user) HttpResponse.notFound(res, "User not found");
+      if (!user) return HttpResponse.notFound(res, "User not found");
 
       return HttpResponse.ok(res, "User found", user);
     } catch (error: any) {

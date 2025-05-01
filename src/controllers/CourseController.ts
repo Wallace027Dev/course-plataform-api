@@ -9,8 +9,7 @@ export class CourseController {
       const name = req.query.name as string | undefined;
 
       const courses = await CourseService.listCourses(name as string);
-      if (courses?.length === 0)
-        return HttpResponse.notFound(res, "No courses found");
+      if (courses?.length === 0) return HttpResponse.notFound(res, "Courses not found");
 
       return HttpResponse.ok(res, "Courses found", courses);
     } catch (error: any) {
@@ -25,10 +24,10 @@ export class CourseController {
   static async getCourse(req: Request, res: Response): Promise<any> {
     try {
       const id = parseInt(req.params.courseId, 10);
-      if (!id) return HttpResponse.badRequest(res, "Invalid IDdddddddddd");
+      if (!id) return HttpResponse.badRequest(res, "Invalid ID");
 
       const course = await CourseService.getCourseById(id as number);
-      if (!course) HttpResponse.notFound(res, "Course not found");
+      if (!course) return HttpResponse.notFound(res, "Course not found");
 
       return HttpResponse.ok(res, "Course found", course);
     } catch (error: any) {
@@ -46,12 +45,10 @@ export class CourseController {
       if (!id) return HttpResponse.badRequest(res, "Invalid ID");
 
       const course = await CourseService.getCourseById(id as number);
-      if (!course) HttpResponse.notFound(res, "Course not found");
+      if (!course) return HttpResponse.notFound(res, "Course not found");
 
-      const students = await CourseService.getStudentsOfCourseById(
-        id as number
-      );
-      if (!students) HttpResponse.notFound(res, "Students not found");
+      const students = await CourseService.getStudentsOfCourseById(id as number);
+      if (!students) return HttpResponse.notFound(res, "Students not found");
 
       return HttpResponse.ok(res, `Students of ${course?.name}`, students);
     } catch (error: any) {
@@ -68,8 +65,7 @@ export class CourseController {
       const data = req.body;
 
       const validate = validateCreateCourse(data);
-      if (validate)
-        return HttpResponse.badRequest(res, "Invalid data", validate);
+      if (validate) return HttpResponse.badRequest(res, "Invalid data", validate);
 
       const course = await CourseService.createCourse(data);
 
