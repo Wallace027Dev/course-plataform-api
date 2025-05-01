@@ -10,6 +10,44 @@ Testes: Jest (mais pra frente)
 
 ## Rotas
 
+### Resumo das rotas:
+#### src/routes/index.ts
+- Descrição: Arquivo principal que centraliza e organiza todas as rotas do projeto.
+Importa e registra as rotas de autenticação (/auth), cursos (/courses), conteúdos (/contents), usuários (/users) e quizzes (/quizzes).
+#### src/routes/authRoutes.ts
+- Descrição: Gerencia as rotas relacionadas à autenticação de usuários.
+-- POST /auth/login: Realiza o login de um usuário e retorna um token JWT.
+-- POST /auth/register: Registra um novo usuário e retorna um token JWT.
+#### src/routes/contentRoutes.ts
+- Descrição: Gerencia as rotas relacionadas aos conteúdos de uma jornada.
+-- GET /contents/: Lista todos os conteúdos cadastrados.
+-- GET /contents/journey/:journeyId: Lista os conteúdos de uma jornada específica.
+-- POST /contents/journey: Cria um novo conteúdo em uma jornada.
+#### src/routes/courseRoutes.ts
+- Descrição: Gerencia as rotas relacionadas aos cursos, matrículas e jornadas.
+-- Cursos:
+--- GET /courses/: Lista todos os cursos.
+--- GET /courses/:courseId: Retorna os detalhes de um curso específico.
+--- POST /courses/: Cria um novo curso.
+-- Matrículas:
+--- POST /courses/:courseId/students/:userId: Matricula um usuário em um curso.
+--- DELETE /courses/:courseId/students/:userId: Remove a matrícula de um usuário em um curso.
+-- Jornadas:
+--- GET /courses/:courseId/journeys: Lista todas as jornadas de um curso.
+--- POST /courses/:courseId/journeys: Cria uma nova jornada em um curso.
+--- GET /courses/journeys/:journeyId: Retorna os detalhes de uma jornada específica.
+#### src/routes/quizRoutes.ts
+- Descrição: Gerencia as rotas relacionadas aos quizzes.
+(Detalhes não fornecidos no contexto, mas geralmente incluem rotas para criar, listar e gerenciar quizzes.)
+-- GET /quizzes/:id: Retorna os detalhes de um quiz específico.
+-- GET /quizzes/: Lista todos os quizzes cadastrados.
+-- GET /quizzes/journey/:journeyId: Lista os quizzes associados a uma jornada específica.
+-- POST /quizzes/: Cria um novo quiz.
+#### src/routes/userRoutes.ts
+- Descrição: Gerencia as rotas relacionadas aos usuários.
+-- GET /users/: Lista todos os usuários.
+-- GET /users/:id: Retorna os detalhes de um usuário específico.
+
 ### 🛡️ Autenticação (`/auth`)
 
 #### `POST /auth/login`
