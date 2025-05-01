@@ -6,8 +6,8 @@ export class JourneyRepository {
   static async findAll(name?: string): Promise<IJourney[]> {
     return await db.journey.findMany({
       where: {
-        deletedAt: null,
-        ...(name && { name: { contains: name } })
+        ...(name && { name: { contains: name } }),
+        deletedAt: null
       }
     });
   }
