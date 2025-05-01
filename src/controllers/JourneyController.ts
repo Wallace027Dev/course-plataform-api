@@ -24,7 +24,6 @@ export class JourneyController {
   static async getJourneyById(req: Request, res: Response): Promise<any> {
     try {
       const journeyId = parseInt(req.params.journeyId, 10);
-      console.log(journeyId)
       if (!journeyId) return HttpResponse.badRequest(res, "Invalid journey ID");
 
       const journey = await JourneyService.getJourneyById(journeyId);

@@ -1,4 +1,4 @@
-import { IQuiz } from "../interfaces/IQuiz";
+import { IQuiz, IQuizBase } from "../interfaces/IQuiz";
 import { PrismaClient } from "@prisma/client";
 const db = new PrismaClient();
 
@@ -15,7 +15,11 @@ export class QuizRepository {
             answers: true
           }
         },
-        attempts: true
+        attempts: {
+          include: {
+            user: true
+          }
+        }
       }
     });
   }
@@ -57,5 +61,32 @@ export class QuizRepository {
     });
   }
 
-  static async create(data: any) {}
+  static async create(data: IQuizBase, contentId?: number ): Promise<IQuiz> {
+    return await db.quiz.create({
+      data: {
+        name: data.name,
+        questions: {
+          create: data.questions.map((q) => ({
+            question: q.question,
+            explication: q.explication,
+            answers: {
+              create: q.answers.map((a) => ({
+                text: a.text,
+                correct: a.correct,
+                deletedAt: null
+              }))
+            },
+            deletedAt: null
+          }))
+        },
+        attempts: { create: [] },
+        content: contentId ? { connect: { id: contentId } } : undefined,
+        deletedAt: null,
+      },
+      include: {
+        questions: { include: { answers: true } },
+        attempts: true
+      }
+    });
+  }
 }

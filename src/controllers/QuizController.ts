@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { HttpResponse } from "../helper/HttpResponse";
 import { QuizService } from "../services/QuizService";
+import { validateCreateQuiz } from "../schemas/QuizSchema";
 
 export class QuizController {
   static async listAllQuizzes(req: Request, res: Response): Promise<any> {
@@ -56,5 +57,24 @@ export class QuizController {
       );
     }
   }
-  static store() {}
+
+  static async store(req: Request, res: Response): Promise<any> {
+    try {
+      const data = req.body;
+
+      const errors = validateCreateQuiz(data);
+      if (errors) return HttpResponse.badRequest(res, "Invalid data", errors);
+  
+      const newQuiz = await QuizService.createQuiz(data);
+      if (!newQuiz) return HttpResponse.notFound(res, "Quiz not created");
+  
+      return HttpResponse.ok(res, "Quizzes found", newQuiz);
+    } catch (error: any) {
+      return HttpResponse.serverError(
+        res,
+        "Error while creating user",
+        error.message
+      );
+    }
+  }
 }

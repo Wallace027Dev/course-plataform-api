@@ -1,5 +1,6 @@
 import { IQuiz } from "../interfaces/IQuiz";
 import { QuizRepository } from "../repositories/QuizRepository";
+import { ContentService } from "./ContentService";
 
 export class QuizService {
   static async listAllQuizzes(listAllQuizzes?: string): Promise<IQuiz[] | null> {
@@ -28,7 +29,17 @@ export class QuizService {
 
   static async createQuiz(data: any): Promise<any> {
     try {
-      return await QuizRepository.create(data);
+      const { contentId, ...quizData } = data;
+
+      // Verificar se o Content com o contentId existe
+      if (contentId) await ContentService.getContentById(contentId);
+
+      const newQuiz = await QuizRepository.create(quizData, contentId);
+
+      // Se contentId foi fornecido, atualizar o Content com o tipo "quiz"
+      if (contentId) await ContentService.updateContent(contentId, { type: "quiz" });
+
+      return newQuiz;
     } catch (error: any) {
       throw new Error(`Failed to create quiz: ${error.message}`);
     }

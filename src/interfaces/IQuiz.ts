@@ -4,11 +4,11 @@ import { IQuestion } from "./IQuestion";
 
 export interface IQuizBase {
   name: string;
+  questions: IQuestion[];
 }
 
 export interface IQuiz extends IQuizBase {
   id: number;
-  questions: IQuestion[];
   attempts: IAttempt[];
   content?: IContent;
   createdAt: Date;

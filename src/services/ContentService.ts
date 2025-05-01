@@ -10,12 +10,23 @@ export class ContentService {
     }
   }
 
-  static async getContentById(journeyId: number): Promise<IContent[] | null> {
+  static async getContentById(id: number): Promise<IContent | null> {
+    try {
+      const content = await ContentRepository.findOneById(id);
+      if (!content) throw new Error(`Content with id ${id} not found`);
+
+      return content || null;
+    } catch (error: any) {
+      throw new Error(`Failed to get one content with id ${id}: ${error.message}`);
+    }
+  }
+
+  static async listContentsByJourneyId(journeyId: number): Promise<IContent[] | null> {
     try {
       const content = await ContentRepository.listByJourneyId(journeyId);
       return content || null;
     } catch (error: any) {
-      throw new Error(`Failed to get content for journey with id ${journeyId}: ${error.message}`);
+      throw new Error(`Failed to list contents of journey with journey id ${journeyId}: ${error.message}`);
     }
   }
 
@@ -29,6 +40,8 @@ export class ContentService {
 
   static async updateContent(id: number, data: IContentUpdate): Promise<IContent | null> {
     try {
+      await this.getContentById(id);
+
       return await ContentRepository.update(id, data);
     } catch (error: any) {
       throw new Error(`Failed to update content with id ${id}: ${error.message}`);

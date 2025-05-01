@@ -13,6 +13,15 @@ export class ContentRepository {
     });
   }
 
+  static async findOneById(id: number): Promise<IContent | null> {
+    return await db.content.findFirst({
+      where: {
+        id,
+        deletedAt: null
+      }
+    });
+  }
+
   static async listByJourneyId(journeyId: number): Promise<IContent[] | null> {
     return await db.content.findMany({
       where: { journeyId, deletedAt: null }
