@@ -100,12 +100,65 @@ Lista todos os cursos cadastrados.
 #### `GET /courses/:courseId`
 Retorna os dados de um curso específico.
 
-- **Retorno**: `ICourse`
+- **Retorno**:
+```json
+{
+    "message": "Course found",
+    "data": {
+        "id": 1,
+        "name": "Programação Fullstack",
+        "description": "Uma jornada épica para se tornar um verdadeiro dev fullstack. Do primeiro 'Hello World' ao deploy da sua aplicação completa, você vai aprender tudo que precisa para dominar o desenvolvimento ",
+        "coverUrl": "",
+        "createdAt": "2025-04-30T12:35:47.625Z",
+        "updatedAt": "2025-04-30T12:35:47.625Z",
+        "deletedAt": null,
+        "journeys": [
+            {
+                "id": 1,
+                "name": "Lógica de Programação: O Início da Jornada",
+                "courseId": 1,
+                "coverUrl": "",
+                "createdAt": "2025-04-30T12:35:47.625Z",
+                "updatedAt": "2025-04-30T12:35:47.625Z",
+                "deletedAt": null
+            }
+        ]
+    }
+}
+```
 
 #### `GET /courses/:courseId/students`
 Lista os alunos matriculados em um curso.
 
-- **Retorno**: `ICourseWithStudents`
+- **Retorno**: 
+```
+{
+    "message": "Students of Programação Fullstack",
+    "data": {
+        "id": 1,
+        "name": "Programação Fullstack",
+        "description": "Uma jornada épica para se tornar um verdadeiro dev fullstack. Do primeiro 'Hello World' ao deploy da sua aplicação completa, você vai aprender tudo que precisa para dominar o desenvolvimento ",
+        "coverUrl": "",
+        "createdAt": "2025-04-30T12:35:47.625Z",
+        "updatedAt": "2025-04-30T12:35:47.625Z",
+        "deletedAt": null,
+        "userCourses": [
+            {
+                "id": 1,
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ2MDQ4MzI3LCJleHAiOjE3NDYwNTE5Mjd9.-Vx8pS4QqDygrtcyLO1u_y8NFYtZOdf7uJxIxkmp4Hk",
+                "name": "Wallace",
+                "email": "wallace@email.com",
+                "password": "$2b$10$DvETjosjQCSFXEgRpVcpBulCCC9NivwBSpHgIQa1B2CPn1uSHCz0e",
+                "role": "STUDENT",
+                "photoUrl": null,
+                "createdAt": "2025-04-30T12:37:18.697Z",
+                "updatedAt": "2025-04-30T21:25:27.185Z",
+                "deletedAt": null
+            }
+        ]
+    }
+}
+```
 
 #### `POST /courses/`
 Cadastra um novo curso.
@@ -113,22 +166,57 @@ Cadastra um novo curso.
 - **Body (`ICourseBase`)**:
 ```json
 {
-  "name": "Curso de JavaScript",
-  "description": "Aprenda JavaScript do zero"
+    "name": "PlayGO",
+    "description": "Curso de design e inglês para iniciantes pensando no mercado",
+    "coverUrl": "https://cdn.evg.gov.br/cursos/198_EVG/banner.svg"
 }
 ```
 
-- **Retorno**: `ICourse`
+- **Retorno**: 
+```json
+{
+    "message": "User registered",
+    "data": {
+        "id": 4,
+        "name": "PlayGO",
+        "description": "Curso de design e inglês para iniciantes pensando no mercado",
+        "coverUrl": "https://cdn.evg.gov.br/cursos/198_EVG/banner.svg",
+        "createdAt": "2025-05-01T02:06:34.264Z",
+        "updatedAt": "2025-05-01T02:06:34.264Z",
+        "deletedAt": null,
+        "journeys": [],
+        "userCourses": []
+    }
+}
+```
 
 #### `POST /courses/:courseId/students/:userId`
 Matricula um usuário em um curso.
 
-- **Retorno**: status 200 + mensagem ou dados da matrícula
+- **Retorno**: 
+```json
+{
+    "message": "Student tal registeres on Programação Fullstack course",
+    "data": {
+        "userId": 1,
+        "courseId": 1
+    }
+}
+```
 
 #### `DELETE /courses/:courseId/students/:userId`
 Remove um aluno do curso.
 
-- **Retorno**: status 200 + mensagem de sucesso
+- **Retorno**: 
+```json
+{
+    "message": "Student removed from curse",
+    "data": {
+        "userId": 1,
+        "courseId": 1
+    }
+}
+```
 
 ---
 
@@ -137,12 +225,53 @@ Remove um aluno do curso.
 #### `GET /courses/:courseId/journeys`
 Lista todas as jornadas associadas a um curso.
 
-- **Retorno**: `IJourney[]`
+- **Retorno**:
+```json
+{
+    "message": "Journeys found",
+    "data": [
+        {
+            "id": 1,
+            "name": "Lógica de Programação: O Início da Jornada",
+            "courseId": 1,
+            "coverUrl": "",
+            "createdAt": "2025-04-30T12:35:47.625Z",
+            "updatedAt": "2025-04-30T12:35:47.625Z",
+            "deletedAt": null
+        }
+    ]
+}
+```
 
 #### `GET /courses/journeys/:journeyId`
 Busca uma jornada específica pelo ID.
 
-- **Retorno**: `IJourney`
+- **Retorno**:
+```json
+{
+    "message": "Course found",
+    "data": {
+        "id": 1,
+        "name": "Programação Fullstack",
+        "description": "Uma jornada épica para se tornar um verdadeiro dev fullstack. Do primeiro 'Hello World' ao deploy da sua aplicação completa, você vai aprender tudo que precisa para dominar o desenvolvimento ",
+        "coverUrl": "",
+        "createdAt": "2025-04-30T12:35:47.625Z",
+        "updatedAt": "2025-04-30T12:35:47.625Z",
+        "deletedAt": null,
+        "journeys": [
+            {
+                "id": 1,
+                "name": "Lógica de Programação: O Início da Jornada",
+                "courseId": 1,
+                "coverUrl": "",
+                "createdAt": "2025-04-30T12:35:47.625Z",
+                "updatedAt": "2025-04-30T12:35:47.625Z",
+                "deletedAt": null
+            }
+        ]
+    }
+}
+```
 
 #### `POST /courses/:courseId/journeys`
 Cadastra uma nova jornada vinculada a um curso.
@@ -150,8 +279,9 @@ Cadastra uma nova jornada vinculada a um curso.
 - **Body (`IJourneyBase`)**:
 ```json
 {
-  "name": "Jornada Frontend",
-  "description": "Aprenda a criar interfaces modernas"
+    "name": "Fundamentos de programação",
+    "courseId": 1,
+    "coverUrl": "https://cdn.evg.gov.br/cursos/198_EVG/banner.svg"
 }
 ```
 
@@ -165,12 +295,64 @@ Cadastra uma nova jornada vinculada a um curso.
 Lista todos os conteúdos cadastrados (pode receber filtros opcionais `type` e `title`).
 
 - **Query params** (opcional): `?type=video&title=intro`
-- **Retorno**: `IContent[]`
+- **Retorno**:
+```json
+{
+    "message": "Courses found",
+    "data": [
+        {
+            "id": 1,
+            "journeyId": 1,
+            "type": "lesson",
+            "title": "Arquitetura de Computadores",
+            "order": 1,
+            "metadata": {
+                "level": "Newbie",
+                "thumb": "/images/programming-logic.jpg",
+                "video": "exemplo.mp4",
+                "objective": "Entender a base física e lógica dos sistemas computacionais.",
+                "instructor": "Wallace Vieira",
+                "description": "Introdução à estrutura física e lógica dos computadores."
+            },
+            "quizId": null,
+            "createdAt": "2025-04-30T12:35:47.625Z",
+            "updatedAt": "2025-04-30T12:35:47.625Z",
+            "deletedAt": null
+        }
+    ]
+}
+```
 
 #### `GET /contents/journey/:journeyId`
 Retorna todos os conteúdos vinculados a uma jornada.
 
-- **Retorno**: `IContent[]`
+- **Retorno**:
+```json
+{
+    "message": "Content found",
+    "data": [
+        {
+            "id": 1,
+            "journeyId": 1,
+            "type": "lesson",
+            "title": "Arquitetura de Computadores",
+            "order": 1,
+            "metadata": {
+                "level": "Newbie",
+                "thumb": "/images/programming-logic.jpg",
+                "video": "exemplo.mp4",
+                "objective": "Entender a base física e lógica dos sistemas computacionais.",
+                "instructor": "Wallace Vieira",
+                "description": "Introdução à estrutura física e lógica dos computadores."
+            },
+            "quizId": null,
+            "createdAt": "2025-04-30T12:35:47.625Z",
+            "updatedAt": "2025-04-30T12:35:47.625Z",
+            "deletedAt": null
+        },
+    ]
+}
+```
 
 #### `POST /contents/journey`
 Cria um novo conteúdo para uma jornada.
@@ -178,14 +360,46 @@ Cria um novo conteúdo para uma jornada.
 - **Body (`IContentBase`)**:
 ```json
 {
-  "title": "Introdução ao HTML",
-  "type": "video",
-  "url": "https://video.com",
-  "journeyId": 1
+	"journeyId": 1,
+	"type": "quiz",
+	"title": "Métodos de organização",
+	"order": 1,
+	"metadata": {
+        "thumb": "https://profdanielbrandao.wordpress.com/wp-content/uploads/2019/08/microsoft-bosque-programming-language-1.jpg",
+		"level": "Newbie",
+		"description": "Estou fazendo um testo para o método de organização",
+		"objective": "Deixar o muleque expert",
+        "contentType": "pdf",
+        "contentUrl": "https://www.canva.com/design/DAGIwxqBn40/mrx2vsOByNCDQZDOEdNp6w/edit?utm_content=DAGIwxqBn40&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+	}
 }
 ```
 
-- **Retorno**: `IContent`
+- **Retorno**:
+```json
+{
+    "message": "Content created",
+    "data": {
+        "id": 36,
+        "journeyId": 1,
+        "type": "quiz",
+        "title": "Métodos de organização",
+        "order": 2,
+        "metadata": {
+            "level": "Newbie",
+            "thumb": "https://profdanielbrandao.wordpress.com/wp-content/uploads/2019/08/microsoft-bosque-programming-language-1.jpg",
+            "objective": "Deixar o muleque expert",
+            "contentUrl": "https://www.canva.com/design/DAGIwxqBn40/mrx2vsOByNCDQZDOEdNp6w/edit?utm_content=DAGIwxqBn40&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+            "contentType": "pdf",
+            "description": "Estou fazendo um testo para o método de organização"
+        },
+        "quizId": null,
+        "createdAt": "2025-05-01T02:16:17.152Z",
+        "updatedAt": "2025-05-01T02:16:17.152Z",
+        "deletedAt": null
+    }
+}
+```
 
 ---
 
@@ -195,12 +409,46 @@ Cria um novo conteúdo para uma jornada.
 Lista todos os usuários cadastrados (pode ser filtrado por nome).
 
 - **Query params** (opcional): `?name=joão`
-- **Retorno**: `IUserWithoutPassword[]`
+- **Retorno**:
+```json
+{
+    "message": "Users found",
+    "data": [
+        {
+            "id": 1,
+            "name": "Wallace",
+            "email": "wallace@email.com",
+            "role": "STUDENT",
+            "photoUrl": null,
+            "createdAt": "2025-04-30T12:37:18.697Z",
+            "updatedAt": "2025-04-30T21:25:27.185Z",
+            "deletedAt": null,
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ2MDQ4MzI3LCJleHAiOjE3NDYwNTE5Mjd9.-Vx8pS4QqDygrtcyLO1u_y8NFYtZOdf7uJxIxkmp4Hk"
+        }
+    ]
+}
+```
 
 #### `GET /users/:id`
 Busca um usuário específico por ID.
 
-- **Retorno**: `IUserWithoutPassword`
+- **Retorno**:
+```json
+{
+    "message": "User found",
+    "data": {
+        "id": 1,
+        "name": "Wallace",
+        "email": "wallace@email.com",
+        "role": "STUDENT",
+        "photoUrl": null,
+        "createdAt": "2025-04-30T12:37:18.697Z",
+        "updatedAt": "2025-04-30T21:25:27.185Z",
+        "deletedAt": null,
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ2MDQ4MzI3LCJleHAiOjE3NDYwNTE5Mjd9.-Vx8pS4QqDygrtcyLO1u_y8NFYtZOdf7uJxIxkmp4Hk"
+    }
+}
+```
 
 
 ## Tabelas
