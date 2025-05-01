@@ -6,21 +6,27 @@ export class UserRepository {
   static async findAll(name?: string) {
     return await db.user.findMany({
       where: {
-        deletedAt: null,
-        ...(name && { name: { contains: name } })
+        ...(name && { name: { contains: name } }),
+        deletedAt: null
       }
     });
   }
 
   static async findOneById(id: number) {
     return await db.user.findUnique({
-      where: { id, deletedAt: null }
+      where: {
+        id,
+        deletedAt: null
+      }
     });
   }
 
   static findOneByEmail(email: string) {
     return db.user.findUnique({
-      where: { email, deletedAt: null }
+      where: {
+        email,
+        deletedAt: null
+      }
     });
   }
 

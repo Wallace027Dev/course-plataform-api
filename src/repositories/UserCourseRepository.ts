@@ -1,12 +1,12 @@
 import { PrismaClient } from "@prisma/client";
-import { IUserCourse } from "../interfaces/IUserCourse";
+import { IUserCourse, IUserCourseBase } from "../interfaces/IUserCourse";
 const db = new PrismaClient();
 
 export class UserCourseRepository {
   static async registerOnCourse(
     courseId: number,
     userId: number
-  ): Promise<IUserCourse | null> {
+  ): Promise<IUserCourseBase | null> {
     return await db.userCourse.create({
       data: { courseId, userId }
     });
@@ -15,7 +15,7 @@ export class UserCourseRepository {
   static async removeOfCourse(
     courseId: number,
     userId: number
-  ): Promise<IUserCourse> {
+  ): Promise<IUserCourseBase | null> {
     return await db.userCourse.delete({
       where: {
         userId_courseId: {

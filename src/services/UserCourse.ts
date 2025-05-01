@@ -1,11 +1,11 @@
-import { IUserCourse } from "../interfaces/IUserCourse";
+import { IUserCourse, IUserCourseBase } from "../interfaces/IUserCourse";
 import { UserCourseRepository } from "../repositories/UserCourseRepository";
 
 export class UserCourseService {
   static async registerOnCourse(
     courseId: number,
     userId: number
-  ): Promise<IUserCourse | null> {
+  ): Promise<IUserCourseBase | null> {
     try {
       return await UserCourseRepository.registerOnCourse(courseId, userId);
     } catch (error: any) {
@@ -16,7 +16,7 @@ export class UserCourseService {
   static async removeFromCourse(
     courseId: number,
     userId: number
-  ): Promise<IUserCourse | null> {
+  ): Promise<IUserCourseBase | null> {
     try {
       return await UserCourseRepository.removeOfCourse(courseId, userId);
     } catch (error: any) {
