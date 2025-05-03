@@ -1,4 +1,4 @@
-import { IQuiz } from "../interfaces/IQuiz";
+import { IQuiz, IQuizUpdate } from "../interfaces/IQuiz";
 import { QuizRepository } from "../repositories/QuizRepository";
 import { ContentService } from "./ContentService";
 
@@ -10,6 +10,7 @@ export class QuizService {
       throw new Error(`Failed to list quizzes: ${error.message}`);
     }
   }
+  
   static async listQuizzesOfJourney(journeyId: number): Promise<IQuiz[] | null> {
     try {
       return await QuizRepository.findAllByJourneyId(journeyId);
@@ -42,6 +43,14 @@ export class QuizService {
       return newQuiz;
     } catch (error: any) {
       throw new Error(`Failed to create quiz: ${error.message}`);
+    }
+  }
+
+  static async updateQuiz(id: number, data: IQuizUpdate): Promise<IQuiz | null> {
+    try {
+      return await QuizRepository.update(id, data);
+    } catch (error: any) {
+      throw new Error(`Failed to update quiz with id ${id}: ${error.message}`);
     }
   }
 }

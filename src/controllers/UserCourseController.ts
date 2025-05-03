@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { HttpResponse } from "../helper/HttpResponse";
 import { CourseService } from "../services/CourseService";
 import { UserService } from "../services/UserService";
-import { UserCourseService } from "../services/UserCourse";
+import { UserCourseService } from "../services/UserCourseService";
 
 export class UserCourseController {
   static async registerUserToCourse(req: Request, res: Response): Promise<any> {

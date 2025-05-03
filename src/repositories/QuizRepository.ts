@@ -1,4 +1,4 @@
-import { IQuiz, IQuizBase } from "../interfaces/IQuiz";
+import { IQuiz, IQuizBase, IQuizUpdate } from "../interfaces/IQuiz";
 import { PrismaClient } from "@prisma/client";
 const db = new PrismaClient();
 
@@ -85,6 +85,24 @@ export class QuizRepository {
       },
       include: {
         questions: { include: { answers: true } },
+        attempts: true
+      }
+    });
+  }
+
+  static async update(id: number, data: IQuizUpdate): Promise<IQuiz> {
+    return await db.quiz.update({
+      where: { id },
+      data: {
+        name: data.name,
+        deletedAt: null
+      },
+      include: {
+        questions: {
+          include: {
+            answers: true
+          }
+        },
         attempts: true
       }
     });
