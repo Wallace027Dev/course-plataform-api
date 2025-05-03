@@ -38,7 +38,24 @@ export class UserController {
     }
   }
 
-  static updateUser(req: Request, res: Response) {}
+  static updateUser(req: Request, res: Response) {
+    try {
+      const id = parseInt(req.params.id, 10);
+      if (!id) return HttpResponse.badRequest(res, "Invalid ID");
+
+      const data = req.body;
+
+      const user = UserService.updateUser(id as number, data);
+
+      return HttpResponse.ok(res, "User updated", user);
+    } catch (error: any) {
+      return HttpResponse.serverError(
+        res,
+        "Error while creating user",
+        error.message
+      );
+    }
+  }
 
   static deleteUser(req: Request, res: Response) {}
 }

@@ -25,8 +25,8 @@ export class AuthController {
     try {
       const data = req.body;
 
-      const validate = validateCreateUser(data);
-      if (validate) return HttpResponse.badRequest(res, "Invalid data", validate);
+      const isInvalid = validateCreateUser(data);
+      if (isInvalid) return HttpResponse.badRequest(res, "Invalid data", isInvalid);
 
       const user = await AuthService.createUser(data);
       if (!user) return HttpResponse.conflict(res, "User already exists");

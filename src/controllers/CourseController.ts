@@ -64,8 +64,8 @@ export class CourseController {
     try {
       const data = req.body;
 
-      const validate = validateCreateCourse(data);
-      if (validate) return HttpResponse.badRequest(res, "Invalid data", validate);
+      const isInvalid = validateCreateCourse(data);
+      if (isInvalid) return HttpResponse.badRequest(res, "Invalid data", isInvalid);
 
       const course = await CourseService.createCourse(data);
 
@@ -79,7 +79,27 @@ export class CourseController {
     }
   }
 
-  static updateCourse(req: Request, res: Response) {}
+  static updateCourse(req: Request, res: Response) {
+    try {
+      const id = parseInt(req.params.courseId, 10);
+      if (!id) return HttpResponse.badRequest(res, "Invalid ID");
+
+      const data = req.body;
+
+      const isInvalid = validateCreateCourse(data);
+      if (isInvalid) return HttpResponse.badRequest(res, "Invalid data", isInvalid);
+
+      const course = CourseService.updateCourse(id as number, data);
+
+      return HttpResponse.ok(res, "Course updated", course);
+    } catch (error: any) {
+      return HttpResponse.serverError(
+        res,
+        "Error while updating course",
+        error.message
+      );
+    }
+  }
 
   static deleteCourse(req: Request, res: Response) {}
 }

@@ -77,4 +77,27 @@ export class QuizController {
       );
     }
   }
+
+  static async update(req: Request, res: Response): Promise<any> {
+    try {
+      const id = parseInt(req.params.questionId, 10);
+      if (!id) return HttpResponse.badRequest(res, "Invalid ID");
+
+      const data = req.body;
+  
+      const errors = validateCreateQuiz(data);
+      if (errors) return HttpResponse.badRequest(res, "Invalid data", errors);
+  
+      const updatedQuiz = await QuizService.updateQuiz(id as number, data);
+      if (!updatedQuiz) return HttpResponse.notFound(res, "Quiz not updated");
+  
+      return HttpResponse.ok(res, "Quizzes found", updatedQuiz);
+    } catch (error: any) {
+      return HttpResponse.serverError(
+        res,
+        "Error while creating user",
+        error.message
+      );
+    }
+  }
 }

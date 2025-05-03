@@ -43,8 +43,8 @@ export class JourneyController {
     try {
       const data = req.body;
 
-      const validate = validateCreateJourney(data);
-      if (validate) return HttpResponse.badRequest(res, "Invalid data", validate);
+      const isInvalid = validateCreateJourney(data);
+      if (isInvalid) return HttpResponse.badRequest(res, "Invalid data", isInvalid);
 
       const journey = await JourneyService.createJourney(data);
 
@@ -53,6 +53,28 @@ export class JourneyController {
       return HttpResponse.serverError(
         res,
         "Error while registering journey",
+        error.message
+      );
+    }
+  }
+
+  static async updateJourney(req: Request, res: Response): Promise<any> {
+    try {
+      const id = parseInt(req.params.journeyId, 10);
+      if (!id) return HttpResponse.badRequest(res, "Invalid ID");
+
+      const data = req.body;
+
+      const isInvalid = validateCreateJourney(data);
+      if (isInvalid) return HttpResponse.badRequest(res, "Invalid data", isInvalid);
+
+      const journey = await JourneyService.updateJourney(id as number, data);
+
+      return HttpResponse.ok(res, "Journey updated", journey);
+    } catch (error: any) {
+      return HttpResponse.serverError(
+        res,
+        "Error while updating journey",
         error.message
       );
     }
