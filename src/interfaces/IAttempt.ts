@@ -13,4 +13,4 @@ export interface IAttempt extends IAttemptBase {
   deletedAt: Date | null;
 }
 
-export interface IAttemptsUpdate extends Partial<IAttempt> {}
+export interface IAttemptUpdate extends Partial<IAttempt> {}

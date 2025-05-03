@@ -10,3 +10,5 @@ export interface IUserProgress extends IUserProgressBase {
   updatedAt: Date;
   deletedAt: Date | null;
 }
+
+export interface IUserProgressUpdate extends Partial<IUserProgress> {}
