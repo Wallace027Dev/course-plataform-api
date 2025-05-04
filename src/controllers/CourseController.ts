@@ -13,8 +13,8 @@ export class CourseController {
     return HttpResponse.ok(res, "Courses found", courses);
   }
 
-  static async getCourse(req: Request, res: Response): Promise<any> {
-    const id = parseInt(req.params.courseId, 10);
+  static async getCourseById(req: Request, res: Response): Promise<any> {
+    const id = parseInt(req.params.id, 10);
     if (!id) return HttpResponse.badRequest(res, "Invalid ID");
 
     const course = await CourseService.getCourseById(id as number);
@@ -23,8 +23,8 @@ export class CourseController {
     return HttpResponse.ok(res, "Course found", course);
   }
 
-  static async getStudentsOfCourse(req: Request, res: Response): Promise<any> {
-    const id = parseInt(req.params.courseId, 10);
+  static async getStudentsOfCourseId(req: Request, res: Response): Promise<any> {
+    const id = parseInt(req.params.id, 10);
     if (!id) return HttpResponse.badRequest(res, "Invalid ID");
 
     const course = await CourseService.getCourseById(id as number);
@@ -48,7 +48,7 @@ export class CourseController {
   }
 
   static async updateCourse(req: Request, res: Response): Promise<any> {
-    const id = parseInt(req.params.courseId, 10);
+    const id = parseInt(req.params.id, 10);
     if (!id) return HttpResponse.badRequest(res, "Invalid ID");
 
     const data = req.body;

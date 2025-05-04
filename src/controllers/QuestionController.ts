@@ -33,7 +33,7 @@ export class QuestionController {
   }
 
   static async updateQuestion(req: Request, res: Response): Promise<any> {
-    const id = parseInt(req.params.questionId, 10);
+    const id = parseInt(req.params.id, 10);
     if (!id) return HttpResponse.badRequest(res, "Invalid ID");
 
     const data = req.body;

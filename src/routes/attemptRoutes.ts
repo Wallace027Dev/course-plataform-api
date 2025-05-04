@@ -4,7 +4,9 @@ import { AttemptController } from "../controllers/AttemptController";
 const attemptRoutes = express.Router();
 
 attemptRoutes.get("/", AttemptController.listAllAttempts);
-attemptRoutes.get("/:attemptId", AttemptController.getAttemptsByAttemptId);
-attemptRoutes.post("/", AttemptController.storeAttemptsOnAttempt);
+attemptRoutes.get("/:id", AttemptController.getAttemptsById);
+attemptRoutes.post("/", AttemptController.storeAttempt);
+attemptRoutes.put("/:id", AttemptController.updateAttempt);
+attemptRoutes.delete("/:id", AttemptController.deleteAttempt);
 
 export default attemptRoutes;

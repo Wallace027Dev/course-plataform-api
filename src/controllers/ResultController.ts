@@ -11,8 +11,8 @@ export class ResultController {
     return HttpResponse.ok(res, "Results found", results);
   }
 
-  static async getResultsByResultId(req: Request, res: Response): Promise<any> {
-    const id = parseInt(req.params.journeyId, 10);
+  static async getResultById(req: Request, res: Response): Promise<any> {
+    const id = parseInt(req.params.id, 10);
     if (!id) return HttpResponse.badRequest(res, "Invalid ID");
 
     const result = await ResultService.getResultById(id as number);
@@ -21,7 +21,7 @@ export class ResultController {
     return HttpResponse.ok(res, "Result found", result);
   }
 
-static async storeResultsOnResult(req: Request, res: Response): Promise<any> {
+static async storeResult(req: Request, res: Response): Promise<any> {
     const data = req.body;
 
     const isInvalid = validateCreateResult(data);
@@ -33,7 +33,7 @@ static async storeResultsOnResult(req: Request, res: Response): Promise<any> {
   }
 
   static async updateResult(req: Request, res: Response): Promise<any> {
-    const id = parseInt(req.params.resultId, 10);
+    const id = parseInt(req.params.id, 10);
     if (!id) return HttpResponse.badRequest(res, "Invalid ID");
 
     const data = req.body;

@@ -33,7 +33,7 @@ export class QuizController {
     return HttpResponse.ok(res, "Quizzes found", contentWithQuiz);
   }
 
-  static async store(req: Request, res: Response): Promise<any> {
+  static async storeQuiz(req: Request, res: Response): Promise<any> {
     const data = req.body;
 
     const errors = validateCreateQuiz(data);
@@ -45,8 +45,8 @@ export class QuizController {
     return HttpResponse.ok(res, "Quizzes found", newQuiz);
   }
 
-  static async update(req: Request, res: Response): Promise<any> {
-    const id = parseInt(req.params.questionId, 10);
+  static async updateQuiz(req: Request, res: Response): Promise<any> {
+    const id = parseInt(req.params.id, 10);
     if (!id) return HttpResponse.badRequest(res, "Invalid ID");
 
     const data = req.body;

@@ -22,7 +22,7 @@ export class UserController {
     return HttpResponse.ok(res, "User found", user);
   }
 
-  static updateUser(req: Request, res: Response) {
+  static async updateUser(req: Request, res: Response): Promise<any> {
     const id = parseInt(req.params.id, 10);
     if (!id) return HttpResponse.badRequest(res, "Invalid ID");
 

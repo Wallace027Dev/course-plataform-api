@@ -11,8 +11,8 @@ export class AttemptController {
     return HttpResponse.ok(res, "Attempts found", attempts);
   }
 
-  static async getAttemptsByAttemptId(req: Request, res: Response): Promise<any> {
-    const id = parseInt(req.params.journeyId, 10);
+  static async getAttemptsById(req: Request, res: Response): Promise<any> {
+    const id = parseInt(req.params.id, 10);
     if (!id) return HttpResponse.badRequest(res, "Invalid ID");
 
     const attempt = await AttemptService.getAttemptById(id as number);
@@ -21,7 +21,7 @@ export class AttemptController {
     return HttpResponse.ok(res, "Attempt found", attempt);
   }
 
-  static async storeAttemptsOnAttempt(req: Request, res: Response): Promise<any> {
+  static async storeAttempt(req: Request, res: Response): Promise<any> {
     const data = req.body;
 
     const isInvalid = validateCreateAttempt(data);
@@ -33,7 +33,7 @@ export class AttemptController {
   }
 
   static async updateAttempt(req: Request, res: Response): Promise<any> {
-    const id = parseInt(req.params.attemptId, 10);
+    const id = parseInt(req.params.id, 10);
     if (!id) return HttpResponse.badRequest(res, "Invalid ID");
 
     const data = req.body;

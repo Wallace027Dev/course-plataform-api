@@ -5,7 +5,9 @@ const contentRoutes = express.Router();
 
 // ROTAS DE CONTEUDO DE UMA JORNADA
 contentRoutes.get("/", ContentController.listAllContents);
-contentRoutes.get("/journey/:journeyId", ContentController.getContentsByCourseId);
-contentRoutes.post("/journey", ContentController.storeContentsOnCourse);
+contentRoutes.get("/:id", ContentController.getContentById);
+contentRoutes.post("/", ContentController.storeContent);
+contentRoutes.put("/:id", ContentController.updateContent);
+contentRoutes.delete("/:id", ContentController.deleteContent);
 
 export default contentRoutes;

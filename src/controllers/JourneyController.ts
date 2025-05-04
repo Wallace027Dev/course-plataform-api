@@ -24,7 +24,7 @@ export class JourneyController {
   }
 
   static async getJourneyById(req: Request, res: Response): Promise<any> {
-    const journeyId = parseInt(req.params.journeyId, 10);
+    const journeyId = parseInt(req.params.id, 10);
     if (!journeyId) return HttpResponse.badRequest(res, "Invalid journey ID");
 
     const journey = await JourneyService.getJourneyById(journeyId);
@@ -45,7 +45,7 @@ export class JourneyController {
   }
 
   static async updateJourney(req: Request, res: Response): Promise<any> {
-    const id = parseInt(req.params.journeyId, 10);
+    const id = parseInt(req.params.id, 10);
     if (!id) return HttpResponse.badRequest(res, "Invalid ID");
 
     const data = req.body;

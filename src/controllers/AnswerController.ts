@@ -1,49 +1,49 @@
 import { Request, Response } from "express";
 import { HttpResponse } from "../helper/HttpResponse";
-import { AttemptService } from "../services/AttemptService";
-import { validateCreateAttempt } from "../schemas/AttemptSchema";
+import { AnswerService } from "../services/AnswerService";
+import { validateCreateAnswer } from "../schemas/AnswerSchema";
 
-export class AttemptController {
-  static async listAllAttempts(_req: Request, res: Response): Promise<any> {
-    const attempts = await AttemptService.listAllAttempts();
-    if (attempts?.length === 0) return HttpResponse.notFound(res, "Attempt not found");
+export class AnswerController {
+  static async listAllAnswers(_req: Request, res: Response): Promise<any> {
+    const answers = await AnswerService.listAllAnswers();
+    if (answers?.length === 0) return HttpResponse.notFound(res, "Answer not found");
 
-    return HttpResponse.ok(res, "Attempts found", attempts);
+    return HttpResponse.ok(res, "Answers found", answers);
   }
 
-  static async getAttemptsByAttemptId(req: Request, res: Response): Promise<any> {
-    const id = parseInt(req.params.journeyId, 10);
+  static async getAnswersById(req: Request, res: Response): Promise<any> {
+    const id = parseInt(req.params.id, 10);
     if (!id) return HttpResponse.badRequest(res, "Invalid ID");
 
-    const attempt = await AttemptService.getAttemptById(id as number);
-    if (!attempt) return HttpResponse.notFound(res, "Attempt not found");
+    const answer = await AnswerService.getAnswerById(id as number);
+    if (!answer) return HttpResponse.notFound(res, "Answer not found");
 
-    return HttpResponse.ok(res, "Attempt found", attempt);
+    return HttpResponse.ok(res, "Answer found", answer);
   }
 
-  static async storeAttemptsOnAttempt(req: Request,res: Response): Promise<any> {
+  static async storeAnswer(req: Request,res: Response): Promise<any> {
     const data = req.body;
 
-    const isInvalid = validateCreateAttempt(data);
+    const isInvalid = validateCreateAnswer(data);
     if (isInvalid) return HttpResponse.badRequest(res, "Invalid data", isInvalid);
 
-    const attempt = await AttemptService.createAttempt(data);
+    const answer = await AnswerService.createAnswer(data);
 
-    return HttpResponse.ok(res, "Attempt created", attempt);
+    return HttpResponse.ok(res, "Answer created", answer);
   }
 
-  static async updateAttempt(req: Request, res: Response): Promise<any> {
-    const id = parseInt(req.params.attemptId, 10);
+  static async updateAnswer(req: Request, res: Response): Promise<any> {
+    const id = parseInt(req.params.id, 10);
     if (!id) return HttpResponse.badRequest(res, "Invalid ID");
 
     const data = req.body;
 
-    const isInvalid = validateCreateAttempt(data);
+    const isInvalid = validateCreateAnswer(data);
     if (isInvalid) return HttpResponse.badRequest(res, "Invalid data", isInvalid);
 
-    const attempt = await AttemptService.updateAttempt(id as number, data);
+    const answer = await AnswerService.updateAnswer(id as number, data);
 
-    return HttpResponse.ok(res, "Attempt updated", attempt);
+    return HttpResponse.ok(res, "Answer updated", answer);
   }
 
   static deleteAnswer(req: Request, res: Response) {

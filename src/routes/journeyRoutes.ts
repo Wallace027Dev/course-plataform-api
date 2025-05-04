@@ -4,9 +4,10 @@ import { JourneyController } from "../controllers/JourneyController";
 const journeyRoutes = express.Router();
 
 journeyRoutes.get("/", JourneyController.listJourneysOfCourse);
-journeyRoutes.get("/:courseId", JourneyController.listJourneysOfCourse);
-journeyRoutes.get("/:journeyId", JourneyController.getJourneyById);
+journeyRoutes.get("/course/:courseId", JourneyController.listJourneysOfCourse);
+journeyRoutes.get("/:id", JourneyController.getJourneyById);
 journeyRoutes.post("/", JourneyController.storeJourneyOnCourse);
-journeyRoutes.put("/:journeyId", JourneyController.updateJourney);
+journeyRoutes.put("/:id", JourneyController.updateJourney);
+journeyRoutes.delete("/:id", JourneyController.deleteJourney);
 
 export default journeyRoutes;

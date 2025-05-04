@@ -13,8 +13,8 @@ export class ContentController {
     return HttpResponse.ok(res, "Courses found", contents);
   }
 
-  static async getContentsByCourseId(req: Request, res: Response): Promise<any> {
-    const id = parseInt(req.params.journeyId, 10);
+  static async getContentById(req: Request, res: Response): Promise<any> {
+    const id = parseInt(req.params.id, 10);
     if (!id) return HttpResponse.badRequest(res, "Invalid ID");
 
     const content = await ContentService.getContentById(id as number);
@@ -23,7 +23,7 @@ export class ContentController {
     return HttpResponse.ok(res, "Content found", content);
   }
 
-  static async storeContentsOnCourse(req: Request, res: Response): Promise<any> {
+  static async storeContent(req: Request, res: Response): Promise<any> {
     const data = req.body;
 
     const isInvalid = validateCreateContent(data);
@@ -35,7 +35,7 @@ export class ContentController {
   }
 
   static async updateContent(req: Request, res: Response): Promise<any> {
-    const id = parseInt(req.params.contentId, 10);
+    const id = parseInt(req.params.id, 10);
     if (!id) return HttpResponse.badRequest(res, "Invalid ID");
 
     const data = req.body;
