@@ -10,6 +10,14 @@ export class JourneyService {
     }
   }
 
+  static async listJourneysOfCourse(courseId: number): Promise<IJourney[]> {
+    try {
+      return await JourneyRepository.findAllByCourseId(courseId);
+    } catch (error: any) {
+      throw new Error(`Failed to list journeys of course with id ${courseId}: ${error.message}`);
+    }
+  }
+
   static async getJourneyById(journeyId: number): Promise<IJourney | null> {
     try {
       const journey = await JourneyRepository.findOneById(journeyId);

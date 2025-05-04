@@ -3,7 +3,7 @@ import { HttpResponse } from "../helper/HttpResponse";
 import { ResultService } from "../services/ResultService";
 import { validateCreateResult } from "../schemas/ResultSchema";
 
-export class ResultsController {
+export class ResultController {
   static async listAllResults(_req: Request, res: Response): Promise<any> {
     try {
       const results = await ResultService.listAllResults();

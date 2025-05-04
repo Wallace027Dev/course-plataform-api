@@ -4,7 +4,7 @@ import { JourneyService } from "../services/JourneyService";
 import { validateCreateJourney } from "../schemas/JourneySchema";
 
 export class JourneyController {
-  static async listJourneysOfCourse(req: Request, res: Response): Promise<any> {
+  static async listAllJourneys(req: Request, res: Response): Promise<any> {
     try {
       const name = req.query.name as string | undefined;
 
@@ -12,6 +12,24 @@ export class JourneyController {
       if (courses?.length === 0) return HttpResponse.notFound(res, "Journeys not found");
 
       return HttpResponse.ok(res, "Journeys found", courses);
+    } catch (error: any) {
+      return HttpResponse.serverError(
+        res,
+        "Error while listing journeys",
+        error.message
+      );
+    }
+  }
+
+  static async listJourneysOfCourse(req: Request, res: Response): Promise<any> {
+    try {
+      const courseId = parseInt(req.params.courseId, 10);
+      if (!courseId) return HttpResponse.badRequest(res, "Invalid course ID");
+
+      const journeys = await JourneyService.listJourneysOfCourse(courseId as number);
+      if (journeys?.length === 0) return HttpResponse.notFound(res, "Journeys not found");
+
+      return HttpResponse.ok(res, "Journeys found", journeys);
     } catch (error: any) {
       return HttpResponse.serverError(
         res,

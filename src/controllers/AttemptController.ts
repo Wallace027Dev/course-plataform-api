@@ -3,7 +3,7 @@ import { HttpResponse } from "../helper/HttpResponse";
 import { AttemptService } from "../services/AttemptService";
 import { validateCreateAttempt } from "../schemas/AttemptSchema";
 
-export class AttemptsController {
+export class AttemptController {
   static async listAllAttempts(_req: Request, res: Response): Promise<any> {
     try {
       const attempts = await AttemptService.listAllAttempts();

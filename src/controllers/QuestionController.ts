@@ -3,7 +3,7 @@ import { HttpResponse } from "../helper/HttpResponse";
 import { QuestionService } from "../services/QuestionService";
 import { validateCreateQuestion } from "../schemas/QuestionSchema";
 
-export class QuestionsController {
+export class QuestionController {
   static async listAllQuestions(_req: Request, res: Response): Promise<any> {
     try {
       const questions = await QuestionService.listAllQuestions();

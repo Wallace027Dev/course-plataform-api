@@ -12,6 +12,15 @@ export class JourneyRepository {
     });
   }
 
+  static async findAllByCourseId(courseId: number): Promise<IJourney[]> {
+    return await db.journey.findMany({
+      where: {
+        courseId,
+        deletedAt: null
+      }
+    });
+  }
+
   static async findOneById(journeyId: number): Promise<IJourney | null> {
     return await db.journey.findFirst({
       where: {
