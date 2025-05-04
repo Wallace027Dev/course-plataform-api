@@ -1,25 +1,25 @@
 import { Request, Response } from "express";
 import { HttpResponse } from "../helper/HttpResponse";
-import { AnswerService } from "../services/AnswerService";
-import { validateCreateAnswer } from "../schemas/AnswerSchema";
+import { AttemptService } from "../services/AttemptService";
+import { validateCreateAttempt } from "../schemas/AttemptSchema";
 
-export class AnswerController {
-  static async listAllAnswers(_req: Request, res: Response): Promise<any> {
+export class AttemptController {
+  static async listAllAttempts(_req: Request, res: Response): Promise<any> {
     try {
-      const answers = await AnswerService.listAllAnswers();
-      if (answers?.length === 0) return HttpResponse.notFound(res, "Answer not found");
+      const attempts = await AttemptService.listAllAttempts();
+      if (attempts?.length === 0) return HttpResponse.notFound(res, "Attempt not found");
 
-      return HttpResponse.ok(res, "Answers found", answers);
+      return HttpResponse.ok(res, "Attempts found", attempts);
     } catch (error: any) {
       return HttpResponse.serverError(
         res,
-        "Error while listing answers",
+        "Error while listing attempts",
         error.message
       );
     }
   }
 
-  static async getAnswersByAnswerId(
+  static async getAttemptsByAttemptId(
     req: Request,
     res: Response
   ): Promise<any> {
@@ -27,58 +27,58 @@ export class AnswerController {
       const id = parseInt(req.params.journeyId, 10);
       if (!id) return HttpResponse.badRequest(res, "Invalid ID");
 
-      const answer = await AnswerService.getAnswerById(id as number);
-      if (!answer) return HttpResponse.notFound(res, "Answer not found");
+      const attempt = await AttemptService.getAttemptById(id as number);
+      if (!attempt) return HttpResponse.notFound(res, "Attempt not found");
 
-      return HttpResponse.ok(res, "Answer found", answer);
+      return HttpResponse.ok(res, "Attempt found", attempt);
     } catch (error: any) {
       return HttpResponse.serverError(
         res,
-        "Error while getting answer",
+        "Error while getting attempt",
         error.message
       );
     }
   }
 
-  static async storeAnswersOnAnswer(
+  static async storeAttemptsOnAttempt(
     req: Request,
     res: Response
   ): Promise<any> {
     try {
       const data = req.body;
 
-      const isInvalid = validateCreateAnswer(data);
+      const isInvalid = validateCreateAttempt(data);
       if (isInvalid) return HttpResponse.badRequest(res, "Invalid data", isInvalid);
 
-      const answer = await AnswerService.createAnswer(data);
+      const attempt = await AttemptService.createAttempt(data);
 
-      return HttpResponse.ok(res, "Answer created", answer);
+      return HttpResponse.ok(res, "Attempt created", attempt);
     } catch (error: any) {
       return HttpResponse.serverError(
         res,
-        "Error while creating answers",
+        "Error while creating attempts",
         error.message
       );
     }
   }
 
-  static async updateAnswer(req: Request, res: Response): Promise<any> {
+  static async updateAttempt(req: Request, res: Response): Promise<any> {
     try {
-      const id = parseInt(req.params.answerId, 10);
+      const id = parseInt(req.params.attemptId, 10);
       if (!id) return HttpResponse.badRequest(res, "Invalid ID");
 
       const data = req.body;
 
-      const validate = validateCreateAnswer(data);
+      const validate = validateCreateAttempt(data);
       if (validate) return HttpResponse.badRequest(res, "Invalid data", validate);
 
-      const answer = await AnswerService.updateAnswer(id as number, data);
+      const attempt = await AttemptService.updateAttempt(id as number, data);
 
-      return HttpResponse.ok(res, "Answer updated", answer);
+      return HttpResponse.ok(res, "Attempt updated", attempt);
     } catch (error: any) {
       return HttpResponse.serverError(
         res,
-        "Error while updating answer",
+        "Error while updating attempt",
         error.message
       );
     }
