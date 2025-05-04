@@ -13,7 +13,7 @@ export class ResultController {
 
   static async getResultById(req: Request, res: Response): Promise<any> {
     const id = parseInt(req.params.id, 10);
-    if (!id) return HttpResponse.badRequest(res, "Invalid ID");
+    if (isNaN(id) || id <= 0) return HttpResponse.badRequest(res, "Invalid ID");
 
     const result = await ResultService.getResultById(id as number);
     if (!result) return HttpResponse.notFound(res, "Result not found");
@@ -34,7 +34,7 @@ static async storeResult(req: Request, res: Response): Promise<any> {
 
   static async updateResult(req: Request, res: Response): Promise<any> {
     const id = parseInt(req.params.id, 10);
-    if (!id) return HttpResponse.badRequest(res, "Invalid ID");
+    if (isNaN(id) || id <= 0) return HttpResponse.badRequest(res, "Invalid ID");
 
     const data = req.body;
 

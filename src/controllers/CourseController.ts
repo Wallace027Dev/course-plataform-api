@@ -15,7 +15,7 @@ export class CourseController {
 
   static async getCourseById(req: Request, res: Response): Promise<any> {
     const id = parseInt(req.params.id, 10);
-    if (!id) return HttpResponse.badRequest(res, "Invalid ID");
+    if (isNaN(id) || id <= 0) return HttpResponse.badRequest(res, "Invalid ID");
 
     const course = await CourseService.getCourseById(id as number);
     if (!course) return HttpResponse.notFound(res, "Course not found");
@@ -25,7 +25,7 @@ export class CourseController {
 
   static async getStudentsOfCourseId(req: Request, res: Response): Promise<any> {
     const id = parseInt(req.params.id, 10);
-    if (!id) return HttpResponse.badRequest(res, "Invalid ID");
+    if (isNaN(id) || id <= 0) return HttpResponse.badRequest(res, "Invalid ID");
 
     const course = await CourseService.getCourseById(id as number);
     if (!course) return HttpResponse.notFound(res, "Course not found");
@@ -49,7 +49,7 @@ export class CourseController {
 
   static async updateCourse(req: Request, res: Response): Promise<any> {
     const id = parseInt(req.params.id, 10);
-    if (!id) return HttpResponse.badRequest(res, "Invalid ID");
+    if (isNaN(id) || id <= 0) return HttpResponse.badRequest(res, "Invalid ID");
 
     const data = req.body;
 

@@ -15,7 +15,7 @@ export class ContentController {
 
   static async getContentById(req: Request, res: Response): Promise<any> {
     const id = parseInt(req.params.id, 10);
-    if (!id) return HttpResponse.badRequest(res, "Invalid ID");
+    if (isNaN(id) || id <= 0) return HttpResponse.badRequest(res, "Invalid ID");
 
     const content = await ContentService.getContentById(id as number);
     if (!content) return HttpResponse.notFound(res, "Content not found");
@@ -36,7 +36,7 @@ export class ContentController {
 
   static async updateContent(req: Request, res: Response): Promise<any> {
     const id = parseInt(req.params.id, 10);
-    if (!id) return HttpResponse.badRequest(res, "Invalid ID");
+    if (isNaN(id) || id <= 0) return HttpResponse.badRequest(res, "Invalid ID");
 
     const data = req.body;
 

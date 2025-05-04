@@ -13,7 +13,7 @@ export class QuestionController {
 
   static async getQuestionsById(req: Request, res: Response): Promise<any> {
     const id = parseInt(req.params.id, 10);
-    if (!id) return HttpResponse.badRequest(res, "Invalid ID");
+    if (isNaN(id) || id <= 0) return HttpResponse.badRequest(res, "Invalid ID");
 
     const question = await QuestionService.getQuestionById(id as number);
     if (!question) return HttpResponse.notFound(res, "Question not found");
@@ -34,7 +34,7 @@ export class QuestionController {
 
   static async updateQuestion(req: Request, res: Response): Promise<any> {
     const id = parseInt(req.params.id, 10);
-    if (!id) return HttpResponse.badRequest(res, "Invalid ID");
+    if (isNaN(id) || id <= 0) return HttpResponse.badRequest(res, "Invalid ID");
 
     const data = req.body;
 

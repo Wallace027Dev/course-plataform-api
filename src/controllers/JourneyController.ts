@@ -46,7 +46,7 @@ export class JourneyController {
 
   static async updateJourney(req: Request, res: Response): Promise<any> {
     const id = parseInt(req.params.id, 10);
-    if (!id) return HttpResponse.badRequest(res, "Invalid ID");
+    if (isNaN(id) || id <= 0) return HttpResponse.badRequest(res, "Invalid ID");
 
     const data = req.body;
 

@@ -14,7 +14,7 @@ export class UserController {
 
   static async getUser(req: Request, res: Response): Promise<any> {
     const id = parseInt(req.params.id, 10);
-    if (!id) return HttpResponse.badRequest(res, "Invalid ID");
+    if (isNaN(id) || id <= 0) return HttpResponse.badRequest(res, "Invalid ID");
 
     const user = await UserService.getUserById(id as number);
     if (!user) return HttpResponse.notFound(res, "User not found");
@@ -24,7 +24,7 @@ export class UserController {
 
   static async updateUser(req: Request, res: Response): Promise<any> {
     const id = parseInt(req.params.id, 10);
-    if (!id) return HttpResponse.badRequest(res, "Invalid ID");
+    if (isNaN(id) || id <= 0) return HttpResponse.badRequest(res, "Invalid ID");
 
     const data = req.body;
 
