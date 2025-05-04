@@ -3,38 +3,24 @@ import { AttemptRepository } from "../repositories/AttemptRepository";
 
 export class AttemptService {
   static async listAllAttempts(): Promise<IAttempt[] | null> {
-    try {
-      return await AttemptRepository.findAll();
-    } catch (error: any) {
-      throw new Error(`Failed to list attempts: ${error.message}`);
-    }
+    return await AttemptRepository.findAll();
   }
   
 
   static async getAttemptById(attemptId: number): Promise<IAttempt | null> {
-    try {
-      const attempt = await AttemptRepository.findOneById(attemptId);
-      return attempt || null;
-    } catch (error: any) {
-      throw new Error(`Failed to get attempt with id ${attemptId}: ${error.message}`);
-    }
+    const attempt = await AttemptRepository.findOneById(attemptId);
+    if (!attempt) throw new Error(`Attempt with id ${attemptId} not found`);
+
+    return attempt || null;
   }
 
   static async createAttempt(data: any): Promise<any> {
-    try {
-      const attempt = data;
-
-      return await AttemptRepository.create(attempt);
-    } catch (error: any) {
-      throw new Error(`Failed to create attempt: ${error.message}`);
-    }
+    return await AttemptRepository.create(data);
   }
 
   static async updateAttempt(id: number, data: IAttemptUpdate): Promise<IAttempt | null> {
-    try {
-      return await AttemptRepository.update(id, data);
-    } catch (error: any) {
-      throw new Error(`Failed to update attempt with id ${id}: ${error.message}`);
-    }
+    await this.getAttemptById(id);
+    
+    return await AttemptRepository.update(id, data);
   }
 }

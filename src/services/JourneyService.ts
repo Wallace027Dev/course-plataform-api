@@ -3,46 +3,29 @@ import { JourneyRepository } from "../repositories/JourneyRepository";
 
 export class JourneyService {
   static async listJourneys(name?: string): Promise<IJourney[]> {
-    try {
-      return await JourneyRepository.findAll(name);
-    } catch (error: any) {
-      throw new Error(`Failed to list journeys: ${error.message}`);
-    }
+    return await JourneyRepository.findAll(name);
   }
 
   static async listJourneysOfCourse(courseId: number): Promise<IJourney[]> {
-    try {
-      return await JourneyRepository.findAllByCourseId(courseId);
-    } catch (error: any) {
-      throw new Error(`Failed to list journeys of course with id ${courseId}: ${error.message}`);
-    }
+    const journeys = await JourneyRepository.findAllByCourseId(courseId);
+    if (!journeys) return [];
+    
+    return  journeys;
   }
 
   static async getJourneyById(journeyId: number): Promise<IJourney | null> {
-    try {
       const journey = await JourneyRepository.findOneById(journeyId);
-      if (!journey) return null;
-      return journey;
-    } catch (error: any) {
-      throw new Error(`Failed to get journey with id ${journeyId}: ${error.message}`);
-    }
+      if (!journey) throw new Error(`Journey with id ${journeyId} not found`);
+
+      return journey || null;
   }
 
   static async createJourney(data: IJourneyBase): Promise<IJourney> {
-    try {
-      return await JourneyRepository.create(data);
-    } catch (error: any) {
-      throw new Error(`Failed to create journey: ${error.message}`);
-    }
+    return await JourneyRepository.create(data);
   }
 
   static async updateJourney(id: number, data: IJourneyUpdate): Promise<IJourney | null> {
-    try {
-      const updatedJourney = await JourneyRepository.update(id, data);
-      if (!updatedJourney) return null;
-      return updatedJourney;
-    } catch (error: any) {
-      throw new Error(`Failed to update journey with id ${id}: ${error.message}`);
-    }
+    await JourneyService.getJourneyById(id);
+    return await JourneyRepository.update(id, data);
   }
 }

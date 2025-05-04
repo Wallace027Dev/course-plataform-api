@@ -3,38 +3,24 @@ import { ResultRepository } from "../repositories/ResultRepository";
 
 export class ResultService {
   static async listAllResults(): Promise<IResult[] | null> {
-    try {
-      return await ResultRepository.findAll();
-    } catch (error: any) {
-      throw new Error(`Failed to list results: ${error.message}`);
-    }
+    return await ResultRepository.findAll();
   }
   
 
   static async getResultById(resultId: number): Promise<IResult | null> {
-    try {
-      const result = await ResultRepository.findOneById(resultId);
-      return result || null;
-    } catch (error: any) {
-      throw new Error(`Failed to get result with id ${resultId}: ${error.message}`);
-    }
+    const result = await ResultRepository.findOneById(resultId);
+    if (!result) throw new Error(`Result with id ${resultId} not found`);
+    
+    return result || null;
   }
 
   static async createResult(data: any): Promise<any> {
-    try {
-      const result = data;
-
-      return await ResultRepository.create(result);
-    } catch (error: any) {
-      throw new Error(`Failed to create result: ${error.message}`);
-    }
+    return await ResultRepository.create(data);
   }
 
   static async updateResult(id: number, data: IResultUpdate): Promise<IResult | null> {
-    try {
-      return await ResultRepository.update(id, data);
-    } catch (error: any) {
-      throw new Error(`Failed to update result with id ${id}: ${error.message}`);
-    }
+    await ResultService.getResultById(id);
+
+    return await ResultRepository.update(id, data);
   }
 }

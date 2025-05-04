@@ -4,47 +4,29 @@ import { IUser, IUserUpdate, IUserWithoutPassword } from "../interfaces/IUser";
 
 export class UserService {
   static async listUsers(name?: string): Promise<IUserWithoutPassword[] | null> {
-    try {
-      const users = await UserRepository.findAll(name);
-      return users.map((user: IUser) => excludePassword(user));
-    } catch (error: any) {
-      throw new Error(`Failed to list users: ${error.message}`);
-    }
+    const users = await UserRepository.findAll(name);
+    return users.map((user: IUser) => excludePassword(user));
   }
 
   static async getUserById(id: number): Promise<IUserWithoutPassword | null> {
-    try {
-      const user = await UserRepository.findOneById(id);
-      if (!user) return null;
-      return excludePassword(user);
-    } catch (error: any) {
-      throw new Error(`Failed to get user with id ${id}: ${error.message}`);
-    }
+    const user = await UserRepository.findOneById(id);
+    if (!user) throw new Error("User not found");
+
+    return excludePassword(user);
   }
 
-  static async getUserByEmail(
-    email: string
-  ): Promise<IUserWithoutPassword | null> {
-    try {
-      const user = await UserRepository.findOneByEmail(email);
-      if (!user) return null;
-      return excludePassword(user);
-    } catch (error: any) {
-      throw new Error(`Failed to get user with email ${email}: ${error.message}`);
-    }
+  static async getUserByEmail(email: string): Promise<IUserWithoutPassword | null> {
+    const user = await UserRepository.findOneByEmail(email);
+    if (!user) throw new Error("User not found");
+
+    return excludePassword(user);
   }
 
-  static async updateUser(
-    id: number,
-    data: IUserUpdate
-  ): Promise<IUserWithoutPassword | null> {
-    try {
-      const updatedUser = await UserRepository.update(id, data);
-      if (!updatedUser) return null;
-      return excludePassword(updatedUser);
-    } catch (error: any) {
-      throw new Error(`Failed to update user with id ${id}: ${error.message}`);
-    }
+  static async updateUser(id: number, data: IUserUpdate): Promise<IUserWithoutPassword | null> {
+    await UserService.getUserById(id);
+    const updatedUser = await UserRepository.update(id, data);
+
+    return excludePassword(updatedUser);
   }
 
   /* static async deleteUser(id: number): Promise<boolean> {

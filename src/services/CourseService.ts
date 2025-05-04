@@ -8,60 +8,38 @@ import {
 
 export class CourseService {
   static async listCourses(name?: string): Promise<ICourse[]> {
-    try {
-      return await CourseRepository.findAll(name);
-    } catch (error: any) {
-      throw new Error(`Failed to list courses: ${error.message}`);
-    }
+    return await CourseRepository.findAll(name);
   }
 
   static async getCourseById(id: number): Promise<ICourse | null> {
-    try {
-      return await CourseRepository.findOneById(id) || null;
-    } catch (error: any) {
-      throw new Error(`Failed to get course with id ${id}: ${error.message}`);
-    }
+    const course = await CourseRepository.findOneById(id) || null;
+    if (!course) throw new Error(`Course with id ${id} not found`);
+
+    return course || null;
   }
 
   static async getStudentsOfCourseById(id: number): Promise<ICourseWithStudents | null> {
-    try {
-      const course = await CourseRepository.findOneByIdWithStudents(id);
-      if (!course || course.deletedAt !== null) return null;
+    const course = await CourseRepository.findOneByIdWithStudents(id);
+    if (!course || course.deletedAt !== null) return null;
 
-      const students = course.userCourses
-        .filter((uc) => uc.user.role === "STUDENT")
-        .map((uc) => uc.user);
+    const students = course.userCourses
+      .filter((uc) => uc.user.role === "STUDENT")
+      .map((uc) => uc.user);
 
-      return { ...course, userCourses: students };
-    } catch (error: any) {
-      throw new Error(`Failed to get students of course with id ${id}: ${error.message}`);
-    }
+    return { ...course, userCourses: students };
   }
 
   static async createCourse(data: ICourseBase): Promise<ICourse> {
-    try {
-      return await CourseRepository.create(data);
-    } catch (error: any) {
-      throw new Error(`Failed to create course: ${error.message}`);
-    }
+    return await CourseRepository.create(data);
   }
 
   static async updateCourse(id: number, data: ICourseUpdate): Promise<ICourse | null> {
-    try {
-      return await CourseRepository.update(id, data);
-    } catch (error: any) {
-      throw new Error(`Failed to update course with id ${id}: ${error.message}`);
-    }
+    await CourseService.getCourseById(id);
+
+    return await CourseRepository.update(id, data);
   }
 
   static async deleteCourse(id: number): Promise<void> {
-    try {
-      const course = await CourseRepository.findOneById(id);
-      if (!course) throw new Error("Course not found");
-
-      //await CourseRepository.delete(id);  // Ativar a exclusão quando necessário
-    } catch (error: any) {
-      throw new Error(`Failed to delete course with id ${id}: ${error.message}`);
-    }
+    throw new Error("Method not implemented.");
   }
 }
