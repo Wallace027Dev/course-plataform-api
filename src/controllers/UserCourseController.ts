@@ -6,53 +6,37 @@ import { UserCourseService } from "../services/UserCourseService";
 
 export class UserCourseController {
   static async registerUserToCourse(req: Request, res: Response): Promise<any> {
-    try {
-      const { userId, courseId } =
-        await UserCourseController.#extractIdsFromParams(res, req.params);
+    const { userId, courseId } =
+      await UserCourseController.#extractIdsFromParams(res, req.params);
 
-      const course = await CourseService.getCourseById(courseId as number);
-      if (!course) return HttpResponse.notFound(res, "Course not found");
+    const course = await CourseService.getCourseById(courseId as number);
+    if (!course) return HttpResponse.notFound(res, "Course not found");
 
-      const student = await UserService.getUserById(userId as number);
-      if (!student) return HttpResponse.notFound(res, "Student not found");
+    const student = await UserService.getUserById(userId as number);
+    if (!student) return HttpResponse.notFound(res, "Student not found");
 
-      const userCourse = await UserCourseService.registerOnCourse(
-        courseId,
-        userId
-      );
+    const userCourse = await UserCourseService.registerOnCourse(
+      courseId,
+      userId
+    );
 
-      return HttpResponse.ok(
-        res,
-        `Student ${student?.name} registeres on ${course?.name} course`,
-        userCourse
-      );
-    } catch (error: any) {
-      return HttpResponse.serverError(
-        res,
-        "Error while register student on course",
-        error.message
-      );
-    }
+    return HttpResponse.ok(
+      res,
+      `Student ${student?.name} registeres on ${course?.name} course`,
+      userCourse
+    );
   }
 
   static async removeUserFromCourse(req: Request, res: Response): Promise<any> {
-    try {
-      const { userId, courseId } =
-        await UserCourseController.#extractIdsFromParams(res, req.params);
+    const { userId, courseId } =
+      await UserCourseController.#extractIdsFromParams(res, req.params);
 
-      const userCourse = await UserCourseService.removeOfCourse(
-        courseId,
-        userId
-      );
+    const userCourse = await UserCourseService.removeOfCourse(
+      courseId,
+      userId
+    );
 
-      return HttpResponse.ok(res, "Student removed from curse", userCourse);
-    } catch (error: any) {
-      return HttpResponse.serverError(
-        res,
-        "Error while register student on course",
-        error.message
-      );
-    }
+    return HttpResponse.ok(res, "Student removed from curse", userCourse);
   }
 
   static async #extractIdsFromParams(

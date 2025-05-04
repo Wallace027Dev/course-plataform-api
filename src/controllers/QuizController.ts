@@ -5,99 +5,62 @@ import { validateCreateQuiz } from "../schemas/QuizSchema";
 
 export class QuizController {
   static async listAllQuizzes(req: Request, res: Response): Promise<any> {
-    try {
-      const { name } = req.query;
-      console.log(name)
+    const { name } = req.query;
 
-      const quizzes = await QuizService.listAllQuizzes(name as string);
-      if (quizzes?.length === 0) return HttpResponse.notFound(res, "Quizzes not found");
-  
-      return HttpResponse.ok(res, "Quizzes found", quizzes);
-    } catch (error: any) {
-      return HttpResponse.serverError(
-        res,
-        "Error while creating user",
-        error.message
-      );
-    }
+    const quizzes = await QuizService.listAllQuizzes(name as string);
+    if (quizzes?.length === 0) return HttpResponse.notFound(res, "Quizzes not found");
+
+    return HttpResponse.ok(res, "Quizzes found", quizzes);
   }
 
   static async listQuizzesOfJourney(req: Request, res: Response): Promise<any> {
-    try {
-      const journeyId = parseInt(req.params.journeyId, 10);
-      if (!journeyId) return HttpResponse.badRequest(res, "Invalid ID");
-  
-      const contentWithQuiz = await QuizService.listQuizzesOfJourney(journeyId);
-      if (!contentWithQuiz) return HttpResponse.notFound(res, "Quizzes of journey not found");
-  
-      return HttpResponse.ok(res, "Quizzes of journey found", contentWithQuiz);
-    } catch (error: any) {
-      return HttpResponse.serverError(
-        res,
-        "Error while creating user",
-        error.message
-      );
-    }
+    const journeyId = parseInt(req.params.journeyId, 10);
+    if (!journeyId) return HttpResponse.badRequest(res, "Invalid ID");
+
+    const contentWithQuiz = await QuizService.listQuizzesOfJourney(journeyId);
+    if (!contentWithQuiz) return HttpResponse.notFound(res, "Quizzes of journey not found");
+
+    return HttpResponse.ok(res, "Quizzes of journey found", contentWithQuiz);
   }
 
   static async getQuizById(req: Request, res: Response): Promise<any> {
-    try {
-      const quizId = parseInt(req.params.id, 10);
-      if (!quizId) return HttpResponse.badRequest(res, "Invalid ID");
-  
-      const contentWithQuiz = await QuizService.getQuizById(quizId);
-      if (!contentWithQuiz) return HttpResponse.notFound(res, "Quizzes not found");
-  
-      return HttpResponse.ok(res, "Quizzes found", contentWithQuiz);
-    } catch (error: any) {
-      return HttpResponse.serverError(
-        res,
-        "Error while creating user",
-        error.message
-      );
-    }
+    const quizId = parseInt(req.params.id, 10);
+    if (!quizId) return HttpResponse.badRequest(res, "Invalid ID");
+
+    const contentWithQuiz = await QuizService.getQuizById(quizId);
+    if (!contentWithQuiz) return HttpResponse.notFound(res, "Quizzes not found");
+
+    return HttpResponse.ok(res, "Quizzes found", contentWithQuiz);
   }
 
   static async store(req: Request, res: Response): Promise<any> {
-    try {
-      const data = req.body;
+    const data = req.body;
 
-      const errors = validateCreateQuiz(data);
-      if (errors) return HttpResponse.badRequest(res, "Invalid data", errors);
-  
-      const newQuiz = await QuizService.createQuiz(data);
-      if (!newQuiz) return HttpResponse.notFound(res, "Quiz not created");
-  
-      return HttpResponse.ok(res, "Quizzes found", newQuiz);
-    } catch (error: any) {
-      return HttpResponse.serverError(
-        res,
-        "Error while creating user",
-        error.message
-      );
-    }
+    const errors = validateCreateQuiz(data);
+    if (errors) return HttpResponse.badRequest(res, "Invalid data", errors);
+
+    const newQuiz = await QuizService.createQuiz(data);
+    if (!newQuiz) return HttpResponse.notFound(res, "Quiz not created");
+
+    return HttpResponse.ok(res, "Quizzes found", newQuiz);
   }
 
   static async update(req: Request, res: Response): Promise<any> {
-    try {
-      const id = parseInt(req.params.questionId, 10);
-      if (!id) return HttpResponse.badRequest(res, "Invalid ID");
+    const id = parseInt(req.params.questionId, 10);
+    if (!id) return HttpResponse.badRequest(res, "Invalid ID");
 
-      const data = req.body;
-  
-      const errors = validateCreateQuiz(data);
-      if (errors) return HttpResponse.badRequest(res, "Invalid data", errors);
-  
-      const updatedQuiz = await QuizService.updateQuiz(id as number, data);
-      if (!updatedQuiz) return HttpResponse.notFound(res, "Quiz not updated");
-  
-      return HttpResponse.ok(res, "Quizzes found", updatedQuiz);
-    } catch (error: any) {
-      return HttpResponse.serverError(
-        res,
-        "Error while creating user",
-        error.message
-      );
-    }
+    const data = req.body;
+
+    const errors = validateCreateQuiz(data);
+    if (errors) return HttpResponse.badRequest(res, "Invalid data", errors);
+
+    const updatedQuiz = await QuizService.updateQuiz(id as number, data);
+    if (!updatedQuiz) return HttpResponse.notFound(res, "Quiz not updated");
+
+    return HttpResponse.ok(res, "Quizzes found", updatedQuiz);
+  }
+
+  static deleteQuiz(req: Request, res: Response) {
+    throw new Error("Method not implemented.");
   }
 }

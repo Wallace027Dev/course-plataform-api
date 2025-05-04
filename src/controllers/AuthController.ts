@@ -5,39 +5,23 @@ import { AuthService } from "../services/AuthService";
 
 export class AuthController {
   static async login(req: Request, res: Response): Promise<any> {
-    try {
-      const data = req.body;
+    const data = req.body;
 
-      const token = await AuthService.login(data);
-      if (!token) return HttpResponse.badRequest(res, "Invalid email or password");
+    const token = await AuthService.login(data);
+    if (!token) return HttpResponse.badRequest(res, "Invalid email or password");
 
-      return HttpResponse.ok(res, "User logged in", { token });
-    } catch (error: any) {
-      return HttpResponse.serverError(
-        res,
-        "Error when logging in",
-        error.message
-      );
-    }
+    return HttpResponse.ok(res, "User logged in", { token });
   }
 
   static async register(req: Request, res: Response): Promise<any> {
-    try {
-      const data = req.body;
+    const data = req.body;
 
-      const isInvalid = validateCreateUser(data);
-      if (isInvalid) return HttpResponse.badRequest(res, "Invalid data", isInvalid);
+    const isInvalid = validateCreateUser(data);
+    if (isInvalid) return HttpResponse.badRequest(res, "Invalid data", isInvalid);
 
-      const user = await AuthService.createUser(data);
-      if (!user) return HttpResponse.conflict(res, "User already exists");
+    const user = await AuthService.createUser(data);
+    if (!user) return HttpResponse.conflict(res, "User already exists");
 
-      return HttpResponse.created(res, "User registered", { token: user.token });
-    } catch (error: any) {
-      return HttpResponse.serverError(
-        res,
-        "Error while registering user",
-        error.message
-      );
-    }
+    return HttpResponse.created(res, "User registered", { token: user.token });
   }
 }
