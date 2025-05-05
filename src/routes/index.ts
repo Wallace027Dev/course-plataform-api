@@ -9,7 +9,7 @@ import answerRoutes from './answerRoutes';
 import attemptRoutes from './attemptRoutes';
 import journeyRoutes from './journeyRoutes';
 import questionRoutes from './questionRoutes';
-import resultRoutes from './ResultRoutes';
+import resultRoutes from './resultRoutes';
 import userCourseRoutes from './userCourseRoutes';
 
 const routes = express.Router();
