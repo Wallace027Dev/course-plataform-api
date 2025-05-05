@@ -1,10 +1,10 @@
-import { IAnswer } from "./IAnswer";
+import { IAnswerBase } from "./IAnswer";
 
 export interface IQuestionBase {
   question: string;
   explication: string;
   quizId: number;
-  answers: IAnswer[];
+  answers: IAnswerBase[];
 }
 
 export interface IQuestion extends IQuestionBase {

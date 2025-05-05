@@ -1,10 +1,10 @@
 import { IAttempt } from "./IAttempt";
 import { IContent } from "./IContent";
-import { IQuestion } from "./IQuestion";
+import { IQuestionBase } from "./IQuestion";
 
 export interface IQuizBase {
   name: string;
-  questions: IQuestion[];
+  questions: IQuestionBase[];
 }
 
 export interface IQuiz extends IQuizBase {
