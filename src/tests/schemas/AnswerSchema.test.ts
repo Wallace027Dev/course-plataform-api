@@ -3,7 +3,7 @@ import { validateCreateAnswer } from "../../schemas/AnswerSchema";
 
 describe("Testing answer schema", () => {
   const answerObject = {
-    text: "Teste",
+    text: "Text",
     correct: true,
     questionId: 1
   };

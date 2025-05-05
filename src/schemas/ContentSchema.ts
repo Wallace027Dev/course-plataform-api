@@ -3,12 +3,13 @@ import { IContentBase } from "../interfaces/IContent";
 
 export const CreateContentSchema = z.object({
   journeyId: z.number().int().positive("Journey ID must be a positive integer"),
-  title: z.string().min(1, "Title is required"),
+  title: z.string().trim().min(1, "Title must be at least 1 characters"),
   order: z.number().int().positive("Order must be a positive integer"),
   quizId: z.number().int().optional(),
-  type: z.enum(["video", "article", "quiz", "assignment", "project", "other"], {
-    errorMap: () => ({ message: "Invalid content type" })
-  }),
+  type: z
+    .enum(["video", "article", "quiz", "assignment", "project", "other"], {
+      errorMap: () => ({ message: "Invalid content type" })
+    }),
   metadata: z
     .object({
       level: z.enum(["Newbie", "Apprentice", "Master", "Legendary"], {
@@ -22,11 +23,12 @@ export const CreateContentSchema = z.object({
       instructor: z.string().optional(),
       tags: z.array(z.string()).optional(),
       content: z.string().optional(),
-      contentType: z.enum(["text", "video", "audio", "image", "pdf", "other"], {
-        errorMap: () => ({ message: "Invalid content type" })
+      contentType: z.
+        enum(["text", "video", "audio", "image", "pdf", "other"], {
+          errorMap: () => ({ message: "Invalid content type" })
+        })
       })
-    })
-    .optional()
+      .optional()
 });
 
 export function validateCreateContent(data: IContentBase) {

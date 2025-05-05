@@ -2,7 +2,7 @@ import { z } from "zod";
 import { IUserBase } from "../interfaces/IUser";
 
 export const CreateUserSchema = z.object({
-  name: z.string().min(1, "Name is required"),
+  name: z.string().trim().min(1, "Name must be at least 1 characters"),
   email: z.string().email("Invalid email format"),
   password: z.string().min(6, "Password must be at least 6 characters"),
   role: z

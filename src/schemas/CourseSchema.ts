@@ -2,8 +2,8 @@ import { z } from "zod";
 import { ICourseBase } from "../interfaces/ICourse";
 
 export const CreateCourseSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  description: z.string().min(25, "Description must be at least 25 characters"),
+  name: z.string().trim().min(1, "Name must be at least 1 characters"),
+  description: z.string().trim().min(25, "Description must be at least 25 characters"),
   coverUrl: z.string().url("Invalid URL format").optional()
 });
 
