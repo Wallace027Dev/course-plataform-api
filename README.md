@@ -1,11 +1,12 @@
 # Plataforma de Cursos
 
 ## Stack do projeto
-Framework: Express
-ORM: Prisma
-Validação: Zod
+* `Node.js` v23.x.x
+Framework: Express v5.1.0
+ORM: Prisma v6.7.0
+Validação: Zod v3.24.3
 Banco de dados: MySQL
-Autenticação: JWT (jsonwebtoken)
+Autenticação: JWT (jsonwebtoken) v9.0.2
 Testes: Jest (mais pra frente)
 
 ## Rotas
