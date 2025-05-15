@@ -7,9 +7,9 @@
   "type": "commonjs",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon --watch src --ext ts --exec ts-node --transpile-only src/index.ts",
+    "dev": "nodemon --watch src --ext ts --exec ts-node --transpile-only src/app.ts",
     "build": "tsc",
-    "start": "node dist/index.js",
+    "start": "node dist/app.ts",
     "test": "jest --verbose",
     "prisma:dev": "prisma generate && prisma migrate dev",
     "prisma:seed": "ts-node prisma/seed.ts"
