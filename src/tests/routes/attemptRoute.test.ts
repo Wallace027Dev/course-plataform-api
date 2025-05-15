@@ -9,10 +9,10 @@ import {
 
 let id = 0;
 
-describe("GET em api/answers", () => {
-  it("Should return all answers", async () => {
+describe("GET em api/attempts", () => {
+  it("Should return all attempts", async () => {
     const response = await request(app)
-      .get("/api/answers")
+      .get("/api/attempts")
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
       .expect(200);
@@ -21,15 +21,14 @@ describe("GET em api/answers", () => {
   });
 });
 
-describe("POST em api/answers", () => {
-  it("Should create one answer", async () => {
+describe("POST em api/attempts", () => {
+  it("Should create one attempt", async () => {
     const response = await request(app)
-      .post("/api/answers")
+      .post("/api/attempts")
       .set("Accept", "application/json")
       .send({
-        text: "Text",
-        correct: true,
-        questionId: 1,
+        userId: 1,
+        quizId: 1
       })
       .expect("Content-Type", /json/)
       .expect(200);
@@ -38,10 +37,10 @@ describe("POST em api/answers", () => {
   });
 });
 
-describe("GET em api/answers/:id", () => {
-  it("Should return one answer", async () => {
+describe("GET em api/attempts/:id", () => {
+  it("Should return one attempt", async () => {
     const response = await request(app)
-      .get(`/api/answers/${id}`)
+      .get(`/api/attempts/${id}`)
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
       .expect(200);
@@ -50,23 +49,21 @@ describe("GET em api/answers/:id", () => {
   });
 });
 
-describe("PUT em api/answers/:id", () => {
-  it("Should update one answer", async () => {
+describe("PUT em api/attempts/:id", () => {
+  it("Should update one attempt", async () => {
     const response = await request(app)
-      .put(`/api/answers/${id}`)
+      .put(`/api/attempts/${id}`)
       .set("Accept", "application/json")
       .send({
-        text: "Text",
-        correct: true,
-        questionId: 1,
+        userId: 1,
+        quizId: 2
       })
       .expect("Content-Type", /json/)
       .expect(200);
     
     expect(response.body.data).toMatchObject({
-      text: "Text",
-      correct: true,
-      questionId: 1
+      userId: 1,
+      quizId: 2
     });
   });
 });
