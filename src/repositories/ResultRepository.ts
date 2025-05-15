@@ -39,7 +39,7 @@ export class ResultRepository {
         feedback: data.feedback,
         score: data.score,
         attemptId: data.attemptId,
-        deletedAt: null
+        deletedAt: data.deletedAt ?? null
       }
     });
   }

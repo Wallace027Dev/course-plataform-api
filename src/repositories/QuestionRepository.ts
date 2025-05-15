@@ -69,7 +69,7 @@ export class QuestionRepository {
         question: data.question,
         explication: data.explication,
         quizId: data.quizId,
-        deletedAt: null
+        deletedAt: data.deletedAt ?? null
       },
       include: {
         answers: true

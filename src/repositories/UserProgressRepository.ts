@@ -41,7 +41,7 @@ export class UserProgressRepository {
         userId: data.userId,
         contentId: data.contentId,
         completedAt: data.completedAt,
-        deletedAt: null
+        deletedAt: data.deletedAt ?? null
       }
     });
   }

@@ -36,7 +36,7 @@ export class AttemptRepository {
       data: {
         userId: data.userId,
         quizId: data.quizId,
-        deletedAt: null
+        deletedAt: data.deletedAt ?? null
       }
     });
   }

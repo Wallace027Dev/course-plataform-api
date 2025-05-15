@@ -95,7 +95,7 @@ export class QuizRepository {
       where: { id },
       data: {
         name: data.name,
-        deletedAt: null
+        deletedAt: data.deletedAt ?? null
       },
       include: {
         questions: {

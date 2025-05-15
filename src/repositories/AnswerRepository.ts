@@ -40,7 +40,7 @@ export class AnswerRepository {
         text: data.text,
         correct: data.correct,
         questionId: data.questionId,
-        deletedAt: null
+        deletedAt: data.deletedAt ?? null
       }
     });
   }
