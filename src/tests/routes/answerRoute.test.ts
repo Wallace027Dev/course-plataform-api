@@ -1,23 +1,11 @@
+import "../setup";
 import app from "../../app";
 import request from "supertest";
 import {
-  afterEach,
-  beforeEach,
   describe,
   expect,
   it,
 } from '@jest/globals';
-
-let server: any;
-
-beforeEach(() => {
-  const port = 3000;
-  server = app.listen(port);
-});
-
-afterEach(() => {
-  server.close();
-});
 
 let id = 0;
 
