@@ -29,16 +29,24 @@ export class QuestionRepository {
   }
 
   static async create(data: IQuestionBase): Promise<IQuestion> {
-    const question = await db.question.create({
+    return await db.question.create({
       data: {
-        question: data.question,
-        explication: data.explication,
-        quizId: data.quizId,
-        deletedAt: null
+      question: data.question,
+      explication: data.explication,
+      quizId: data.quizId,
+      answers: {
+        create: data.answers.map((a) => ({
+          text: a.text,
+          correct: a.correct,
+          deletedAt: null
+        }))
+      },
+      deletedAt: null
+      },
+      include: {
+        answers: true
       }
     });
-
-    return { ...question, answers: [] };
   }
 
   static async createWithAnswers(data: IQuestionBase): Promise<IQuestion> {

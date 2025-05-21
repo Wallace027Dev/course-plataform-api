@@ -31,7 +31,7 @@ export class ContentController {
 
     const content = await ContentService.createContent(data);
 
-    return HttpResponse.ok(res, "Content created", content);
+    return HttpResponse.created(res, "Content created", content);
   }
 
   static async updateContent(req: Request, res: Response): Promise<any> {

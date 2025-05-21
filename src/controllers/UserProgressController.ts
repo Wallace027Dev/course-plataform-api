@@ -29,7 +29,7 @@ static async storeUserProgress(req: Request, res: Response): Promise<any> {
 
     const userProgress = await UserProgressService.createUserProgress(data);
 
-    return HttpResponse.ok(res, "UserProgress created", userProgress);
+    return HttpResponse.created(res, "UserProgress created", userProgress);
   }
 
   static async updateUserProgress(req: Request, res: Response): Promise<any> {

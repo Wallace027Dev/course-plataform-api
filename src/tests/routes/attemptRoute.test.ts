@@ -31,7 +31,7 @@ describe("POST em api/attempts", () => {
         quizId: 1
       })
       .expect("Content-Type", /json/)
-      .expect(200);
+      .expect(201);
     id = response.body.data.id;
     expect(response.body.data).toBeDefined();
   });

@@ -30,7 +30,7 @@ export class QuizController {
     const contentWithQuiz = await QuizService.getQuizById(quizId);
     if (!contentWithQuiz) return HttpResponse.notFound(res, "Quizzes not found");
 
-    return HttpResponse.ok(res, "Quizzes found", contentWithQuiz);
+    return HttpResponse.created(res, "Quizzes found", contentWithQuiz);
   }
 
   static async storeQuiz(req: Request, res: Response): Promise<any> {

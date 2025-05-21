@@ -29,7 +29,7 @@ export class AttemptController {
 
     const attempt = await AttemptService.createAttempt(data);
 
-    return HttpResponse.ok(res, "Attempt created", attempt);
+    return HttpResponse.created(res, "Attempt created", attempt);
   }
 
   static async updateAttempt(req: Request, res: Response): Promise<any> {

@@ -29,7 +29,7 @@ export class QuestionController {
 
     const question = await QuestionService.createQuestion(data);
 
-    return HttpResponse.ok(res, "Question created", question);
+    return HttpResponse.created(res, "Question created", question);
   }
 
   static async updateQuestion(req: Request, res: Response): Promise<any> {

@@ -29,7 +29,7 @@ static async storeResult(req: Request, res: Response): Promise<any> {
 
     const result = await ResultService.createResult(data);
 
-    return HttpResponse.ok(res, "Result created", result);
+    return HttpResponse.created(res, "Result created", result);
   }
 
   static async updateResult(req: Request, res: Response): Promise<any> {

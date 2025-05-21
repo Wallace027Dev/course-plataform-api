@@ -11,7 +11,8 @@
     "build": "tsc",
     "start": "node dist/app.ts",
     "test": "jest --verbose",
-    "prisma:dev": "prisma generate && prisma migrate dev",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:generate": "prisma generate",
     "prisma:seed": "ts-node prisma/seed.ts"
   },
   "dependencies": {

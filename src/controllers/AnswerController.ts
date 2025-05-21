@@ -29,7 +29,7 @@ export class AnswerController {
 
     const answer = await AnswerService.createAnswer(data);
 
-    return HttpResponse.ok(res, "Answer created", answer);
+    return HttpResponse.created(res, "Answer created", answer);
   }
 
   static async updateAnswer(req: Request, res: Response): Promise<any> {
