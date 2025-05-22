@@ -91,7 +91,7 @@ export class QuizRepository {
   }
 
   static async update(id: number, data: IQuizUpdate): Promise<IQuiz> {
-    // Apaga todas as perguntas antigas (e respostas via cascade, se o modelo permitir)
+    // Apaga todas as perguntas antigas
     await db.question.deleteMany({
       where: { quizId: id }
     });

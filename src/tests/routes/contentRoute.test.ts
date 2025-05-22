@@ -7,9 +7,9 @@ import {
   it,
 } from '@jest/globals';
 
-let id = 0;
-
-describe("GET em api/contents", () => {
+describe("Contents API", () => {
+  let id = 0;
+  
   it("Should return all contents", async () => {
     const response = await request(app)
       .get("/api/contents")
@@ -19,9 +19,7 @@ describe("GET em api/contents", () => {
     
     expect(response.body.data.length).toBeGreaterThan(0);
   });
-});
 
-describe("POST em api/contents", () => {
   it("Should create one content", async () => {
     const response = await request(app)
       .post("/api/contents")
@@ -43,14 +41,12 @@ describe("POST em api/contents", () => {
         quizId: null,
       })
       .expect("Content-Type", /json/)
-      .expect(200);
+      .expect(201);
     
     id = response.body.data.id;
     expect(response.body.data).toBeDefined();
   });
-});
 
-describe("GET em api/contents/:id", () => {
   it("Should return one content", async () => {
     const response = await request(app)
       .get(`/api/contents/${id}`)
@@ -61,20 +57,25 @@ describe("GET em api/contents/:id", () => {
     expect(response.body.data).toBeDefined();
     expect(response.body.data.id).toBe(id);
   });
-});
 
-describe("PUT em api/contents/:id", () => {
-  it("Should update the quizId of one content", async () => {
+  it("Should update one content", async () => {
+    const updatedData = {
+        type: "article",
+        title: "Um título aqui",
+        metadata: {
+          level: "Legendary",
+          contentType: "pdf"
+        }
+      }
+
     const response = await request(app)
       .put(`/api/contents/${id}`)
       .set("Accept", "application/json")
-      .send({
-        quizId: 2, // <- valor atualizado corretamente
-      })
+      .send(updatedData)
       .expect("Content-Type", /json/)
       .expect(200);
     
-    expect(response.body.data).toBeDefined();
-    expect(response.body.data.quizId).toBe(2);
+    expect(response.body.data).toMatchObject(updatedData);
+    expect(response.body.data.id).toBe(id);
   });
 });

@@ -24,10 +24,10 @@ export class QuizController {
   }
 
   static async getQuizById(req: Request, res: Response): Promise<any> {
-    const quizId = parseInt(req.params.id, 10);
-    if (!quizId) return HttpResponse.badRequest(res, "Invalid ID");
+    const id = parseInt(req.params.id, 10);
+    if (isNaN(id) || id <= 0) return HttpResponse.badRequest(res, "Invalid ID");
 
-    const contentWithQuiz = await QuizService.getQuizById(quizId);
+    const contentWithQuiz = await QuizService.getQuizById(id);
     if (!contentWithQuiz) return HttpResponse.notFound(res, "Quizzes not found");
 
     return HttpResponse.ok(res, "Quizzes found", contentWithQuiz);

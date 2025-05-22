@@ -24,10 +24,10 @@ export class JourneyController {
   }
 
   static async getJourneyById(req: Request, res: Response): Promise<any> {
-    const journeyId = parseInt(req.params.id, 10);
-    if (!journeyId) return HttpResponse.badRequest(res, "Invalid journey ID");
+    const id = parseInt(req.params.id, 10);
+    if (isNaN(id) || id <= 0) return HttpResponse.badRequest(res, "Invalid journey ID");
 
-    const journey = await JourneyService.getJourneyById(journeyId);
+    const journey = await JourneyService.getJourneyById(id);
     if (!journey) return HttpResponse.notFound(res, "Journey not found");
 
     return HttpResponse.ok(res, "Journey found", journey);

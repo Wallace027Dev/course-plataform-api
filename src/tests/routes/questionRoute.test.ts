@@ -7,21 +7,20 @@ import {
   it,
 } from '@jest/globals';
 
-let id = 0;
 
-describe("GET em api/questions", () => {
+describe("Questions API", () => {
+  let questionId: number;
+
   it("Should return all questions", async () => {
     const response = await request(app)
       .get("/api/questions")
       .set("Accept", "application/json")
-      .expect("question-Type", /json/)
+      .expect("Content-Type", /json/)
       .expect(200);
     
     expect(response.body.data.length).toBeGreaterThan(0);
   });
-});
 
-describe("POST em api/questions", () => {
   it("Should create one question", async () => {
     const response = await request(app)
       .post("/api/questions")
@@ -48,31 +47,29 @@ describe("POST em api/questions", () => {
             }
         ]
       })
-      .expect("question-Type", /json/)
+      .expect("Content-Type", /json/)
       .expect(201);
-    id = response.body.data.id;
+    questionId = response.body.data.id;
+    console.log("Question criada: ", response.body)
     expect(response.body.data).toBeDefined();
   });
-});
 
-describe("GET em api/questions/:id", () => {
   it("Should return one question", async () => {
     const response = await request(app)
-      .get(`/api/questions/${id}`)
+      .get(`/api/questions/${questionId}`)
       .set("Accept", "application/json")
-      .expect("question-Type", /json/)
+      .expect("Content-Type", /json/)
       .expect(200);
     
     expect(response.body.data).toBeDefined();
+    expect(response.body.data.id).toBe(questionId);
   });
-});
 
-describe("PUT em api/questions/:id", () => {
   it("Should update one question", async () => {
     const now = new Date().toISOString();
     
     const response = await request(app)
-      .put(`/api/questions/${id}`)
+      .put(`/api/questions/${questionId}`)
       .set("Accept", "application/json")
       .send({
         question: "Alterando a pergunta",
@@ -96,7 +93,7 @@ describe("PUT em api/questions/:id", () => {
             }
         ]
       })
-      .expect("question-Type", /json/)
+      .expect("Content-Type", /json/)
       .expect(200);
     
     expect(response.body.data).toMatchObject({

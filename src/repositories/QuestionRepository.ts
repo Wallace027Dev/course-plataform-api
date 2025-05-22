@@ -16,10 +16,10 @@ export class QuestionRepository {
     });
   }
 
-  static async findOneById(id: number): Promise<IQuestion | null> {
+  static async findOneById(questionId: number): Promise<IQuestion | null> {
     return await db.question.findFirst({
       where: {
-        id,
+        id: questionId,
         deletedAt: null
       },
       include: {
