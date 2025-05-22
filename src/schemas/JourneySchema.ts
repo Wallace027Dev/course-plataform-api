@@ -7,8 +7,19 @@ export const CreateJourneySchema = z.object({
   converUrl: z.string().url("Invalid URL format").nullable().optional()
 });
 
+export const UpdateJourneySchema = CreateJourneySchema.partial();
+
 export function validateCreateJourney(data: IJourneyBase) {
   const journeyValidation = CreateJourneySchema.safeParse(data);
+
+  if (!journeyValidation.success) {
+    return journeyValidation.error.format();
+  }
+  return null;
+}
+
+export function validateUpdateJourney(data: IJourneyBase) {
+  const journeyValidation = UpdateJourneySchema.safeParse(data);
 
   if (!journeyValidation.success) {
     return journeyValidation.error.format();

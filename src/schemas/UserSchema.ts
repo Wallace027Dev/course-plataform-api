@@ -12,8 +12,19 @@ export const CreateUserSchema = z.object({
     .default("student")
 });
 
+export const UpdateUserSchema = CreateUserSchema.partial();
+
 export function validateCreateUser(data: IUserBase) {
   const userValidation = CreateUserSchema.safeParse(data);
+
+  if (!userValidation.success) {
+    return userValidation.error.format();
+  }
+  return null;
+}
+
+export function validateUpdateUser(data: IUserBase) {
+  const userValidation = UpdateUserSchema.safeParse(data);
 
   if (!userValidation.success) {
     return userValidation.error.format();

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { HttpResponse } from "../helper/HttpResponse";
 import { UserProgressService } from "../services/UserProgressService";
-import { validateCreateUserProgress } from "../schemas/UserProgressSchema";
+import { validateCreateUserProgress, validateUpdateUserProgress } from "../schemas/UserProgressSchema";
 
 export class UserProgressController {
   static async listAllUserProgresss(_req: Request, res: Response): Promise<any> {
@@ -38,7 +38,7 @@ static async storeUserProgress(req: Request, res: Response): Promise<any> {
 
     const data = req.body;
 
-    const validate = validateCreateUserProgress(data);
+    const validate = validateUpdateUserProgress(data);
     if (validate) return HttpResponse.badRequest(res, "Invalid data", validate);
 
     const userProgress = await UserProgressService.updateUserProgress(id as number, data);

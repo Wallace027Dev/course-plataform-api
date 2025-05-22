@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { HttpResponse } from "../helper/HttpResponse";
 import { AnswerService } from "../services/AnswerService";
-import { validateCreateAnswer } from "../schemas/AnswerSchema";
+import { validateCreateAnswer, validateUpdateAnswer } from "../schemas/AnswerSchema";
 
 export class AnswerController {
   static async listAllAnswers(_req: Request, res: Response): Promise<any> {
@@ -38,7 +38,7 @@ export class AnswerController {
 
     const data = req.body;
 
-    const isInvalid = validateCreateAnswer(data);
+    const isInvalid = validateUpdateAnswer(data);
     if (isInvalid) return HttpResponse.badRequest(res, "Invalid data", isInvalid);
 
     const answer = await AnswerService.updateAnswer(id as number, data);

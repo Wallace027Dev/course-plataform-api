@@ -7,8 +7,19 @@ export const CreateCourseSchema = z.object({
   coverUrl: z.string().url("Invalid URL format").nullable().optional()
 });
 
+export const UpdateCourseSchema = CreateCourseSchema.partial();
+
 export function validateCreateCourse(data: ICourseBase) {
   const courseValidation = CreateCourseSchema.safeParse(data);
+
+  if (!courseValidation.success) {
+    return courseValidation.error.format();
+  }
+  return null;
+}
+
+export function validateUpdateCourse(data: ICourseBase) {
+  const courseValidation = UpdateCourseSchema.safeParse(data);
 
   if (!courseValidation.success) {
     return courseValidation.error.format();

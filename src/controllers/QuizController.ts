@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { HttpResponse } from "../helper/HttpResponse";
 import { QuizService } from "../services/QuizService";
-import { validateCreateQuiz } from "../schemas/QuizSchema";
+import { validateCreateQuiz, validateUpdateQuiz } from "../schemas/QuizSchema";
 
 export class QuizController {
   static async listAllQuizzes(req: Request, res: Response): Promise<any> {
@@ -51,7 +51,7 @@ export class QuizController {
 
     const data = req.body;
 
-    const errors = validateCreateQuiz(data);
+    const errors = validateUpdateQuiz(data);
     if (errors) return HttpResponse.badRequest(res, "Invalid data", errors);
 
     const updatedQuiz = await QuizService.updateQuiz(id as number, data);

@@ -10,8 +10,19 @@ export const CreateQuizSchema = z.object({
     .max(10, "Quiz must have at most 10 questions"),
 });
 
+export const UpdateQuizSchema = CreateQuizSchema.partial();
+
 export function validateCreateQuiz(data: IQuizBase) {
   const userValidation = CreateQuizSchema.safeParse(data);
+
+  if (!userValidation.success) {
+    return userValidation.error.format();
+  }
+  return null;
+}
+
+export function validateUpdateQuiz(data: IQuizBase) {
+  const userValidation = UpdateQuizSchema.safeParse(data);
 
   if (!userValidation.success) {
     return userValidation.error.format();

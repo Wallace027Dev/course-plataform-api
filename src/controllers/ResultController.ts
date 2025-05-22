@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { HttpResponse } from "../helper/HttpResponse";
 import { ResultService } from "../services/ResultService";
-import { validateCreateResult } from "../schemas/ResultSchema";
+import { validateCreateResult, validateUpdateResult } from "../schemas/ResultSchema";
 
 export class ResultController {
   static async listAllResults(_req: Request, res: Response): Promise<any> {
@@ -38,7 +38,7 @@ static async storeResult(req: Request, res: Response): Promise<any> {
 
     const data = req.body;
 
-    const validate = validateCreateResult(data);
+    const validate = validateUpdateResult(data);
     if (validate) return HttpResponse.badRequest(res, "Invalid data", validate);
 
     const result = await ResultService.updateResult(id as number, data);

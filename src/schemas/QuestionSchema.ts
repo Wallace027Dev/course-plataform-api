@@ -11,8 +11,19 @@ export const CreateQuestionSchema = z.object({
     .max(4, "Question must have at most 4 answers"),
 });
 
+export const UpdateQuestionSchema = CreateQuestionSchema.partial();
+
 export function validateCreateQuestion(data: IQuestionBase) {
   const userValidation = CreateQuestionSchema.safeParse(data);
+
+  if (!userValidation.success) {
+    return userValidation.error.format();
+  }
+  return null;
+}
+
+export function validateUpdateQuestion(data: IQuestionBase) {
+  const userValidation = UpdateQuestionSchema.safeParse(data);
 
   if (!userValidation.success) {
     return userValidation.error.format();

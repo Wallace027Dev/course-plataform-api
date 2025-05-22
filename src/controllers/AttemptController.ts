@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { HttpResponse } from "../helper/HttpResponse";
 import { AttemptService } from "../services/AttemptService";
-import { validateCreateAttempt } from "../schemas/AttemptSchema";
+import { validateCreateAttempt, validateUpdateAttempt } from "../schemas/AttemptSchema";
 
 export class AttemptController {
   static async listAllAttempts(_req: Request, res: Response): Promise<any> {
@@ -38,7 +38,7 @@ export class AttemptController {
 
     const data = req.body;
 
-    const isInvalid = validateCreateAttempt(data);
+    const isInvalid = validateUpdateAttempt(data);
     if (isInvalid) return HttpResponse.badRequest(res, "Invalid data", isInvalid);
 
     const attempt = await AttemptService.updateAttempt(id as number, data);

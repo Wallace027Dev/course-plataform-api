@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { CourseService } from "../services/CourseService";
 import { HttpResponse } from "../helper/HttpResponse";
-import { validateCreateCourse } from "../schemas/CourseSchema";
+import { validateCreateCourse, validateUpdateCourse } from "../schemas/CourseSchema";
 
 export class CourseController {
   static async listCourses(req: Request, res: Response): Promise<any> {
@@ -53,7 +53,7 @@ export class CourseController {
 
     const data = req.body;
 
-    const isInvalid = validateCreateCourse(data);
+    const isInvalid = validateUpdateCourse(data);
     if (isInvalid) return HttpResponse.badRequest(res, "Invalid data", isInvalid);
 
     const course = await CourseService.updateCourse(id as number, data);

@@ -32,8 +32,37 @@ export const CreateContentSchema = z.object({
     .nullable().optional()
 });
 
+export const UpdateContentSchema = z.object({
+  journeyId: z.number().int().positive().optional(),
+  title: z.string().trim().min(1).optional(),
+  order: z.number().int().positive().optional(),
+  quizId: z.number().int().nullable().optional(),
+  type: z.enum(["video", "article", "quiz", "assignment", "project", "other"]).optional(),
+  metadata: z.object({
+    level: z.enum(["Newbie", "Apprentice", "Master", "Legendary"]).optional(),
+    contentType: z.enum(["text", "video", "audio", "image", "pdf", "other"]).optional(),
+    thumb: z.string().url().optional(),
+    description: z.string().nullable().optional(),
+    duration: z.string().nullable().optional(),
+    contentUrl: z.string().url().nullable().optional(),
+    objetive: z.string().nullable().optional(),
+    instructor: z.string().nullable().optional(),
+    tags: z.array(z.string()).nullable().optional(),
+    content: z.string().nullable().optional(),
+  }).partial().optional()
+});
+
 export function validateCreateContent(data: IContentBase) {
   const courseValidation = CreateContentSchema.safeParse(data);
+
+  if (!courseValidation.success) {
+    return courseValidation.error.format();
+  }
+  return null;
+}
+
+export function validateUpdateContent(data: IContentBase) {
+  const courseValidation = UpdateContentSchema.safeParse(data);
 
   if (!courseValidation.success) {
     return courseValidation.error.format();

@@ -7,8 +7,19 @@ export const CreateResultSchema = z.object({
   attemptId: z.number().int().positive("Attempt ID must be a positive integer"),
 });
 
+export const UpdateResultSchema = CreateResultSchema.partial();
+
 export function validateCreateResult(data: IResultBase) {
   const courseValidation = CreateResultSchema.safeParse(data);
+
+  if (!courseValidation.success) {
+    return courseValidation.error.format();
+  }
+  return null;
+}
+
+export function validateUpdateResult(data: IResultBase) {
+  const courseValidation = UpdateResultSchema.safeParse(data);
 
   if (!courseValidation.success) {
     return courseValidation.error.format();
