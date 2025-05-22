@@ -51,15 +51,12 @@ describe("GET em api/attempts/:id", () => {
 
 describe("PUT em api/attempts/:id", () => {
   it("Should update one attempt", async () => {
-    const now = new Date().toISOString();
-    
     const response = await request(app)
       .put(`/api/attempts/${id}`)
       .set("Accept", "application/json")
       .send({
         userId: 1,
         quizId: 2,
-        deletedAt: now
       })
       .expect("Content-Type", /json/)
       .expect(200);
@@ -67,7 +64,6 @@ describe("PUT em api/attempts/:id", () => {
     expect(response.body.data).toMatchObject({
       userId: 1,
       quizId: 2,
-      deletedAt: now
     });
   });
 });

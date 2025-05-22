@@ -66,8 +66,6 @@ describe("Questions API", () => {
   });
 
   it("Should update one question", async () => {
-    const now = new Date().toISOString();
-    
     const response = await request(app)
       .put(`/api/questions/${questionId}`)
       .set("Accept", "application/json")

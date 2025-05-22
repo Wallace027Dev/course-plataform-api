@@ -52,8 +52,6 @@ describe("GET em api/journeys/:id", () => {
 
 describe("PUT em api/journeys/:id", () => {
   it("Should update one journey", async () => {
-    const now = new Date().toISOString();
-    
     const response = await request(app)
       .put(`/api/journeys/${id}`)
       .set("Accept", "application/json")
