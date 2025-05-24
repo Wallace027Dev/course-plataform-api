@@ -3,7 +3,7 @@ import { JourneyController } from "../controllers/JourneyController";
 
 const journeyRoutes = express.Router();
 
-journeyRoutes.get("/", JourneyController.listJourneysOfCourse);
+journeyRoutes.get("/", JourneyController.listAllJourneys);
 journeyRoutes.get("/course/:courseId", JourneyController.listJourneysOfCourse);
 journeyRoutes.get("/:id", JourneyController.getJourneyById);
 journeyRoutes.post("/", JourneyController.storeJourneyOnCourse);

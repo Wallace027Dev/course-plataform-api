@@ -9,7 +9,7 @@ import {
 
 let id = 0;
 
-describe("GET em api/attempts", () => {
+describe("Attempts API", () => {
   it("Should return all attempts", async () => {
     const response = await request(app)
       .get("/api/attempts")
@@ -19,9 +19,7 @@ describe("GET em api/attempts", () => {
     
     expect(response.body.data.length).toBeGreaterThan(0);
   });
-});
 
-describe("POST em api/attempts", () => {
   it("Should create one attempt", async () => {
     const response = await request(app)
       .post("/api/attempts")
@@ -35,9 +33,7 @@ describe("POST em api/attempts", () => {
     id = response.body.data.id;
     expect(response.body.data).toBeDefined();
   });
-});
 
-describe("GET em api/attempts/:id", () => {
   it("Should return one attempt", async () => {
     const response = await request(app)
       .get(`/api/attempts/${id}`)
@@ -47,9 +43,7 @@ describe("GET em api/attempts/:id", () => {
     
     expect(response.body.data).toBeDefined();
   });
-});
 
-describe("PUT em api/attempts/:id", () => {
   it("Should update one attempt", async () => {
     const response = await request(app)
       .put(`/api/attempts/${id}`)
