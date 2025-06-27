@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { HttpResponse } from "../helper/HttpResponse";
 import { JourneyService } from "../services/JourneyService";
-import { validateCreateJourney } from "../schemas/JourneySchema";
+import { validateCreateJourney, validateUpdateJourney } from "../schemas/JourneySchema";
 
 export class JourneyController {
   static async listAllJourneys(req: Request, res: Response): Promise<any> {
@@ -24,10 +24,10 @@ export class JourneyController {
   }
 
   static async getJourneyById(req: Request, res: Response): Promise<any> {
-    const journeyId = parseInt(req.params.id, 10);
-    if (!journeyId) return HttpResponse.badRequest(res, "Invalid journey ID");
+    const id = parseInt(req.params.id, 10);
+    if (isNaN(id) || id <= 0) return HttpResponse.badRequest(res, "Invalid journey ID");
 
-    const journey = await JourneyService.getJourneyById(journeyId);
+    const journey = await JourneyService.getJourneyById(id);
     if (!journey) return HttpResponse.notFound(res, "Journey not found");
 
     return HttpResponse.ok(res, "Journey found", journey);
@@ -50,7 +50,7 @@ export class JourneyController {
 
     const data = req.body;
 
-    const isInvalid = validateCreateJourney(data);
+    const isInvalid = validateUpdateJourney(data);
     if (isInvalid) return HttpResponse.badRequest(res, "Invalid data", isInvalid);
 
     const journey = await JourneyService.updateJourney(id as number, data);

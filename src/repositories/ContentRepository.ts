@@ -58,7 +58,7 @@ export class ContentRepository {
         order: data.order,
         metadata: data.metadata ?? Prisma.JsonNull,
         quizId: data.quizId,
-        deletedAt: null
+        deletedAt: data.deletedAt ?? null
       }
     });
   }

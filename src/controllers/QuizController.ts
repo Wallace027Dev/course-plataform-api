@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { HttpResponse } from "../helper/HttpResponse";
 import { QuizService } from "../services/QuizService";
-import { validateCreateQuiz } from "../schemas/QuizSchema";
+import { validateCreateQuiz, validateUpdateQuiz } from "../schemas/QuizSchema";
 
 export class QuizController {
   static async listAllQuizzes(req: Request, res: Response): Promise<any> {
@@ -24,10 +24,10 @@ export class QuizController {
   }
 
   static async getQuizById(req: Request, res: Response): Promise<any> {
-    const quizId = parseInt(req.params.id, 10);
-    if (!quizId) return HttpResponse.badRequest(res, "Invalid ID");
+    const id = parseInt(req.params.id, 10);
+    if (isNaN(id) || id <= 0) return HttpResponse.badRequest(res, "Invalid ID");
 
-    const contentWithQuiz = await QuizService.getQuizById(quizId);
+    const contentWithQuiz = await QuizService.getQuizById(id);
     if (!contentWithQuiz) return HttpResponse.notFound(res, "Quizzes not found");
 
     return HttpResponse.ok(res, "Quizzes found", contentWithQuiz);
@@ -42,7 +42,7 @@ export class QuizController {
     const newQuiz = await QuizService.createQuiz(data);
     if (!newQuiz) return HttpResponse.notFound(res, "Quiz not created");
 
-    return HttpResponse.ok(res, "Quizzes found", newQuiz);
+    return HttpResponse.created(res, "Quizzes found", newQuiz);
   }
 
   static async updateQuiz(req: Request, res: Response): Promise<any> {
@@ -51,7 +51,7 @@ export class QuizController {
 
     const data = req.body;
 
-    const errors = validateCreateQuiz(data);
+    const errors = validateUpdateQuiz(data);
     if (errors) return HttpResponse.badRequest(res, "Invalid data", errors);
 
     const updatedQuiz = await QuizService.updateQuiz(id as number, data);

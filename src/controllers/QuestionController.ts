@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { HttpResponse } from "../helper/HttpResponse";
 import { QuestionService } from "../services/QuestionService";
-import { validateCreateQuestion } from "../schemas/QuestionSchema";
+import { validateCreateQuestion, validateUpdateQuestion } from "../schemas/QuestionSchema";
 
 export class QuestionController {
   static async listAllQuestions(_req: Request, res: Response): Promise<any> {
@@ -29,7 +29,7 @@ export class QuestionController {
 
     const question = await QuestionService.createQuestion(data);
 
-    return HttpResponse.ok(res, "Question created", question);
+    return HttpResponse.created(res, "Question created", question);
   }
 
   static async updateQuestion(req: Request, res: Response): Promise<any> {
@@ -38,7 +38,7 @@ export class QuestionController {
 
     const data = req.body;
 
-    const validate = validateCreateQuestion(data);
+    const validate = validateUpdateQuestion(data);
     if (validate) return HttpResponse.badRequest(res, "Invalid data", validate);
 
     const question = await QuestionService.updateQuestion(id as number, data);

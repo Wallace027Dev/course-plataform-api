@@ -6,11 +6,11 @@ export class JourneyService {
     return await JourneyRepository.findAll(name);
   }
 
-  static async listJourneysOfCourse(courseId: number): Promise<IJourney[]> {
+  static async listJourneysOfCourse(courseId: number): Promise<IJourney[] | null> {
     const journeys = await JourneyRepository.findAllByCourseId(courseId);
     if (!journeys) return [];
     
-    return  journeys;
+    return  journeys || null;
   }
 
   static async getJourneyById(journeyId: number): Promise<IJourney | null> {

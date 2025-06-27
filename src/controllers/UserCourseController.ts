@@ -20,7 +20,7 @@ export class UserCourseController {
       userId
     );
 
-    return HttpResponse.ok(
+    return HttpResponse.created(
       res,
       `Student ${student?.name} registeres on ${course?.name} course`,
       userCourse

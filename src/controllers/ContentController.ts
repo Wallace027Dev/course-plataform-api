@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { HttpResponse } from "../helper/HttpResponse";
 import { ContentService } from "../services/ContentService";
-import { validateCreateContent } from "../schemas/ContentSchema";
+import { validateCreateContent, validateUpdateContent } from "../schemas/ContentSchema";
 
 export class ContentController {
   static async listAllContents(req: Request, res: Response): Promise<any> {
@@ -31,7 +31,7 @@ export class ContentController {
 
     const content = await ContentService.createContent(data);
 
-    return HttpResponse.ok(res, "Content created", content);
+    return HttpResponse.created(res, "Content created", content);
   }
 
   static async updateContent(req: Request, res: Response): Promise<any> {
@@ -40,7 +40,7 @@ export class ContentController {
 
     const data = req.body;
 
-    const isInvalid = validateCreateContent(data);
+    const isInvalid = validateUpdateContent(data);
     if (isInvalid) return HttpResponse.badRequest(res, "Invalid data", isInvalid);
 
     const content = await ContentService.updateContent(id as number, data);

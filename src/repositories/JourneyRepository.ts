@@ -12,7 +12,7 @@ export class JourneyRepository {
     });
   }
 
-  static async findAllByCourseId(courseId: number): Promise<IJourney[]> {
+  static async findAllByCourseId(courseId: number): Promise<IJourney[] | null> {
     return await db.journey.findMany({
       where: {
         courseId,

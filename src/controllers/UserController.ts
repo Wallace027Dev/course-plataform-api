@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { UserService } from "../services/UserService";
 import { HttpResponse } from "../helper/HttpResponse";
+import { validateUpdateUser } from "../schemas/UserSchema";
 
 export class UserController {
   static async listUsers(req: Request, res: Response): Promise<any> {
@@ -28,6 +29,9 @@ export class UserController {
 
     const data = req.body;
 
+    const validate = validateUpdateUser(data);
+    if (validate) return HttpResponse.badRequest(res, "Invalid data", validate);
+    
     const user = UserService.updateUser(id as number, data);
 
     return HttpResponse.ok(res, "User updated", user);

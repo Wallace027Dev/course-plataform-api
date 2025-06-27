@@ -1,44 +1,58 @@
-import { IQuestion, IQuestionBase, IQuestionUpdate } from "../interfaces/IQuestion";
+import {
+  IQuestion,
+  IQuestionBase,
+  IQuestionUpdate,
+} from "../interfaces/IQuestion";
 import { PrismaClient } from "@prisma/client";
 const db = new PrismaClient();
 
 export class QuestionRepository {
-  static async findAll(question?: string, explication?: string): Promise<IQuestion[]> {
+  static async findAll(
+    question?: string,
+    explication?: string
+  ): Promise<IQuestion[]> {
     return await db.question.findMany({
       where: {
         ...(question && { question: { contains: question } }),
         ...(explication && { explication: { contains: explication } }),
-        deletedAt: null
+        deletedAt: null,
       },
       include: {
-        answers: true
-      }
+        answers: true,
+      },
     });
   }
 
-  static async findOneById(id: number): Promise<IQuestion | null> {
-    return await db.question.findFirst({
+  static async findOneById(questionId: number): Promise<IQuestion | null> {
+    const result = await db.question.findFirst({
       where: {
-        id,
-        deletedAt: null
+        id: questionId,
+        deletedAt: null,
       },
       include: {
-        answers: true
-      }
+        answers: true,
+      },
     });
+    return result;
   }
 
   static async create(data: IQuestionBase): Promise<IQuestion> {
-    const question = await db.question.create({
+    return await db.question.create({
       data: {
         question: data.question,
         explication: data.explication,
         quizId: data.quizId,
-        deletedAt: null
-      }
+        answers: {
+          create: data.answers.map((a) => ({
+            text: a.text,
+            correct: a.correct,
+            deletedAt: null,
+          })),
+        },
+        deletedAt: null,
+      },
+      include: { answers: true },
     });
-
-    return { ...question, answers: [] };
   }
 
   static async createWithAnswers(data: IQuestionBase): Promise<IQuestion> {
@@ -51,14 +65,14 @@ export class QuestionRepository {
           create: data.answers.map((a) => ({
             text: a.text,
             correct: a.correct,
-            deletedAt: null
-          }))
+            deletedAt: null,
+          })),
         },
-        deletedAt: null
+        deletedAt: null,
       },
       include: {
-        answers: true
-      }
+        answers: true,
+      },
     });
   }
 
@@ -69,11 +83,11 @@ export class QuestionRepository {
         question: data.question,
         explication: data.explication,
         quizId: data.quizId,
-        deletedAt: null
+        deletedAt: data.deletedAt ?? null,
       },
       include: {
-        answers: true
-      }
+        answers: true,
+      },
     });
   }
 }

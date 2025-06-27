@@ -18,7 +18,9 @@ app
   .listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   })
-  .once("error", (err) => {
+  /* .once("error", (err) => {
     console.error(err);
     process.exit(1);
-  })
+  }) */
+
+export default app;

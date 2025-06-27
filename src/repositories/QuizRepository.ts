@@ -91,17 +91,35 @@ export class QuizRepository {
   }
 
   static async update(id: number, data: IQuizUpdate): Promise<IQuiz> {
+    // Apaga todas as perguntas antigas
+    await db.question.deleteMany({
+      where: { quizId: id }
+    });
+
+    // Atualiza o quiz (nome, deletedAt, e recria perguntas)
     return await db.quiz.update({
       where: { id },
       data: {
         name: data.name,
-        deletedAt: null
+        deletedAt: data.deletedAt ?? null,
+        questions: {
+          create: data.questions?.map((q) => ({
+            question: q.question,
+            explication: q.explication,
+            answers: {
+              create: q.answers.map((a) => ({
+                text: a.text,
+                correct: a.correct,
+                deletedAt: null
+              }))
+            },
+            deletedAt: null
+          }))
+        }
       },
       include: {
         questions: {
-          include: {
-            answers: true
-          }
+          include: { answers: true }
         },
         attempts: true
       }
