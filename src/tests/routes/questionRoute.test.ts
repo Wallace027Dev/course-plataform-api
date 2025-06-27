@@ -1,25 +1,10 @@
 import "../setup";
 import app from "../../app";
 import request from "supertest";
-import {
-  describe,
-  expect,
-  it,
-} from '@jest/globals';
-
+import { describe, expect, it } from "@jest/globals";
 
 describe("Questions API", () => {
   let questionId: number;
-
-  it("Should return all questions", async () => {
-    const response = await request(app)
-      .get("/api/questions")
-      .set("Accept", "application/json")
-      .expect("Content-Type", /json/)
-      .expect(200);
-    
-    expect(response.body.data.length).toBeGreaterThan(0);
-  });
 
   it("Should create one question", async () => {
     const response = await request(app)
@@ -27,31 +12,41 @@ describe("Questions API", () => {
       .set("Accept", "application/json")
       .send({
         question: "O que são Soft Skills?",
-        explication: "Soft Skills são habilidades comportamentais como comunicação, trabalho em equipe, liderança e empatia.",
+        explication:
+          "Soft Skills são habilidades comportamentais como comunicação, trabalho em equipe, liderança e empatia.",
         quizId: 1,
         answers: [
-            {
-                text: "Habilidades técnicas de programação",
-                correct: false,
-                questionId: 1
-            },
-            {
-                text: "Comportamentos e habilidades interpessoais",
-                correct: true,
-                questionId: 1
-            },
-            {
-                text: "Ferramentas para automatizar tarefas",
-                correct: false,
-                questionId: 1
-            }
-        ]
+          {
+            text: "Habilidades técnicas de programação",
+            correct: false,
+            questionId: 1,
+          },
+          {
+            text: "Comportamentos e habilidades interpessoais",
+            correct: true,
+            questionId: 1,
+          },
+          {
+            text: "Ferramentas para automatizar tarefas",
+            correct: false,
+            questionId: 1,
+          },
+        ],
       })
       .expect("Content-Type", /json/)
       .expect(201);
     questionId = response.body.data.id;
-    console.log("Question criada: ", response.body)
-    expect(response.body.data).toBeDefined();
+    const question = expect(response.body.data).toBeDefined();
+  });
+
+  it("Should return all questions", async () => {
+    const response = await request(app)
+      .get("/api/questions")
+      .set("Accept", "application/json")
+      .expect("Content-Type", /json/)
+      .expect(200);
+
+    expect(response.body.data.length).toBeGreaterThan(0);
   });
 
   it("Should return one question", async () => {
@@ -60,7 +55,7 @@ describe("Questions API", () => {
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
       .expect(200);
-    
+
     expect(response.body.data).toBeDefined();
     expect(response.body.data.id).toBe(questionId);
   });
@@ -74,30 +69,30 @@ describe("Questions API", () => {
         explication: "Alterando a descrição",
         quizId: 2,
         answers: [
-            {
-                text: "Alterando a resposta 1",
-                correct: true,
-                questionId: 1
-            },
-            {
-                text: "Alterando a resposta 2",
-                correct: false,
-                questionId: 1
-            },
-            {
-                text: "Alterando a resposta 3",
-                correct: true,
-                questionId: 1
-            }
-        ]
+          {
+            text: "Alterando a resposta 1",
+            correct: true,
+            questionId: 1,
+          },
+          {
+            text: "Alterando a resposta 2",
+            correct: false,
+            questionId: 1,
+          },
+          {
+            text: "Alterando a resposta 3",
+            correct: true,
+            questionId: 1,
+          },
+        ],
       })
       .expect("Content-Type", /json/)
       .expect(200);
-    
+
     expect(response.body.data).toMatchObject({
       name: "Outro teste",
       courseId: 2,
-      coverUrl: "src/outra-image.png"
+      coverUrl: "src/outra-image.png",
     });
   });
 });
