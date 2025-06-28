@@ -6,12 +6,8 @@ export class AttemptService {
     return await AttemptRepository.findAll();
   }
   
-
   static async getAttemptById(attemptId: number): Promise<IAttempt | null> {
-    const attempt = await AttemptRepository.findOneById(attemptId);
-    if (!attempt) throw new Error(`Attempt with id ${attemptId} not found`);
-
-    return attempt || null;
+    return await AttemptRepository.findOneById(attemptId);
   }
 
   static async createAttempt(data: any): Promise<any> {

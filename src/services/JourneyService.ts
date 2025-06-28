@@ -14,10 +14,7 @@ export class JourneyService {
   }
 
   static async getJourneyById(journeyId: number): Promise<IJourney | null> {
-      const journey = await JourneyRepository.findOneById(journeyId);
-      if (!journey) throw new Error(`Journey with id ${journeyId} not found`);
-
-      return journey || null;
+    return await JourneyRepository.findOneById(journeyId);
   }
 
   static async createJourney(data: IJourneyBase): Promise<IJourney> {

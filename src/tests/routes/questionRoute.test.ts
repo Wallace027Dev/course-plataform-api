@@ -8,9 +8,9 @@ import {
 } from '@jest/globals';
 
 
-describe("Questions API", () => {
-  let questionId: number;
+let questionId: number;
 
+describe("Questions API", () => {
   it("Should return all questions", async () => {
     const response = await request(app)
       .get("/api/questions")
@@ -50,7 +50,6 @@ describe("Questions API", () => {
       .expect("Content-Type", /json/)
       .expect(201);
     questionId = response.body.data.id;
-    console.log("Question criada: ", response.body)
     expect(response.body.data).toBeDefined();
   });
 
@@ -67,7 +66,7 @@ describe("Questions API", () => {
 
   it("Should update one question", async () => {
     const response = await request(app)
-      .put(`/api/questions/${questionId}`)
+      .put(`/api/questions/1`)
       .set("Accept", "application/json")
       .send({
         question: "Alterando a pergunta",

@@ -12,10 +12,7 @@ export class CourseService {
   }
 
   static async getCourseById(id: number): Promise<ICourse | null> {
-    const course = await CourseRepository.findOneById(id) || null;
-    if (!course) throw new Error(`Course with id ${id} not found`);
-
-    return course || null;
+    return await CourseRepository.findOneById(id) || null;
   }
 
   static async getStudentsOfCourseById(id: number): Promise<ICourseWithStudents | null> {

@@ -10,7 +10,7 @@ export class UserService {
 
   static async getUserById(id: number): Promise<IUserWithoutPassword | null> {
     const user = await UserRepository.findOneById(id);
-    if (!user) throw new Error("User not found");
+    if (!user) return null;
 
     return excludePassword(user);
   }

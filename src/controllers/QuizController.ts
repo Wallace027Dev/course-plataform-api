@@ -27,7 +27,7 @@ export class QuizController {
     const id = parseInt(req.params.id, 10);
     if (isNaN(id) || id <= 0) return HttpResponse.badRequest(res, "Invalid ID");
 
-    const contentWithQuiz = await QuizService.getQuizById(id);
+    const contentWithQuiz = await QuizService.getQuizById(id as number);
     if (!contentWithQuiz) return HttpResponse.notFound(res, "Quizzes not found");
 
     return HttpResponse.ok(res, "Quizzes found", contentWithQuiz);

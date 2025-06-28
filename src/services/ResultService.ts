@@ -8,10 +8,7 @@ export class ResultService {
   
 
   static async getResultById(resultId: number): Promise<IResult | null> {
-    const result = await ResultRepository.findOneById(resultId);
-    if (!result) throw new Error(`Result with id ${resultId} not found`);
-    
-    return result || null;
+    return await ResultRepository.findOneById(resultId);
   }
 
   static async createResult(data: any): Promise<any> {

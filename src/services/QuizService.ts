@@ -15,10 +15,7 @@ export class QuizService {
   }
 
   static async getQuizById(quizId: number): Promise<IQuiz | null> {
-    const quiz = await QuizRepository.findOneById(quizId);
-    if (!quiz) throw new Error(`Quiz with id ${quizId} not found`);
-
-    return quiz || null;
+    return await QuizRepository.findOneById(quizId);
   }
 
   static async createQuiz(data: any): Promise<any> {
