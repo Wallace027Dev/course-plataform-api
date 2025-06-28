@@ -6,12 +6,8 @@ export class AnswerService {
     return await AnswerRepository.findAll();
   }
   
-
   static async getAnswerById(answerId: number): Promise<IAnswer | null> {
-    const answer = await AnswerRepository.findOneById(answerId);
-    if (!answer) throw new Error(`Answer with id ${answerId} not found`);
-
-    return answer || null;
+    return await AnswerRepository.findOneById(answerId);
   }
 
   static async createAnswer(data: any): Promise<any> {

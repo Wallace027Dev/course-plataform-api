@@ -1,10 +1,25 @@
 import "../setup";
 import app from "../../app";
 import request from "supertest";
-import { describe, expect, it } from "@jest/globals";
+import {
+  describe,
+  expect,
+  it,
+} from '@jest/globals';
+
+
+let questionId: number;
 
 describe("Questions API", () => {
-  let questionId: number;
+  it("Should return all questions", async () => {
+    const response = await request(app)
+      .get("/api/questions")
+      .set("Accept", "application/json")
+      .expect("Content-Type", /json/)
+      .expect(200);
+    
+    expect(response.body.data.length).toBeGreaterThan(0);
+  });
 
   it("Should create one question", async () => {
     const response = await request(app)
@@ -36,17 +51,7 @@ describe("Questions API", () => {
       .expect("Content-Type", /json/)
       .expect(201);
     questionId = response.body.data.id;
-    const question = expect(response.body.data).toBeDefined();
-  });
-
-  it("Should return all questions", async () => {
-    const response = await request(app)
-      .get("/api/questions")
-      .set("Accept", "application/json")
-      .expect("Content-Type", /json/)
-      .expect(200);
-
-    expect(response.body.data.length).toBeGreaterThan(0);
+    expect(response.body.data).toBeDefined();
   });
 
   it("Should return one question", async () => {
@@ -62,7 +67,7 @@ describe("Questions API", () => {
 
   it("Should update one question", async () => {
     const response = await request(app)
-      .put(`/api/questions/${questionId}`)
+      .put(`/api/questions/1`)
       .set("Accept", "application/json")
       .send({
         question: "Alterando a pergunta",

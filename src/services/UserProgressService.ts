@@ -6,12 +6,8 @@ export class UserProgressService {
     return await UserProgressRepository.findAll();
   }
   
-
   static async getUserProgressById(userProgressId: number): Promise<IUserProgress | null> {
-    const userProgress = await UserProgressRepository.findOneById(userProgressId);
-    if (!userProgress) throw new Error(`UserProgress with id ${userProgressId} not found`);
-
-    return userProgress || null;
+    return await UserProgressRepository.findOneById(userProgressId);
   }
 
   static async createUserProgress(data: any): Promise<any> {

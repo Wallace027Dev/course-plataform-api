@@ -7,10 +7,7 @@ export class ContentService {
   }
 
   static async getContentById(id: number): Promise<IContent | null> {
-    const content = await ContentRepository.findOneById(id);
-    if (!content) throw new Error(`Content with id ${id} not found`);
-
-    return content || null;
+    return await ContentRepository.findOneById(id);
   }
 
   static async listContentsByJourneyId(journeyId: number): Promise<IContent[] | null> {

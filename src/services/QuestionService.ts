@@ -8,10 +8,7 @@ export class QuestionService {
   }
 
   static async getQuestionById(questionId: number): Promise<IQuestion | null> {
-    const question = await QuestionRepository.findOneById(questionId);
-    if (!question) throw new Error(`Question with id ${questionId} not found`);
-    
-    return question || null;
+    return await QuestionRepository.findOneById(questionId);
   }
 
   static async createQuestion(data: IQuestion): Promise<any> {
