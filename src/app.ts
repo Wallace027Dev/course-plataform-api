@@ -8,17 +8,18 @@ dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 const app = express();
+import path from "path";
 
 app.use(express.json());
-app.use(logRequest())
+app.use(logRequest());
+app.use("/uploads", express.static(path.resolve(__dirname, "../uploads")));
 app.use("/api", routes);
 app.use(errorHandler());
 
-app
-  .listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-  })
-  /* .once("error", (err) => {
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+/* .once("error", (err) => {
     console.error(err);
     process.exit(1);
   }) */

@@ -1,5 +1,4 @@
 import express from "express";
-import path from "path";
 
 import authRoutes from "./authRoutes";
 import courseRoutes from "./courseRoutes";
@@ -26,6 +25,5 @@ routes.use("/quizzes", quizRoutes);
 routes.use("/results", resultRoutes);
 routes.use("/register", userCourseRoutes);
 routes.use("/users", userRoutes);
-routes.use("/uploads", express.static(path.resolve(__dirname, "./uploads")));
 
 export default routes;
