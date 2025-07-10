@@ -1,14 +1,24 @@
+import dotenv from "dotenv";
 import { Request, Response } from "express";
 import { HttpResponse } from "../helper/HttpResponse";
 import { ContentService } from "../services/ContentService";
-import { validateCreateContent, validateUpdateContent } from "../schemas/ContentSchema";
+import {
+  validateCreateContent,
+  validateUpdateContent
+} from "../schemas/ContentSchema";
+
+const baseUrl = process.env.BASE_URL || "http://localhost:6000";
 
 export class ContentController {
   static async listAllContents(req: Request, res: Response): Promise<any> {
     const { type, title } = req.query;
 
-    const contents = await ContentService.listContents(type as string, title as string);
-    if (contents?.length === 0) return HttpResponse.notFound(res, "Content not found");
+    const contents = await ContentService.listContents(
+      type as string,
+      title as string
+    );
+    if (contents?.length === 0)
+      return HttpResponse.notFound(res, "Content not found");
 
     return HttpResponse.ok(res, "Courses found", contents);
   }
@@ -24,14 +34,61 @@ export class ContentController {
   }
 
   static async storeContent(req: Request, res: Response): Promise<any> {
-    const data = req.body;
+    try {
+      const files = req.files as {
+        image?: Express.Multer.File[];
+        video?: Express.Multer.File[];
+        audio?: Express.Multer.File[];
+        pdf?: Express.Multer.File[];
+      };
 
-    const isInvalid = validateCreateContent(data);
-    if (isInvalid) return HttpResponse.badRequest(res, "Invalid data", isInvalid);
+      console.log(files);
 
-    const content = await ContentService.createContent(data);
+      const imageFile = files?.image?.[0];
+      const videoFile = files?.video?.[0];
+      const audioFile = files?.audio?.[0];
+      const pdfFile = files?.pdf?.[0];
 
-    return HttpResponse.created(res, "Content created", content);
+      // Parseando metadata manualmente
+      const rawMetadata =
+        typeof req.body.metadata === "string"
+          ? JSON.parse(req.body.metadata)
+          : req.body.metadata || {};
+
+      // Adiciona o path da imagem como thumb, se foi enviado
+      if (imageFile) {
+        rawMetadata.thumb = `${baseUrl}/uploads/${imageFile.filename}`;
+      }
+
+      // Também pode adicionar contentUrl para vídeos, pdfs, etc.
+      if (videoFile) {
+        rawMetadata.contentUrl = `${baseUrl}/uploads/${videoFile.filename}`;
+      } else if (audioFile) {
+        rawMetadata.contentUrl = `${baseUrl}/uploads/${audioFile.filename}`;
+      } else if (pdfFile) {
+        rawMetadata.contentUrl = `${baseUrl}/uploads/${pdfFile.filename}`;
+      }
+
+      const data = {
+        title: req.body.title,
+        type: req.body.type,
+        order: Number(req.body.order),
+        journeyId: Number(req.body.journeyId),
+        quizId: req.body.quizId ? Number(req.body.quizId) : null,
+        metadata: rawMetadata
+      };
+
+      const isInvalid = validateCreateContent(data);
+      if (isInvalid) {
+        return HttpResponse.badRequest(res, "Invalid data", isInvalid);
+      }
+
+      const createdContent = await ContentService.createContent(data);
+      return HttpResponse.created(res, "Content created", createdContent);
+    } catch (error) {
+      console.error(error);
+      return HttpResponse.serverError(res, "Erro ao criar conteúdo");
+    }
   }
 
   static async updateContent(req: Request, res: Response): Promise<any> {
@@ -41,7 +98,8 @@ export class ContentController {
     const data = req.body;
 
     const isInvalid = validateUpdateContent(data);
-    if (isInvalid) return HttpResponse.badRequest(res, "Invalid data", isInvalid);
+    if (isInvalid)
+      return HttpResponse.badRequest(res, "Invalid data", isInvalid);
 
     const content = await ContentService.updateContent(id as number, data);
 
