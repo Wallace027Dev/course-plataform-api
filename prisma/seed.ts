@@ -1,10 +1,27 @@
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
 import fs from "fs";
 import path from "path";
 
 const prisma = new PrismaClient();
 
 async function main() {
+  // 🔐 Criar usuário admin
+  const passwordHash = await bcrypt.hash("admin123", 10);
+
+  const adminUser = await prisma.user.upsert({
+    where: { email: "admin@admin.com" },
+    update: {}, // se já existir, não faz nada
+    create: {
+      name: "Administrador",
+      email: "admin@admin.com",
+      password: passwordHash,
+      role: "ADMIN",
+    },
+  });
+
+  console.log(`Usuário admin criado: ${adminUser.email}`);
+
   // Carregar arquivos JSON
   const coursesData = JSON.parse(
     fs.readFileSync(path.join(__dirname, "data/courses.json"), "utf-8")
