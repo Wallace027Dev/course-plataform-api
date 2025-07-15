@@ -1,4 +1,4 @@
-import express from "express";
+import { Router } from "express";
 
 import authRoutes from "./authRoutes";
 import courseRoutes from "./courseRoutes";
@@ -11,19 +11,24 @@ import journeyRoutes from "./journeyRoutes";
 import questionRoutes from "./questionRoutes";
 import resultRoutes from "./resultRoutes";
 import userCourseRoutes from "./userCourseRoutes";
+import { authenticated } from "../middlewares/authenticated";
 
-const routes = express.Router();
+const router = Router();
 
-routes.use("/answers", answerRoutes);
-routes.use("/attempts", attemptRoutes);
-routes.use("/auth", authRoutes);
-routes.use("/contents", contentRoutes);
-routes.use("/courses", courseRoutes);
-routes.use("/journeys", journeyRoutes);
-routes.use("/questions", questionRoutes);
-routes.use("/quizzes", quizRoutes);
-routes.use("/results", resultRoutes);
-routes.use("/register", userCourseRoutes);
-routes.use("/users", userRoutes);
+// Rotas públicas
+router.use("/auth", authRoutes);
 
-export default routes;
+// Rotas privadas
+router.use(authenticated);
+router.use("/answers", answerRoutes);
+router.use("/attempts", attemptRoutes);
+router.use("/contents", contentRoutes);
+router.use("/courses", courseRoutes);
+router.use("/journeys", journeyRoutes);
+router.use("/questions", questionRoutes);
+router.use("/quizzes", quizRoutes);
+router.use("/results", resultRoutes);
+router.use("/register", userCourseRoutes);
+router.use("/users", userRoutes);
+
+export default router;

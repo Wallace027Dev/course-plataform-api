@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import routes from "./routes";
+import router from "./routes";
 import { logRequest } from "./middlewares/logger";
 import { errorHandler } from "./middlewares/error";
 
@@ -13,7 +13,7 @@ import path from "path";
 app.use(express.json());
 app.use(logRequest());
 app.use("/uploads", express.static(path.resolve(__dirname, "uploads")));
-app.use("/api", routes);
+app.use("/api", router);
 app.use(errorHandler());
 
 app.listen(PORT, () => {
