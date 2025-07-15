@@ -7,7 +7,7 @@ import {
   validateUpdateContent
 } from "../schemas/ContentSchema";
 
-const baseUrl = process.env.BASE_URL || "http://localhost:6000";
+const baseUrl = process.env.BASE_URL || "http://localhost:3000";
 
 export class ContentController {
   static async listAllContents(req: Request, res: Response): Promise<any> {

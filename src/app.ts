@@ -12,7 +12,7 @@ import path from "path";
 
 app.use(express.json());
 app.use(logRequest());
-app.use("/uploads", express.static(path.resolve(__dirname, "../uploads")));
+app.use("/uploads", express.static(path.resolve(__dirname, "uploads")));
 app.use("/api", routes);
 app.use(errorHandler());
 

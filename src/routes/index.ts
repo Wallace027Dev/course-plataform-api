@@ -11,7 +11,6 @@ import journeyRoutes from "./journeyRoutes";
 import questionRoutes from "./questionRoutes";
 import resultRoutes from "./resultRoutes";
 import userCourseRoutes from "./userCourseRoutes";
-import uploadRoutes from "./uploadRoutes";
 
 const routes = express.Router();
 
@@ -26,6 +25,5 @@ routes.use("/quizzes", quizRoutes);
 routes.use("/results", resultRoutes);
 routes.use("/register", userCourseRoutes);
 routes.use("/users", userRoutes);
-routes.use("/api/upload", uploadRoutes);
 
 export default routes;
