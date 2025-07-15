@@ -1,12 +1,13 @@
-import express from 'express';
+import express from "express";
+
 import { ContentController } from "../controllers/ContentController";
+import { uploads } from "../helper/multerConfig";
 
 const contentRoutes = express.Router();
 
-// ROTAS DE CONTEUDO DE UMA JORNADA
 contentRoutes.get("/", ContentController.listAllContents);
 contentRoutes.get("/:id", ContentController.getContentById);
-contentRoutes.post("/", ContentController.storeContent);
+contentRoutes.post("/", uploads, ContentController.storeContent);
 contentRoutes.put("/:id", ContentController.updateContent);
 contentRoutes.delete("/:id", ContentController.deleteContent);
 
