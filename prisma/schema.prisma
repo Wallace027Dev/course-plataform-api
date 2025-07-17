@@ -82,13 +82,19 @@ model Answer {
   deletedAt  DateTime?
 }
 
+enum Role {
+  ADMIN
+  USER
+  TEACHER
+}
+
 model User {
   id          Int            @id @default(autoincrement())
   token       String?        @unique
   name        String
   email       String         @unique
   password    String
-  role        String         @default("user")
+  role        String         @default("USER")
   attempts    Attempt[]
   photoUrl    String?
   progress    UserProgress[]

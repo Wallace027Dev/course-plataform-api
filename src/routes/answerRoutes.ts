@@ -1,12 +1,26 @@
-import express from 'express';
+import { Router } from "express";
 import { AnswerController } from "../controllers/AnswerController";
+import { hasRole } from "../middlewares/hasRole.ts";
+import { Roles } from "../constants/Roles";
 
-const answerRoutes = express.Router();
+const answerRoutes = Router();
 
 answerRoutes.get("/", AnswerController.listAllAnswers);
 answerRoutes.get("/:id", AnswerController.getAnswersById);
-answerRoutes.post("/", AnswerController.storeAnswer);
-answerRoutes.put("/:id", AnswerController.updateAnswer);
-answerRoutes.delete("/:id", AnswerController.deleteAnswer);
+answerRoutes.post(
+  "/",
+  hasRole([Roles.ADMIN, Roles.TEACHER]),
+  AnswerController.storeAnswer
+);
+answerRoutes.put(
+  "/:id",
+  hasRole([Roles.ADMIN, Roles.TEACHER]),
+  AnswerController.updateAnswer
+);
+answerRoutes.delete(
+  "/:id",
+  hasRole([Roles.ADMIN, Roles.TEACHER]),
+  AnswerController.deleteAnswer
+);
 
 export default answerRoutes;
