@@ -1,4 +1,8 @@
 import express from "express";
+import path from "path";
+import { authenticated } from "../middlewares/authenticated";
+import { errorHandler } from "../middlewares/error";
+import { logRequest } from "../middlewares/logger";
 
 import authRoutes from "./authRoutes";
 import courseRoutes from "./courseRoutes";
@@ -12,18 +16,32 @@ import questionRoutes from "./questionRoutes";
 import resultRoutes from "./resultRoutes";
 import userCourseRoutes from "./userCourseRoutes";
 
-const routes = express.Router();
+const router = express.Router();
+router.use(express.json());
 
-routes.use("/answers", answerRoutes);
-routes.use("/attempts", attemptRoutes);
-routes.use("/auth", authRoutes);
-routes.use("/contents", contentRoutes);
-routes.use("/courses", courseRoutes);
-routes.use("/journeys", journeyRoutes);
-routes.use("/questions", questionRoutes);
-routes.use("/quizzes", quizRoutes);
-routes.use("/results", resultRoutes);
-routes.use("/register", userCourseRoutes);
-routes.use("/users", userRoutes);
+// Middleware de log
+router.use(logRequest());
 
-export default routes;
+// Rotas públicas
+router.use("/auth", authRoutes);
+router.use("/courses", courseRoutes);
+router.use("/uploads", express.static(path.resolve(__dirname, "uploads")));
+
+// Middleware de autenticação global
+router.use(authenticated);
+
+// Rotas privadas
+router.use("/answers", answerRoutes);
+router.use("/attempts", attemptRoutes);
+router.use("/contents", contentRoutes);
+router.use("/journeys", journeyRoutes);
+router.use("/questions", questionRoutes);
+router.use("/quizzes", quizRoutes);
+router.use("/results", resultRoutes);
+router.use("/register", userCourseRoutes);
+router.use("/users", userRoutes);
+
+// Middleware de tratamento de erros
+router.use(errorHandler());
+
+export default router;

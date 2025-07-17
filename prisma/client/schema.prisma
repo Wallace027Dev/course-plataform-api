@@ -1,0 +1,150 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./client"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Course {
+  id          Int          @id @default(autoincrement())
+  name        String
+  description String
+  coverUrl    String
+  journeys    Journey[]
+  userCourses UserCourse[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  deletedAt   DateTime?
+}
+
+model Journey {
+  id        Int       @id @default(autoincrement())
+  name      String
+  course    Course    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  courseId  Int
+  coverUrl  String
+  contents  Content[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+model Content {
+  id        Int            @id @default(autoincrement())
+  journey   Journey        @relation(fields: [journeyId], references: [id], onDelete: Cascade)
+  journeyId Int
+  type      String
+  title     String
+  order     Int
+  metadata  Json
+  quiz      Quiz?          @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  quizId    Int?           @unique
+  progress  UserProgress[]
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  deletedAt DateTime?
+}
+
+model Quiz {
+  id        Int        @id @default(autoincrement())
+  name      String
+  questions Question[]
+  attempts  Attempt[]
+  content   Content?
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  deletedAt DateTime?
+}
+
+model Question {
+  id          Int       @id @default(autoincrement())
+  question    String
+  explication String
+  quiz        Quiz      @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  quizId      Int
+  answers     Answer[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+}
+
+model Answer {
+  id         Int       @id @default(autoincrement())
+  text       String
+  correct    Boolean
+  question   Question  @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  questionId Int
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  deletedAt  DateTime?
+}
+
+enum Role {
+  ADMIN
+  USER
+  TEACHER
+}
+
+model User {
+  id          Int            @id @default(autoincrement())
+  token       String?        @unique
+  name        String
+  email       String         @unique
+  password    String
+  role        String         @default("USER")
+  attempts    Attempt[]
+  photoUrl    String?
+  progress    UserProgress[]
+  userCourses UserCourse[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  deletedAt   DateTime?
+}
+
+model UserCourse {
+  userId   Int
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId Int
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@id([userId, courseId])
+}
+
+model Attempt {
+  id        Int       @id @default(autoincrement())
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
+  quiz      Quiz      @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  quizId    Int
+  result    Result?
+  timestamp DateTime  @default(now())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+model Result {
+  id        Int       @id @default(autoincrement())
+  attempt   Attempt   @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  attemptId Int       @unique
+  score     Float
+  feedback  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+model UserProgress {
+  id          Int       @id @default(autoincrement())
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      Int
+  content     Content   @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  contentId   Int
+  completedAt DateTime
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+}

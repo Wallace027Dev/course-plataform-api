@@ -18,7 +18,7 @@ export class TokenService {
     }
 
     return jwt.sign({ id: userId }, process.env.JWT_SECRET, {
-      expiresIn: "60m",
+      expiresIn: "1d",
       algorithm: "HS256",
     });
   }
