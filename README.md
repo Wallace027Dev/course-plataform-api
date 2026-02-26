@@ -1,13 +1,80 @@
-# Plataforma de Cursos
+# 🎓 Plataforma de Cursos — API
 
-## Stack do projeto
-* `Node.js` v23.x.x
-Framework: Express v5.1.0
-ORM: Prisma v6.7.0
-Validação: Zod v3.24.3
-Banco de dados: MySQL
-Autenticação: JWT (jsonwebtoken) v9.0.2
-Testes: Jest (mais pra frente)
+API RESTful de uma plataforma de cursos online com autenticação JWT, gerenciamento de cursos, jornadas de aprendizado, quizzes e acompanhamento de progresso do usuário.
+
+![Node.js](https://img.shields.io/badge/Node.js-23-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express-5.1-000000?style=for-the-badge&logo=express&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-6.7-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Jest](https://img.shields.io/badge/Jest-29-C21325?style=for-the-badge&logo=jest&logoColor=white)
+
+## ✨ Funcionalidades
+
+- 🔐 Autenticação com JWT (login e cadastro)
+- 🎓 CRUD de cursos com suporte a matrículas
+- 🗺️ Jornadas de aprendizado por curso
+- 📝 Quizzes com perguntas e respostas corrigidas automaticamente
+- 📈 Acompanhamento de progresso do usuário por conteúdo
+- 🧾 Testes automatizados com Jest e Supertest
+
+## 🛠️ Stack
+
+| Tecnologia | Versão |
+|---|---|
+| Node.js | 23 |
+| Express | 5.1 |
+| TypeScript | 5.8 |
+| Prisma | 6.7 |
+| MySQL | — |
+| JWT | 9.0 |
+| Zod | 3.24 |
+| Jest | 29 |
+| Multer | 2.0 |
+
+## 🚀 Como rodar localmente
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/Wallace027Dev/course-plataform-api.git
+   cd course-plataform-api
+   ```
+
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
+
+3. Configure as variáveis de ambiente:
+   ```bash
+   # Crie um arquivo .env com:
+   DATABASE_URL="mysql://user:password@localhost:3306/course_platform"
+   JWT_SECRET="sua_chave_secreta"
+   PORT=3000
+   ```
+
+4. Execute as migrations do banco:
+   ```bash
+   npm run prisma:migrate
+   ```
+
+5. (Opcional) Popule o banco com dados iniciais:
+   ```bash
+   npm run prisma:seed
+   ```
+
+6. Inicie o servidor em modo desenvolvimento:
+   ```bash
+   npm run dev
+   ```
+
+A API estará disponível em `http://localhost:3000`.
+
+## 🌐 Deploy
+
+> Em breve disponível via Railway / Render.
+
+---
 
 ## Rotas
 
